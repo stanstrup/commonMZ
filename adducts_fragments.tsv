@@ -1,0 +1,89 @@
+Mass difference ±	Origin	Reference(s)
+0.98402	"OH <-> NH2, e.g. de-amidiation, CHNO compounds"	F
+1.97975	"K+ <-> Cl-+2H2+, salt adduct"	AA
+1.99566	"F <-> OH, halogen exchange with hydroxy group (typically -F + OH)"	F
+2.01565	"± 2H, opening or forming of double bond "	F
+4.9554	"Na+<-> NH4+, salt adduct"	F
+7.00467	"F <-> CN, halogen exchange with cyano group"	F
+8.96578	"Cl <-> CN, halogen exchange with cyano group"	F
+13.97927	"O <-> 2H, e.g. Oxidation follwed by H2O elimination"	F
+13.99419	"Cl-+2H2+ <-> Na+, salt adduct"	AA
+14.01565	"± CH2, alkane chains, waxes, fatty acids, methylation"	F
+14.01565	"-[C3H6ON] <-> -[C2H4ON], acrylamide versus iodoacetamide in cysteine alkylation (gels)"	T
+15.97394	"Na+<-> K+, salt adduct"	F
+15.97716	"S <-> O, sulfur compounds"	F
+15.99492	"± O, e.g. oxidation/reduction"	F
+17.02655	"± NH3, ammonium adduct/neutral ammonium loss"	F
+17.02655	"NH4+<-> H+, salt adduct"	F
+17.96611	"Cl <-> OH, halogen exchange with hydroxy group (typically -Cl + OH)"	F
+17.99058	"F <-> H, halogen exchange"	F
+18.01057	"± H2O, water addition/loss"	F
+18.99458	"CN <-> COOH, nitrile compounds"	F
+20.92933	"K+<-> NH4+, salt adduct"	F
+21.98194	"Na+<-> H+, salt adduct"	F
+24.99525	"CN <-> H, nitrile compounds"	F
+27.0109	"± HCN, nitrile compounds"	F
+27.99492	± CO	Z
+28.00615	"- 2N, nitrogen loss, e.g. azido compounds (N2)"	Z
+28.0313	"± C2H4, natural alkane chains such as fatty acids"	F
+29.97418	"NO2 <-> NH2, nitro compounds"	F
+29.99799	#NAME?	F
+31.97207	"± S, sulfur compounds"	F
+31.98983	"± 2O, oxygen loss"	F
+33.02146	#NAME?	F
+33.96103	"Cl <-> H, halogen exchange"	F
+33.98772	"± H2S, sulfur compounds"	F
+35.9767	"Cl-+2H2+ <-> H+, salt adduct"	AA
+37.95588	"K+<-> H+, salt adduct"	F
+37.98916	"2CN <-> 2COOH, nitrile compounds"	F
+39.99248	Na+ <-> -H2O+H	AA
+40.0313	"+(C3H6O - H2O), acetone condensation after dehydration"	F
+42.01057	± COCH2	F
+42.04695	"± C3H6, propylation"	F
+43.00581	± CONH (wrong calc. in ref.)	F
+43.94948	"79Br <-> Cl, halogen exchange (typically -Br +Cl)"	F
+43.96389	"2Na+ - H+ <-> H+, salt adduct"	AA
+43.98983	± CO2	F
+45.94744	"81Br <-> Cl, halogen exchange (typically -Br +Cl)"	F
+46.00548	± CO+H2O (carboxylic acid)	AA
+47.96699	"± SO, sulfur compounds"	F
+52.91311	"Fe3+ - 4H- <-> H-, salt adduct (probably only for polymers)"	AA
+52.91526	"79Br <-> CN, halogen exchange with cyano group"	F
+54.91322	"81Br <-> CN, halogen exchange with cyano group"	F
+56.0626	"± C4H8, butylation"	F
+57.95862	"Na++Cl--H+ <-> H-, salt adduct"	AA
+58.00548	± CO2CH2	F
+58.04187	"+C3H6O, acetone condensation"	F
+59.03711	"± C2H5NO, N-acetyl or cut from side chain of Asn in peptides"	AA
+59.93783	"Na+ + K+ - H+ <-> H+, salt adduct"	AA
+61.9156	"79Br <-> OH, halogen exchange with hydroxy group (typically -Br + OH)"	F
+63.91355	"81Br <-> OH, halogen exchange with hydroxy group (typically -Br + OH)"	F
+63.9619	"± SO2, sulfur compounds"	F
+63.99829	#NAME?	T
+77.91051	"79Br <-> H, halogen exchange"	F
+79.90847	"81Br <-> H, halogen exchange"	F
+79.95682	"± SO3, sulfur compounds"	F
+91.93562	"I <-> Cl, halogen exchange (typically -I +Cl)"	F
+97.96738	"± H2SO4, sulfur compounds"	F
+97.9769	"± H3PO4, phosphorous compounds"	F
+100.9014	"I <-> CN, halogen exchange with cyano group"	F
+109.90173	"I <-> OH, halogen exchange with hydroxy group (typically -I + OH)"	F
+125.89665	"I <-> H, halogen exchange"	F
+146.05791	"± [Deoxy-Hexose-H2O, C6O4H10], e.g. Fucose"	S
+162.05283	"± [Hexose-H2O, C6O5H10], e.g. Glucose, Galactose, Mannose, Fructose"	F
+164.06848	"± [Deoxy-Hexose-H2O, C6O5H12], e.g. Fucose"	S
+176.03209	"± [Glucuronic acid-H2O, C6O6H8] "	F
+180.06339	"± [Hexose, C6O6H12], e.g. Glucose, Galactose, Mannose, Fructose"	F
+194.04266	"± [Glucuronic acid, C6O7H10] "	F
+203.07937	"± [HexNAc-H2O, C8O5NH13], N-acetylhexoseamine"	S
+206.05791	"+ sinapic acid - H2O, (C11H12O5-H2O), MALDI-matrix for proteins, possible photo- or condensation adduct"	R
+221.08994	"± [HexNAc, C8O6NH15], N-acetylhexoseamine"	S
+289.07324	"± [Glutathione-H2O, C10O5N3SH15] "	F
+291.09542	"± [Neu5Ac-H2O, C11O8NH17], N-acetylneuraminic acid, sialic acid, NANA"	S
+305.06816	"± [Glutathione+O-H2O, C10O6N3SH15] "	F
+307.08381	"± [Glutathione, C10O6N3SH17] "	F
+309.10598	"± [Neu5Ac, C11O9NH19], N-acetylneuraminic acid, sialic acid, NANA"	S
+324.10565	"± [Sucrose-H2O, C12O10H20] "	F
+342.11622	"± [Sucrose, C12O11H22] "	F
+484.17101	"+Tetraphenyl-tetramethyl-trisiloxane, (C28H32O2Si3), ( from silicon-based diffusion pump oil (DC7040, Dow corning)"	P
+546.18666	"+Pentaphenyl-trimethyl-trisiloxane, (C33H34O2Si3), ( from silicon-based diffusion pump oil (DC7050, Dow corning)"	P

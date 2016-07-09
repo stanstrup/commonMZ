@@ -1,0 +1,29 @@
+Mass difference	Origin	Reference(s)
+14.01565	"-[CH2]-, alkane chains, waxes, fatty acids, methylation"	F
+15.99492	"O, oxidation"	F
+18.01057	"H2O, water clusters"	F
+28.03130	"-[C2H4]-, natural alkane chains such as fatty acids"	F
+32.02622	"CH3OH, methanol clusters"	F
+41.02655	"CH3CN, acetonitrile clusters"	F
+42.04695	"-[C3H6]-, propyl repeating units, propylation"	F
+44.02622	"-[C2H4O]-; polyethylene glycol, PEG, and related components such as Tritons and Tween buffers"	"D, F"
+49.99681	"-[CF2]-, from perfluoro compounds"	F
+53.00323	NH4Cl salt adducts/clusters	F
+56.06260	"-[C4H8]-, butyl repeating units, butylation"	F
+57.95862	"NaCl, sodium chloride clusters"	F
+58.04187	"-[C3H6O]-; polypropylene glycol and related compounds, PPG, and related compounds"	"D, F"
+63.03203	"CHOONH4, ammonium formate adducts/clusters"	F
+67.98742	"NaHCO2, sodium formate clusters"	F
+67.98742	"CHOONa, sodium formate adducts/clusters"	F
+72.03953	"-OH replacement with -OSi(CH3)3,(=[C3H8Si]), trimethylsiloxane, endcapping reagent"	F
+73.93256	KCl adducts/clusters	F
+74.01879	"-[O-Si(CH3)2]-, polysiloxane, silicone rubber polymer (typical series at m/z's 355, 429, 503, 593, 667, 741, 815)"	"F, E, L"
+78.01394	"C2H6OS, DMSO adducts/clusters, dimethylsulfoxide solvent"	F
+82.00307	"NaCH3CO2, sodium acetate clusters"	F
+84.05159	"C2D6OS, deuterated DMSO adducts/clusters, NMR solvent"	F
+106.90509	"107Ag, silver clusters in MALDI analysis of non-polar polymers, together with 109Ag  (~1:1)"	U
+108.90476	"109Ag, silver clusters in MALDI analysis of non-polar polymers, togethre with 107Ag ( ~1:1)"	U
+135.97481	"NaCF3CO2, sodium trifluoroacetate clusters"	F
+162.05283	"-[C6H10O5]-, polysaccharides residues"	F
+226.16813	"-[C12H22N2O2]-, cyclic oligomers from polyamide 66 (series observed with m/z 453, 679, 905)"	M
+259.80992	"CsI, cesium iodide clusters, used as calibration"	V
