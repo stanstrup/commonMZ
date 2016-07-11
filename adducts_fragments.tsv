@@ -27,10 +27,10 @@ Mass difference ±	Origin	Reference(s)
 28.00615	"- 2N, nitrogen loss, e.g. azido compounds (N2)"	Z
 28.0313	"± C2H4, natural alkane chains such as fatty acids"	F
 29.97418	"NO2 <-> NH2, nitro compounds"	F
-29.99799	#NAME?	F
+29.99799	"-NO, nitroso compounds"	F
 31.97207	"± S, sulfur compounds"	F
 31.98983	"± 2O, oxygen loss"	F
-33.02146	#NAME?	F
+33.02146	"-NH2OH, loss from hydroxamic acids"	F
 33.96103	"Cl <-> H, halogen exchange"	F
 33.98772	"± H2S, sulfur compounds"	F
 35.9767	"Cl-+2H2+ <-> H+, salt adduct"	AA
