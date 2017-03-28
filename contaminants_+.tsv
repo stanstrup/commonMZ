@@ -1,762 +1,762 @@
-Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit or sequence	Compound ID or species	Possible origin and other comments 	ESI	MALDI	References 
-33.03349	[M+H]+	CH3OH	Methanol	"Acetonitrile, solvent"	X		A
-42.03383	[M+H]+	CH3CN	ACN	"Acetonitrile, solvent"	X		A
-59.06037	[M+NH4]+	CH3CN	ACN	"Acetonitrile, solvent"	X		"A, F"
-63.04406	[A1B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-64.01577	[M+Na]+	CH3CN	ACN	"Acetonitrile, solvent"	X		"A, F"
-65.05971	[M2+H]+	CH3OH	Methanol	"Methanol, solvent"	X		A
-74.06004	[M+H]+	C3H7NO	Dimethyl formamide	solvent	X		"A, C, F"
-74.06004	[A1B1+H]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		K
-77.05971	[A1B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-79.02121	[M+H]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		A
-83.06037	[M2+H]+	CH3CN	Acetonitrile	ESI solvents	X		"A, C"
-85.026	[A1B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-85.05887	[M+H]+	C2D6OS	d6-DMSO	"d6-Dimethylsulfoxide, solvent"	X		A
-88.03931	[A1B1+H]+	(CH3CN)n(HCOOH)m	Acetonitrile/Formic Acid	ESI solvents	X		"A, C"
-96.04198	[A1B1+Na]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		C
-99.04165	[A1B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-100.07569	[M+H]+	C5H10NO	NMP	"N-methyl 2-pyrrolidone; solvent, floor stripper"	X		K
-100.99994	[A1B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-101.00316	[M+Na]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		"A, C"
-101.08084	[A2B2+H]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
-102.05496	[A1B1+H]+	(CH3CN)n(CH3COOH)m	Acetonitrile/Acetic Acid	ESI solvents	X		K
-102.12773	[M+H]+	C6H15N	TEA	"Triethylamine, buffer"	X		"A, C"
-103.9556	[M+63Cu]+	C2H3N	ACN	"Acetonitrile, solvent"	X		"A,C"
-104.99229	[M+Na]+	C2H3O2Na	Sodium acetate	ESI solvents	X		K
-105.04232	[M2+Na]+	C2H3N	ACN	"Acetonitrile, solvent"	X		"A,C"
-105.95379	[M+65Cu]+	C2H3N	ACN	"Acetonitrile, solvent"	X		"A, C"
-107.07027	[A2B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-115.01559	[A1B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-115.08659	[A1B1+H]+	(CH3CN)n(C3H7NO)m	Acetonitrile/Dimethylformamide	solvent	X		A
-120.04776	[M+CH3CN+H]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		A
-122.08117	[M+H]+	C4H11NO3	TRIS	"TRIS, buffer"	X		A
-123.06278	[A2B2+Na]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
-123.09167	[M+H]+	C7H10N2	DMAP	"Dimethylaminopyridine, solvent"	X		"A, C"
-124.0369	[A1B1+Na]+	(CH3CN)n(CH3COOH)m	Acetonitrile/Acetic Acid	ESI solvents	X		K
-129.05222	[A2B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-130.15903	[M+H]+	C8H19N	DIPEA	"Diisopropylethylamine, solvent"	X		A
-132.9049	M+	Cs	Cs-133	"Cesium, from Cesium Iodide used as calibrant"	X		V
-133.10705	[A3B2+H]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
-135.10157	[A2B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-137.07431	[M+CH3CN+NH4]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		"A, F"
-142.02971	[M+CH3CN+Na]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		A
-144.17468	[M+H]+	C9H21N	TPA	"Tripropylamine, solvent"	X		"A, C"
-144.98215	[M2+63Cu]+	CH3CN	ACN	"Acetonitrile, solvent, together with m/z 147"	X		"A, C"
-145.02615	[A2B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-146.06887	[M3+Na]+	CH3CN	ACN	"Acetonitrile, solvent"	X		"A, C"
-146.98034	[M2+65Cu]+	CH3CN	ACN	"Acetonitrile, solvent, together with m/z 145"	X		"A, C"
-147.1128	[A2B2+H]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		K
-149.02332	[f+H]+	C8H4O3	Pthalic Anhydride	fragment ion originating from phthalate esters	X		"A, Z"
-150.12773	[M+H]+	C10H15N	Phenyldiethylamine	solvent	X		"A, C"
-151.09649	[A3B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-153.13862	[M+H]+	C9H16N2	DBU	"1,8-Diazabicyclo[5.4.0]undec-7-ene"	X		"A, C"
-155.089	[A3B2+Na]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
-157.03515	[M2+H]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		"A, C"
-157.08352	[A2B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-158.96403	[M+Na]+	C2F3O2Na	NaTFA	"Sodium trifluoroacetate, salt"	X		"A, C"
-163.03897	[M-CH3OH+H]+	C10H10O4	Dimethyl phthalate	"Phthalate esters, plasticizer"	X		A
-163.13287	[M+H]+	C8H18O3	DGBE	"Diethylene glycol monobutyl ether, cpd. In scintillation cocktail"	X		Q
-169.09475	[A2B2+Na]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		K
-169.11046	[M2+H]+	C2D6OS	d6-DMSO	"d6-Dimethylsulfoxide, solvent"	X		A
-171.00527	[f+Na]+	C8H4O3	Phthalic anhydride	"from phthalate esters, plasticizer"	X		A
-172.03931	[M-H2O+H]+	C10H7NO3	4-HCCA	matrix compound		X	"H, I, J"
-173.05745	[A2B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-173.07843	[A3B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-179.01709	[M2+Na]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		"A, C"
-181.12231	[M+H]+	C11H16O2	BHA	"Butylated hydroxyanisole, antioxidant additives"	X		K
-183.08044	[M+H]+	C13H10O	DPK	Diphenyl ketone	X		K
-183.14383	[A4B3+H]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
-185.11482	[M+Na]+	C8H18O3	GE	glycol ether	X		K
-186.22163	[M+H]+	C12H27N	TBA	"Tributylamine, solvent"	X		A
-189.05237	[A3B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-190.04987	[M+H]+	C10H7NO3	4-HCCA	matrix compound		X	"H, I, J"
-193.14344	[A3B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-195.06519	[M+H]+	C10H10O4	Dimethyl phthalate	"Phthalate esters, plasticizer"	X		A
-195.1227	[A4B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-203.10425	[M+Na]+	C11H16O2	BHA	"Butylated hydroxyanisole, antioxidant additives"	X		K
-205.12578	[A4B3+Na]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
-212.03181	[M+Na]+	C10H7NO3	4-HCCA	"matrix compound, sodiated"		X	"H, I, J"
-214.08963	[M+H]+	C10H15NO2S	n-BBS	"n-butyl benzenesulfonamide, plasticizer"	X		"A, K"
-215.12538	[A3B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-217.10465	[A4B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-221.18999	[M+H]+	C15H24O	BTH	"Butylated hydroxytoluene, Antioxidant"	X		K
-225.19614	[M+H]+	C13H24N2O	DCU	"N,N'-Dicyclohexylurea"	X		A
-228.00575	[M+K]+	C10H7NO3	4-HCCA	"matrix compound, potassiated"		X	"H, I, J"
-231.09932	[A3B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-231.11618	[M+NH4]+	C10H15NO2S	n-BBS	"n-butyl benzenesulfonamide, plasticizer"	X		A
-233.07858	[A4B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-236.07157	[M+Na]+	C10H15NO2S	n-BBS	"n-butyl benzenesulfonamide, plasticizer"	X		A
-239.14892	[A5B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-239.22485	[(M.H35Cl)2-Cl]+	C6H15N	TEA.HCl	"Triethylamine-hydrochloride, buffer"	X		A
-241.2219	[(M.H37Cl)2-Cl]+	C6H15N	TEA.HCl	"Triethylamine-hydrochloride, buffer"	X		A
-242.28423	M+	C16H36N	TBA	"Tetrabutylammonium, buffer"	X		"A, C"
-243.11683	M+	C19H15	Trityl cation	"Trityl cation, [Ph3C]+"	X		A
-243.17194	[M+Na]+	C15H24O	BTH	"Butylated hytroxytoluene, Antioxidant additives"	X		K
-251.1853	[A4B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-251.20056	[AB1+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-257.03103	[M3+Na]+	C2H6OS	DMSO	"Dimethylsulfoxide, solvent"	X		A
-261.13086	[A5B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-265.21621	[AB1+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-267.17197	[M+H]+	C12H27O4P	TBP	Tributylphosphate	X		A
-273.12739	M+	C20H17O	MMT	Monomethoxytrityl cation	X		A
-273.16725	[A4B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-273.1825	[AB1+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-277.1048	[A5B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-279.09333	[M+H]+	C18H15OP	TPO	Triphenylphosphine oxide	X		A
-279.15909	[M+H]+	C16H22O4	Dibutylphthalate	"Plasticiser, phtalate ester"	X		"A, C"
-279.22945	[AB1+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X		"D, K"
-282.27914	[M+H]+	C18H35NO	Oleamide	Slip agent in polyethylene films	X		A
-283.17513	[A6B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-284.29479	[M+H]+	C18H37NO	Stearamide	Slip agent in polyethylene films	X		A
-287.19815	[AB1+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-288.25332	[M+H]+	C16H33NO3	"n,n-DDA"	"n,n-bis(2-hydroxyethyl) dodecanamide, anti-static agent"	X		A
-289.14118	[A4B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-293.2451	[AB1+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X		"D, K"
-295.22677	[AB2+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-301.14103	[M+Na]+	C16H22O4	Dibutylphthalate	"Dibutylphthalate, plasticizer"	X		A
-304.26108	[M+Na]+	C18H35NO	Oleamide	Slip agent in polyethylene films	X		A
-305.15708	[A6B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-306.27673	[M+Na]+	C18H37NO	Stearamide	Slip agent in polyethylene films	X		A
-309.22717	[A5B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-309.24242	[AB2+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-315.25299	[M+H]+	C18H34O4	DBS	"Dibutyl sebacate, plasticizer"			X
-317.11497	[M+K]+	C16H22O4	Dibutylphthalate	"Dibutylphthalate, plasticizer"	X		A
-317.20872	[AB2+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-321.13101	[A6B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-323.25567	[AB2+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X		"D, K"
-325.25847	[M2+H]+	C8H18O3	DGBE	"Diethylene glycol monobutyl ether, cpd. In scintillation cocktail"	X		Q
-327.07807	[M+H]+	C18H15O4P	TPP	"Triphenyl phosphate, flame retardant in plastics"	X		X
-327.20135	[A7B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-331.20911	[A5B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-331.22437	[AB2+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-337.11841	[M+H]+;  (120Sn)	C13H28O2Sn	Tributyl tin formate	"Tributyl tin formate, catalyst"	X		A
-337.27132	[AB2+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X		"D, K"
-338.34174	[M+H]+	C22H43NO	Erucamide	"Erucamide, (Cis-13-docosenoic amide)"	X		A
-339.25299	[AB3+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-347.18305	[A5B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-349.18329	[A7B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-353.26864	[AB3+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-355.06994	[M+H-CH4]+	[C2H6SiO]5	Polysiloxane	"Polysiloxane, (neutral methane loss from m/z 371)"	X		"A, C, L"
-355.36829	[M-Cl]+	C22H47N2OCl		"Palmitamidopropyl-trimonium chloride, personal care products additive"	X		O
-360.32368	[M+Na]+	C22H43NO	Erucamide	"Erucamide, (Cis-13-docosenoic amide)"	X		A
-361.23493	[AB3+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-365.15723	[A7B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-367.26903	[A6B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-367.28188	[AB3+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X		"D, K"
-368.42508	[M-Cl]+	C25H54NCl	BTAC-228	"Behentrimonium chloride, personal care product additive"	X		O
-371.10124	[M+H]+	[C2H6SiO]5	Polysiloxane	"Polysiloxane, followed by m/z 388"	X		"A, C., E, L"
-371.22756	[A8B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-371.31559	[M+H]+	C22H42O4	DEHA	"Bis(2-ethylhexyl) adipate, plasticizer"	X		"N, X"
-371.31559	[M+H]+	C22H42O4	DOA	"Dioctyl adipate, plasticizer"	X		X
-375.25058	[AB3+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-379.09246	[M2+H]+	C10H7NO3	4-HCCA	"matrix cluster, dimer"		X	"H, I, J"
-381.29753	[AB3+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X		"D, K"
-383.2792	[AB4+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X		"D, K"
-388.12779	[M+NH4]+	[C2H6SiO]5	Polysiloxane	"Polysiloxane, (see m/z 371)"	X		"A, C, L"
-389.25098	[A6B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X		"D, K"
-391.28429	[M+H]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X		"A, C, E"
-393.20951	[A8B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X		"D, K"
-397.29485	[AB4+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		"D, K"
-405.22491	[A6B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-405.26115	[AB4+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-409.18344	[A8B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-411.3081	[AB4+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-413.26623	[M+Na]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X	X	"A, C, E"
-415.25378	[A9B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-419.2768	[AB4+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-425.3109	[A7B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-425.32375	[AB4+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-427.30542	[AB5+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-429.08873	[M+H-CH4]+	[C2H6SiO]6	Polysiloxane	"Polysiloxane, (neutral methane loss from m/z 445)"	X	X	L
-429.24017	[M+K]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X	X	"A, C"
-437.23572	[A9B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-441.01479	[M3+63Cu(I)]+	C10H7NO3	4-HCCA	"matrix-copper adduct, together with m/z 443"		X	K
-441.32107	[AB5+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-443.01298	[M3+65Cu(I)]+	C10H7NO3	4-HCCA	"matrix-copper adduct, together with m/z 443"		X	K
-445.12003	[M+H]+	[C2H6SiO]6	Polysiloxane	"Polysiloxane, followed by m/z 462"	X	X	"A, C, E, L"
-447.29284	[M+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-449.28736	[AB5+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-449.385	[M2+H]+	C13H24N2O	DCU	"N,N'-Dicyclohexylurea"	X	X	"A, C"
-453.20966	[A9B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-453.34353	[M+H]+	C24H44N4O4	nylon 	"Cyclic oligomer of polyamide 66, (adipic acid/hexylmethylene diamine condensation) "	X	X	M
-454.29278	[M+CH3CN+Na]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X	X	A
-455.33431	[AB5+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-459.27999	[A10B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-462.14658	[M+NH4]+	[C2H6SiO]6	Polysiloxane	Polysiloxane (see m/z 445)	X	X	"A, L"
-463.26678	[A7B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-463.30301	[AB5+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-469.34996	[AB5+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-471.33163	[AB6+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-472.28781	[M+H]+	SLPR	Peptide	porcine trypsin	X	X	G
-481.26194	[A10B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-483.35276	[A8B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-485.34728	[AB6+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-493.31358	[AB6+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-494.56593	[M-Cl]+	C34H72NCl	DPDMA	"Dipalmityldimethylammonium chloride, catalyst, personal care products additive"	X	X	"O, K"
-497.23587	[A10B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-499.36053	[AB6+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-503.10752	[M+H-CH4]+	[C2H6SiO]7	Polysiloxane	"Polysiloxane, (neutral methane loss from m/z 519)"	X	X	"A, L"
-503.30621	[A11B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-505.33471	[A8B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-507.32923	[AB6+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-513.37618	[AB6+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-515.33001	[M+H]+	IQVR	Peptide	trypsin-like artefact	X	X	E
-515.35785	[AB7+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-515.41286	[M+H]+	C30H58O4S	DDTDP	"Didodecyl 3,3?-thiodipropionate, antioxidant"	X	X	W
-519.13882	[M+H]+	[C2H6SiO]7	Polysiloxane	"Polysiloxane, followed by m/z 536"	X	X	"A, L"
-521.30864	[A8B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-522.59723	[M-Cl]+	C36H76NCl	SPDMA	"Stearyl-palmityldimethylammonium chloride, catalyst, personal care product additive"	X	X	"O, K"
-525.28815	[A11B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-529.3735	[AB7+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-531.40777	[M+H]+	C30H58O5S	DDTDP	"Didodecyl 3,3?-thiodipropionate oxidized to sulfoxide, antioxidant"	X	X	W
-531.47717	[M+H]+	C35H62O3	Irganox	"Irganox 1076, antioxidant in synthetic polymers, antioxidant"	X	X	W
-536.16537	[M+NH4]+	[C2H6SiO]7	Polysiloxane	Polysiloxane (see m/z 519)	X	X	"A, L"
-537.33979	[AB7+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-537.87901	[M6-6H+3Fe+O]+	C2H4O2	Acetic acid-Fe-O- complex	during ESI with metal tips and acetic acid	X		"A, B, E, Y"
-541.26209	[A11B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-541.39463	[A9B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-543.38674	[AB7+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-547.33242	[A12B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-547.40269	[M+H]+	C30H58O6S	DDTDP	"Didodecyl 3,3?-thiodipropionate oxidized to sulfone, antioxidant"	X	X	W
-550.62853	[M-Cl]+	C38H80NCl	DSDMA	"Distearyldimethylammonium chloride, catalyst, personal care products additive"	X	X	"A, K, O"
-551.35544	[AB7+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-553.38972	[M+Na]+	C30H58O5S	DDTDP	"Didodecyl 3,3?-thiodipropionate oxidized to sulfoxide, antioxidant"	X	X	"A, W"
-553.45912	[M+Na]+	C35H62O3	Irganox	"Irganox 1076, antioxidant in synthetic polymers, antioxidant"	X	X	"A, W"
-555.88957	[M6-6H+H2O+3Fe+O]+	C2H4O2	Acetic acid-Fe-O- complex	during ESI with metal tips and acetic acid	X		"A, B, E, Y"
-557.40239	[AB7+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-559.38406	[AB8+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-563.37657	[A9B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-568.13506	[M3+H]+	C10H7NO3	4-HCCA	"matrix cluster, trimer"		X	"H, I, J"
-569.31437	[A12B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-571.35622	[M+H]+	VSLPR	Peptide	porcine trypsin	X	X	G
-573.39971	[AB8+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-577.12631	[M+H-CH4]+	[C2H6SiO]8	Polysiloxane	"Polysiloxane, (neutral methane loss from m/z 593)"	X	X	L
-579.35051	[A9B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-581.36601	[AB8+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-585.2883	[A12B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-587.41296	[AB8+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-591.35864	[A13B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-593.15761	[M+H]+	[C2H6SiO]8	Polysiloxane	"Polysiloxane, followed by m/z 610"	X	X	"A, L"
-595.38166	[AB8+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-597.90014	[M7-6H+3Fe+O]+	C2H4O2	Acetic acid-Fe-O- complex	during ESI with metal tips and acetic acid	X		"B, E, Y"
-599.43649	[A10B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-601.42861	[AB8+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-603.41028	[AB9+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-606.09149	[M3+K]+	C10H7NO3	4-HCCA	"matrix cluster, trimer, potassiated"		X	"H, I, J"
-610.18416	[M+NH4]+	[C2H6SiO]8	Polysiloxane	Polysiloxane (see m/z 593)	X	X	L
-613.34058	[A13B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-615.40375	[M+H]+	C32H58N2O7S	CHAPS	3-[(3-Cholamidopropyl)dimethylammonio]-1-propanesulfonate	X	X	E
-617.42593	[AB9+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-621.41844	[A10B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-621.97291	[M6-6H+3Fe+O]+	C3H6O2	Propionic acid Fe-O complex	during ESI with metal tips and acetic acid	X		Y
-625.39222	[AB9+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-629.31452	[A13B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-631.43917	[AB9+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-633.32023	[M+H]+	QTIASN	Peptide	Bovine trypsin	X	X	K
-635.38485	[A14B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-637.39237	[A10B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-639.40787	[AB9+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-645.45482	[AB9+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-646.35187	[f+H]+	GLTAER (from YLDGLTAER)	Peptide	"keratin (human), ion source fragment"	X	X	"G, K"
-647.43649	[AB10+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-651.1451	[M+H-CH4]+	[C2H6SiO]9	Polysiloxane	"Polysiloxane, (neutral methane loss from m/z 667)"	X	X	L
-657.3668	[A14B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-657.47836	[A11B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-659.3835	[M+H]+	SGIQVR	Peptide	Bovine trypsin	X	X	K
-661.45214	[AB10+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-667.1764	[M+H]+	[C2H6SiO]9	Polysiloxane	"Polysiloxane, followed by m/z 684"	X	X	L
-669.41844	[AB10+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-672.4039	[M+H]+	TVSLPR	Peptide	porcine trypsin	X	X	K
-672.4039	[M+H]+	TVSLPR	Peptide	porcine trypsin	X	X	K
-673.34073	[A14B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-675.46539	[AB10+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-679.41107	[A15B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-679.4603	[A11B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-679.51166	[M+H]+	C36H66N6O6	nylon 	"Cyclic oligomer of polyamide 66, (adipic acid/hexylmethylene diamine condensation) "	X	X	M
-683.43409	[AB10+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-684.20295	[M+NH4]+	[C2H6SiO]9	Polysiloxane	Polysiloxane (see m/z 667)	X	X	L
-689.48104	[AB10+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-691.46271	[AB11+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-695.43424	[A11B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-701.39301	[A15B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-704.3825	[M+H]+	LDSELK	Peptide	keratin	X	X	E
-705.47836	[AB11+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-713.44465	[AB11+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-715.52022	[A12B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-717.36695	[A15B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-719.4916	[AB11+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-723.43728	[A16B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-725.1639	[M+H-CH4]+	[C2H6SiO]10	Polysiloxane	"Polysiloxane, (neutral methane loss from m/z 741)"	X	X	L
-727.4603	[AB11+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-732.46544	[M+H]+	GLVLIAF	Peptide	bovine serum albumin (BSA)	X	X	E
-733.50725	[AB11+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-735.48892	[AB12+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-737.50217	[A12B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-741.1952	[M+H]+	[C2H6SiO]10	Polysiloxane	"Polysiloxane, followed by m/z 758"	X	X	L
-742.44979	[M+H]+	GPFPILV	Peptide	bovine casein alpha-S1	X	X	E
-743.44101	[M+H]+	ATVSLPR	Peptide	porcine trypsin	X	X	G
-745.41923	[A16B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-749.50457	[AB12+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-753.4761	[A12B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-757.47087	[AB12+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-758.22175	[M+NH4]+	[C2H6SiO]10	Polysiloxane	Polysiloxane (see m/z 741)	X	X	L
-758.41553	[M+H]+	PATLNSR	Peptide	porcine trypsin	X	X	G
-761.39316	[A16B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-763.51782	[AB12+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-767.4635	[A17B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-771.48652	[AB12+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-773.56209	[A13B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-777.53347	[AB12+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-779.51514	[AB13+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-789.44544	[A17B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-793.53079	[AB13+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-795.54403	[A13B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-798.58785	[M2+NH4]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X	X	"A, C, E"
-801.49708	[AB13+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-802.43051	[M+H]+	LSSPATLN	Peptide	"porcine trypsin, truncated"	X	X	E
-803.54324	[M2+Na]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X	X	"A, C, E"
-804.40978	[M+H]+	SEIDNVK	Peptide	keratin (human)	X	X	G
-805.41626	[M+H]+	SAASLNSR	Peptide	bovine trypsin	X	X	"G, K"
-805.41938	[A17B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-807.39954	[M+H]+	LAADDFR	Peptide	keratin (human)	X	X	"G, K"
-807.54403	[AB13+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-809.44035	[M+H]+	LASYLDK	Peptide	keratin	X	X	E
-809.48691	[AB10+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-811.48971	[A18B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-811.51797	[A13B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-815.51273	[AB13+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-819.51718	[M2+K]+	C24H38O4	Diisooctyl phthalate	"Diisooctyl phthalate, plasticiser"	X	X	"A, K"
-821.55968	[AB13+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-823.54135	[AB14+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-824.49887	[M+H]+	PGVVSLPR	Peptide	trypsin-like artefact	X	X	E
-827.42978	[M+H]+	FASFIDK	Peptide	keratin (human)	X	X	"E, G, K"
-827.46214	[M+H]+	PEIQNVK	Peptide	keratin (human)	X	X	"G, K"
-831.60395	[A14B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-832.4887	[M+H]+	SISISVAR	Peptide	keratin (human)	X	X	"G, K"
-833.47166	[A18B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-837.557	[AB14+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-839.09742	[M4-2H+K+2Na]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-842.50943	[M+H]+	VATVSLPR	Peptide	porcine trypsin	X	X	"E, G, K"
-845.10543	[M4-3H+4Na]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-845.5233	[AB14+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-848.49886	[M+H]+	AFIDKVR	Peptide	keratin (human)	X	X	"G, K"
-849.44559	[A18B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-851.57025	[AB14+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-853.51313	[AB11+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-853.5859	[A14B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-855.07136	[M4-2H+Na+2K]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-855.51593	[A19B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-859.53895	[AB14+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-861.07937	[M4-3H+3Na+K]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-863.47338	[f+H]+	SFLINNR (from THNLEPYFESFINNLR)	Peptide	"keratin (human), ion source fragment"	X	X	"G, K"
-865.4778	[f+H]+	IEIATYR (from LALDIEIATYR)	Peptide	"keratin (human), ion source fragment"	X	X	"G, K"
-865.54951	[AB10+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-865.5859	[AB14+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-867.08737	[M4-4H+5Na]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-867.56757	[AB15+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-869.55983	[A14B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-870.54073	[M+H]+	VATVSLPR  N-term. methylated 	Peptide	porcine trypsin - methylated	X	X	J
-871.0453	[M4-2H+3K]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-871.49959	[M+H]+	QATVSLPR	Peptide	trypsin-like artefact	X	X	E
-874.49926	[M+H]+	SLVNLGGSK	Peptide	keratin (human)	X	X	"E, G, K"
-877.49787	[A19B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-881.47271	[M+H]+	SLYGLGGSK	Peptide	keratin (human)	X	X	"G, K"
-881.58322	[AB15+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-883.51485	[M+H]+	RVYVHPI	Peptide	Angiotensin standards	X	X	E
-889.54951	[AB15+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-889.64582	[A15B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-891.56516	[AB10+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-893.47181	[A19B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-893.58081	[AB10+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-895.59646	[AB15+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"		X	"D, K"
-897.53934	[AB12+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-899.53089	[M+H]+	VQTVSLPR	Peptide	trypsin-like artefact	X	X	E
-899.54214	[A20B+H]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-903.56516	[AB15+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-905.67979	[M+H]+	C48H88N8O8	nylon 	"Cyclic oligomer of polyamide 66, (adipic acid/hexylmethylene diamine condensation) "	X	X	M
-906.50434	[M+H]+	NKPGVYTK	Peptide	bovine trypsin	X	X	"G, K"
-906.50434	[M+H]+	NKPGVYTK	Peptide	porcine trypsin	X	X	"G, K"
-909.57573	[AB11+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-909.61211	[AB15+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-911.59378	[AB16+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-911.62776	[A15B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-917.4992	[M+H]+	RVYVHPF	Peptide	Angiotensin standards (bovine)	X	X	E
-921.52409	[A20B+Na]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-925.60943	[AB16+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-927.6017	[A15B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-931.51485	[M+H]+	RVYIHPF	Peptide	Angiotensin standards (human)	X	X	E
-933.57573	[AB16+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-935.59138	[AB11+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-937.49802	[A20B+K]+	[C2H4O]nH2O	PEG	"Polyethylene glycol, ubiquitous polyether"	X	X	"D, K"
-937.60703	[AB11+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-939.62268	[AB16+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-941.56556	[AB13+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-947.59138	[AB16+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-947.68768	[A16B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-950.47305	[M+H]+	YVNWIQQ	Peptide	"trypsin-like artefact, truncated"	X	X	E
-953.60194	[AB12+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-953.63833	[AB16+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-955.62	[AB17+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-969.63565	[AB17+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-969.66963	[A16B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-973.53129	[M+H]+	IEISELNR	Peptide	keratin (human)	X	X	"E, G, K"
-977.60194	[AB17+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-979.50949	[M+H]+	GTSYPDVLK	Peptide	bovine trypsin	X	X	"G, K"
-979.61759	[AB12+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-981.63324	[AB12+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-983.64889	[AB17+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-985.59177	[AB14+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-985.64356	[A16B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-991.61759	[AB17+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-994.15551	[M5-H2O-2H+3Na]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-995.51966	[M+H]+	IKEWYEK	Peptide	keratin	X	X	E
-997.62816	[AB13+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-997.66454	[AB17+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-999.64621	[AB18+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-1000.56734	[M+H]+	LQAEIEGLK	Peptide	keratin	X	X	E
-1002.58299	[M+H]+	"LVVSTQTALA, C-terminus"	Peptide	bovine serum albumin (BSA)	X	X	E
-1003.55309	[M+H]+	SEITELRR	Peptide	keratin	X	X	E
-1005.72955	[A17B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1013.66186	[AB18+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-1020.50302	[M+H]+	APILSDSSCK	Peptide	bovine trypsin	X	X	"G, K"
-1020.53604	[M+H]+	SIPYQVSLN	Peptide	"trypsin-like artefact, truncated"	X	X	E
-1021.62816	[AB18+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-1023.47417	[M+H]+	SSYPGQITGN	Peptide	"trypsin-like artefact, truncated"	X	X	E
-1023.51055	[M+H]+	NEQFISASK	Peptide	bovine trypsin	X	X	"G, K"
-1023.64381	[AB13+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1025.65946	[AB13+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1027.67511	[AB18+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-1027.71149	[A17B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1029.61799	[AB15+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1031.5983	[M+H]+	VLDELTLTK	Peptide	keratin (human)	X	X	"E, G, K"
-1033.51603	[M+H]+	TLLEGEESR	Peptide	keratin (human)	X	X	"E, G, K"
-1035.64381	[AB18+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-1036.08277	[M5-2H2O-4H+4Na+K]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-1036.53229	[M+H]+	IRDWYQR	Peptide	keratin	X	X	E
-1037.5262	[M+H]+	YLDGLTAER	Peptide	keratin (human)	X	X	"G, K"
-1041.65437	[AB14+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1041.69076	[AB18+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-1043.67243	[AB19+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-1043.68543	[A17B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1044.11395	[M5-2H+Na+2K]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-1045.56365	[M+H]+	LSSPATLNSR	Peptide	porcine trypsin	X	X	"G, K"
-1046.59528	[M+H]+	LKSAASLNSR	Peptide	bovine trypsin	X	X	"G, K"
-1054.09334	[M5-H2O-4H+4Na+K]+	C10H7NO3	4-HCCA	matrix cluster		X	"H, I, J"
-1057.68808	[AB19+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-1060.08789	[M5-2H+3K]+	C10H7NO3	4-HCCA	"matrix cluster, pentamer, triply potassiated"		X	"H, I, J"
-1060.56331	[M+H]+	TLLDIDNTR	Peptide	keratin (human)	X	X	"E, G, K"
-1063.77141	[A18B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1064.57349	[M+H]+	DIIRAVGAYS	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
-1064.60987	[M+H]+	LASYLDKVR	Peptide	keratin (human)	X	X	"G, K"
-1065.49934	[M+H]+	STMQELNSR	Peptide	keratin	X	X	E
-1065.65437	[AB19+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-1066.0959	[M5-3H+2K+2Na]+	C10H7NO3	4-HCCA	"matrix cluster, pentamer, potassiated, sodiated"		X	"H, I, J"
-1066.60439	[M+H]+	FAAFIDKVR	Peptide	keratin (human)	X	X	"G, K"
-1067.67002	[AB14+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1069.68567	[AB14+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1071.60445	[M+H]+	LAGLEEALQK	Peptide	keratin (human)	X	X	"G, K"
-1071.70132	[AB19+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-1073.6442	[AB16+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1079.67002	[AB19+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-1080.53201	[f+H]+	GNEQFISASK (from LGEDNINVVEGNEQFISASK)	Peptide	"bovine trypsin, in source fragment"	X	X	"G, K"
-1082.59931	[M+H]+	FASFIDKVR	Peptide	keratin (human)	X	X	"G, K"
-1085.68059	[AB15+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1085.71697	[AB19+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-1085.75336	[A18B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1087.69864	[AB20+H]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-1090.53097	[M+H]+	VTMQNLNDR	Peptide	keratin (human)	X	X	"G, K"
-1091.548	[M+H]+	GNEQFINAAK	Peptide	porcine trypsin	X	X	"G, K"
-1101.71429	[AB20+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-1101.72729	[A18B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1109.48982	[M+H]+	DAEAWFNEK	Peptide	keratin (human)	X	X	"G, K"
-1109.68059	[AB20+Na]+	[C14H22O][C2H4O]n	Triton	"X-100, X-114, X-405, or X-45 Detergents"	X	X	"D, K"
-1111.56048	[M+H]+	VCNYVSWIK	Peptide	bovine trypsin		X	"G, K"
-1111.69624	[AB15+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1113.71189	[AB15+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1115.72754	[AB20+Na]+	[C14H28O][C2H4O]n	"Triton, reduced"	"X-100R, X-114R, X-405R, or X-45R Detergents"	X	X	"D, K"
-1117.67042	[AB17+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1118.5086	[M+H]+	HGNSHQGEPR	Peptide	keratin (human)	X	X	"G, K"
-1121.58372	[M+H]+	QEYEQLIAK	Peptide	keratin (human)	X	X	"G, K"
-1121.81328	[A19B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1123.69624	[AB20+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	"D, K"
-1126.56399	[M+H]+	IITHPNFNGN	Peptide	"porcine trypsin, methylated, truncated"	X	X	"E, J"
-1129.62117	[M+H]+	LSELEAALQR	Peptide	Keratin	X	X	E
-1129.7068	[AB16+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1129.74319	[AB20+Na]+	[C15H30O][C2H4O]n	"Triton, reduced"	101R Detergents	X	X	"D, K"
-1141.51941	[M+H]+	DYQELMNTK	Peptide	Keratin	X	X	E
-1143.55031	[M+H]+	VCNYVSWIK (W - oxid.)	Peptide	bovine trypsin	X	X	"G, K"
-1143.79522	[A19B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1153.57354	[M+H]+	SSGTSYPDVLK	Peptide	bovine trypsin	X	X	"G, K"
-1155.72245	[AB16+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1157.59093	[M+H]+	QGVDADINGLR	Peptide	keratin (human)	X	X	"G, K"
-1157.7381	[AB16+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1159.76916	[A19B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1161.69663	[AB18+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1165.58478	[M+H]+	LENEIQTYR	Peptide	keratin (human)	X	X	"E, G, K"
-1168.58194	[M+H]+	VCcamNYVSWIK	Peptide	bovine trypsin		X	"G, K"
-1173.73302	[AB17+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1175.52238	[M+H]+	MFCAGYLEGGK	Peptide	bovine trypsin	X	X	J
-1175.63404	[M+H]+	TLDNDIMLIK	Peptide	porcine trypsin	X	X	"E, G, K"
-1179.60043	[M+H]+	YEELQITAGR	Peptide	keratin (human)	X	X	"E, G, K"
-1179.85514	[A20B+H]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1183.61574	[M+H]+	NVEIDPEIQK	Peptide	keratin (human)	X	X	"G, K"
-1190.60855	[M+H]+	QVLDNLTMEK	Peptide	kereatin	X	X	E
-1191.5173	[M+H]+	MoxFCAGYLEGGK	Peptide	bovine trypsin	X	X	J
-1191.62896	[M+H]+	TLDNDIMoxLIK	Peptide	porcine trypsin	X	X	"E, G, K"
-1193.61608	[M+H]+	YEELQVTVGR	Peptide	keratin (human)	X	X	"G, K"
-1199.74867	[AB17+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1200.57177	[M+H]+	VCcamNYVSWIK (W - oxid.)	Peptide	bovine trypsin	X	X	"G, K"
-1201.76432	[AB17+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1201.83709	[A20B+Na]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1203.64019	[M+H]+	TLDNDIMLIR	Peptide	trypsin-like artefact	X	X	E
-1205.72285	[AB19+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1208.61574	[M+H]+	TAAENDFVTLK	Peptide	keratin (human)	X	X	"G, K"
-1210.59501	[M+H]+	SSGGTSYPDVLK	Peptide	keratin (human)	X	X	"G, K"
-1210.59501	[M+H]+	SSGGTSYPDVLK	Peptide	bovine trypsin	X	X	"G, K"
-1217.75923	[AB18+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1217.81102	[A20B+K]+	[C3H6O]nH2O	PPG	"Polypropylene glycol, ubiquitous polyether"	X	X	"D, K"
-1219.6351	[M+H]+	TLDNDIMoxLIR	Peptide	trypsin-like artefact	X	X	E
-1220.59059	[M+H]+	EGNEQFINAAK	Peptide	porcine trypsin	X	X	"G, K"
-1225.12537	[M6-2H2O-4H+4Na+K]+	C10H7NO3	4-HCCA	"matrix cluster, hexamer, potassiated, sodiated"		X	"H, I, J"
-1229.80022	[M2+H]+	C32H58N2O7S	CHAPS	3-[(3-Cholamidopropyl)dimethylammonio]-1-propanesulfonate	X	X	E
-1232.54385	[M+H]+	MFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	J
-1232.5978	[M+H]+	SGGGGGGGLGSGGSIR	Peptide	keratin (human)	X	X	"G, K"
-1235.52873	[M+H]+	FSSSSGYGGGSSR	Peptide	keratin (human)	X	X	"G, K"
-1243.77488	[AB18+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1245.79053	[AB18+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1248.53876	[M+H]+	MoxFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	J
-1249.74906	[AB20+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1251.70959	[M+H]+	YIPIQYVLSR	Peptide	bovine casein alpha-S1	X	X	E
-1254.6073	[M+H]+	GFSSGSAVVSGGSR	Peptide	keratin (human)	X	X	"G, K"
-1261.78545	[AB19+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1262.59714	[M+H]+	SLLEGEGSSGGGGR	Peptide	keratin	X	X	E
-1262.75793	[M+H]+	LLHGVATVSLPR	Peptide	trypsin-like artefact	X	X	E
-1265.63721	[M+H]+	TNAENEFVTIK	Peptide	keratin (human)	X	X	"G, K"
-1267.7045	[M+H]+	YLGYLEQLLR	Peptide	bovine casein alpha-S1	X	X	E
-1277.63319	[M+H]+	SDQSRLDSELK	Peptide	keratin (human)	X	X	"G, K"
-1277.70998	[M+H]+	LALDIEIATYR	Peptide	keratin (human)	X	X	"E, G, K"
-1278.58553	[M+H]+	GSCcamGIGGGIGGGSSR	Peptide	keratin	X	X	E
-1278.64369	[M+H]+	YEQLAEQNRK	Peptide	keratin (human)	X	X	"G, K"
-1282.66912	[M+H]+	DRVYVHPFHL	Peptide	Angiotensin standards (bovine)	X	X	E
-1287.8011	[AB19+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1289.81675	[AB19+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1293.77528	[AB21+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1296.68477	[M+H]+	DRVYIHPFHL	Peptide	Angiotensin standards (human)	X	X	E
-1301.65834	[M+H]+	ALEEANADLEVK	Peptide	keratin	X	X	E
-1302.70121	[M+H]+	NSKIEISELNR	Peptide	keratin (human)	X	X	"G, K"
-1302.71512	[M+H]+	SLDLDSIIAEVK	Peptide	keratin (human)	X	X	"E, G, K"
-1305.71613	[M+H]+	HLVDEPQNLIK	Peptide	bovine serum albumin (BSA)	X	X	E
-1305.81166	[AB20+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1307.67764	[M+H]+	IKFEMEQNLR 	Peptide	keratin (human)	X	X	"E, G, K"
-1308.64302	[M+H]+	VEGNEQFISASK	Peptide	bovine trypsin	X	X	"G, K"
-1308.65426	[M+H]+	NKYEDEINKR	Peptide	keratin (human)	X	X	"G, K"
-1315.68523	[M+H]+	DQIVDLTVGNNK	Peptide	keratin	X	X	E
-1316.72425	[M+H]+	TLDNDIMLIRL	Peptide	trypsin-like artefact	X	X	E
-1320.58283	[M+H]+	HGGGGGGFGGGGFGSR	Peptide	keratin (human)	X	X	"G, K"
-1323.67255	[M+H]+	IKFEMoxEQNLR 	Peptide	keratin (human)	X	X	"G, K"
-1329.63933	[M+H]+	NVQDAIADAEQR	Peptide	keratin (human)	X	X	"G, K"
-1331.82731	[AB20+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1332.71917	[M+H]+	TLDNDIMoxLIRL	Peptide	trypsin-like artefact	X	X	E
-1333.84296	[AB20+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1336.71071	[M+H]+	TAAENDFVTLKK	Peptide	keratin (human)	X	X	"G, K"
-1337.80149	[AB22+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1340.66924	[M+H]+	SKAEAESLYQSK	Peptide	keratin	X	X	E
-1344.67539	[M+H]+	ASLEAAIADAEQR	Peptide	keratin	X	X	E
-1349.83788	[AB21+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1350.68729	[M+H]+	IGLGGRGGSGGSYGR	Peptide	keratin	X	X	E
-1357.69579	[M+H]+	LNDLEDALQQAK	Peptide	keratin (human)	X	X	"E, G, K"
-1357.71825	[M+H]+	QSVEADINGLRR	Peptide	keratin (human)	X	X	"G, K"
-1365.63933	[M+H]+	SQYEQLAEQNR	Peptide	keratin (human)	X	X	"G, K"
-1366.69612	[M+H]+	RISNSTSPTSFVA	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
-1367.67024	[M+H]+	VFTSWTGGGAAASR	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
-1371.71144	[M+H]+	LNDLEEALQQAK	Peptide	keratin (human)	X	X	"E, G, K"
-1374.69334	[M+H]+	DLNMDNIVAEIK	Peptide	keratin (human)	X	X	G
-1375.85353	[AB21+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1377.86918	[AB21+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1381.64817	[M+H]+	ALEESNYELEGK	Peptide	keratin (human)	X	X	"E, G"
-1381.82771	[AB23+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1383.69031	[M+H]+	SLNNQFASFIDK	Peptide	keratin (human)	X	X	"E, G"
-1384.72999	[M+H]+	FFVAPFPEVFGK	Peptide	bovine casein alpha-S1	X	X	E
-1390.68087	[M+H]+	QSLEASLAETEGR	Peptide	keratin	X	X	E
-1393.73217	[M+H]+	TNAENEFVTIKK	Peptide	keratin (human)	X	X	"E, G"
-1393.86409	[AB22+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1399.69262	[M+H]+	TVMENFVAFVDK	Peptide	bovine serum albumin (BSA)	X	X	E
-1399.70048	[f+H]+	PYFESFINNLR (from THNLEPYFESFINNLR)	Peptide	"keratin (human), ion-source fragment"	X	X	"G, K"
-1418.72742	[M+H]+	VDALNDEINFLR	Peptide	keratin	X	X	E
-1419.74783	[M+H]+	LEGLTDEINFLR	Peptide	keratin	X	X	E
-1419.79544	[M+H]+	LGLDIEIATYRR	Peptide	keratin (human)	X	X	G
-1419.87974	[AB22+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1421.89539	[AB22+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1424.76448	[M+H]+	AAKIITHPNFNGN	Peptide	"porcine trypsin, methylated"	X	X	J
-1425.85392	[AB24+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1433.72056	[M+H]+	LQGIVSWGSGCAQK	Peptide	bovine trypsin	X	X	G
-1434.76996	[M+H]+	IRLENEIQTYR	Peptide	keratin (human)	X	X	G
-1437.89031	[AB23+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1438.74374	[M+H]+	NNQFASFIDKVR	Peptide	keratin (human)	X	X	G
-1439.81176	[M+H]+	RHPEYAVSVLLR	Peptide	bovine serum albumin (BSA)	X	X	E
-1442.80019	[M+H]+	LPDIFEAQIAGLR	Peptide	keratin	X	X	E
-1443.64204	[M+H]+	YICcamDNQDTISSK	Peptide	bovine serum albumin (BSA)	X	X	E
-1447.7751	[M+H]+	AIGGGLSSVGGGSSTIK	Peptide	keratin (human)	X	X	G
-1449.71548	[M+H]+	LQGIVSWGSGCAQK (W - oxid. I)	Peptide	bovine trypsin	X	X	G
-1453.83731	[M+H]+	EVTINQSLLAPLR	Peptide	keratin	X	X	E
-1463.90596	[AB23+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1465.71039	[M+H]+	LQGIVSWGSGCAQK (W - oxid. II)	Peptide	bovine trypsin	X	X	G
-1465.92161	[AB23+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1469.88014	[AB25+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1475.74888	[M+H]+	WELLQQVDTSTR	Peptide	keratin (human)	X	X	"E, G"
-1475.78527	[M+H]+	FLEQQNQVLQTK	Peptide	keratin (human)	X	X	"E, G"
-1476.80567	[M+H]+	FLEQQNKVLETK	Peptide	keratin	X	X	E
-1479.79544	[M+H]+	LGEYGFQNALIVR	Peptide	bovine serum albumin (BSA)	X	X	E
-1481.91652	[AB24+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1490.74203	[M+H]+	LQGIVSWGSGCcamAQK	Peptide	bovine trypsin	X	X	G
-1491.7438	[M+H]+	WELLQQVDTSTR (W - oxid. I)	Peptide	keratin (human)	X	X	G
-1491.75185	[M+H]+	FYAPELLYYANK	Peptide	bovine serum albumin (BSA)	X	X	E
-1493.59953	[M+H]+	DSCQGDSGGPVVCSGK ox. S-S bond	Peptide	porcine trypsin	X	X	J
-1493.7343	[M+H]+	SQYEQLAEQNRK	Peptide	keratin (human)	X	X	"E, G"
-1495.61518	[M+H]+	DSCQGDSGGPVVCSGK	Peptide	bovine trypsin	X	X	G
-1507.73872	[M+H]+	WELLQQVDTSTR (W - oxid. II)	Peptide	keratin (human)	X	X	G
-1507.93217	[AB24+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1509.94782	[AB24+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1513.90635	[AB26+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1521.75436	[M+H]+	NVVEGNEQFISASK	Peptide	bovine trypsin	X	X	G
-1522.73186	[M+H]+	LQGIVSWoxGSGCcamAQK	Peptide	bovine trypsin	X	X	G
-1525.94274	[AB25+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1549.6772	[M+H]+	SGGGGGGGGCcamGGGGGVSSLR	Peptide	keratin	X	X	E
-1551.95839	[AB25+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1553.97404	[AB25+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1557.93257	[AB27+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1566.73944	[M+H]+	LGEHNIDVLEGNEQ	Peptide	"porcine trypsin, truncated"	X	X	"E, G"
-1567.74274	[M+H]+	DAFLGSFLYEYSR	Peptide	bovine serum albumin (BSA)	X	X	E
-1569.96895	[AB26+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1585.7584	[M+H]+	VQALEEANNDLENK	Peptide	keratin (human)	X	X	"E, G"
-1595.9846	[AB26+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1598.00025	[AB26+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1599.83368	[M+H]+	NKLNDLEDALQQAK	Peptide	keratin	X	X	E
-1601.95878	[AB28+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1613.99517	[AB27+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1623.88532	[M+H]+	EQFINAAKIITHPN	Peptide	"porcine trypsin, methylated"	X	X	J
-1638.76566	[M+H]+	SLNNQFASFIDKVR	Peptide	keratin (human)	X	X	G
-1640.01082	[AB27+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1639.93775	[M+H]+	KVPQVSTPTLVEVSR	Peptide	bovine serum albumin (BSA)	X	X	E
-1642.02647	[AB27+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1645.985	[AB29+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1657.79287	[M+H]+	SGGGFSSGSAGIINYQR	Peptide	keratin (human)	X	X	"E, G"
-1658.02138	[AB28+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1665.90443	[M+H]+	TKPSQARGFHPRAGR	Peptide	keratin (human)	X	X	G
-1676.77623	[M+H]+	LGEDNINVVEGNEQF	Peptide	bovine trypsin	X	X	J
-1684.03703	[AB28+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1686.05268	[AB28+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1687.97011	[M+H]+	SLVNLGGSKSISISVAR	Peptide	keratin (human)	X	X	G
-1690.01121	[AB30+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1702.0476	[AB29+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1707.77214	[M+H]+	GSLGGGFSSGGFSGGSFSR	Peptide	keratin (human)	X	X	"E, G"
-1708.71325	[M+H]+	FSSCGGGGGSFGAGGGFGSR	Peptide	keratin (human)	X	X	G
-1713.80785	[M+H]+	LGEHNIDVLEGNEQF	Peptide	"porcine trypsin, truncated"	X	X	"E, G"
-1716.85112	[M+H]+	QISNLQQSISDAEQR	Peptide	keratin (human)	X	X	"E, G"
-1725.86287	[M+H]+	VCNYVSWIKQTIASN	Peptide	bovine trypsin	X	X	G
-1728.06325	[AB29+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1730.0789	[AB29+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1734.03743	[AB31+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1744.92283	[M+H]+	NNLEPILEGYISNLR	Peptide	keratin (human)	X	X	G
-1746.07381	[AB30+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1757.8527	[M+H]+	VCNYVSWIKQTIASN (W - oxid.)	Peptide	bovine trypsin	X	X	G
-1765.73471	[M+H]+	FSSCcamGGGGGSFGAGGGFGSR	Peptide	keratin (human)	X	X	"E, G"
-1772.08946	[AB30+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1774.10511	[AB30+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1774.85026	[M+H]+	IVGGYTCGANTVPY & CLK via S-S bond	Peptide	bovine trypsin	X	X	J
-1774.897	[M+H]+	NIDVLEGNEQFINAAK	Peptide	porcine trypsin	X	X	G
-1778.06364	[AB32+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	"D, K"
-1790.10003	[AB31+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1791.72772	[M+H]+	GGSGGSYGGGGSGGGYGGGSGSR	Peptide	keratin (human)	X	X	"E, G"
-1792.87858	[M+H]+	LEAELGNMQGLVEDFK	Peptide	keratin	X	X	E
-1797.01165	[M+H]+	NVQALEIELQSQLALK	Peptide	keratin	X	X	E
-1816.11568	[AB31+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1818.13133	[AB31+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1830.84056	[M+H]+	SDQYGRVFTSWTGGGAAA	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
-1834.12624	[AB32+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	"D, K"
-1837.96542	[M+H]+	HGVQELEIELQSQLSK	Peptide	keratin	X	X	E
-1838.91439	[M+H]+	SISISVAGGGGGFGAAGGFGGR	Peptide	keratin (human)	X	X	G
-1847.8051	[M+H]+	SNMDNMFESYINNLR	Peptide	keratin	X	X	E
-1851.92693	[M+H]+	TLNDMRQEYEQLIAK	Peptide	keratin	X	X	E
-1860.14189	[AB32+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	"D, K"
-1862.15754	[AB32+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	"D, K"
-1940.93485	[M+H]+	LGEHNIDVLEGNEQFIN	Peptide	"porcine trypsin, truncated, methylated"	X	X	"E, J"
-1987.07801	[M+H]+	"TLDNDIMLIKLSSPATLN, K methylated"	Peptide	"porcine trypsin, methylated"	X	X	J
-1993.97666	[M+H]+	THNLEPYFESFINNLR	Peptide	keratin (human)	X	X	"E, K"
-1993.98253	[M+H]+	SSGGSSSVKFVSTTYSGVTR	Peptide	keratin (human)	X	X	G
-2003.07293	[M+H]+	"TLDNDIMoxLIKLSSPATLN, K methylated"	Peptide	"porcine trypsin, methylated"	X	X	J
-2021.98868	[M+H]+	SSGGSSSVRFVSTTYSGVTR 	Peptide	keratin (human)	X	X	G
-2055.01485	[M+H]+	RVLGQLHGGPSSCcamSATGTNR	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
-2082.96483	[M+H]+	AETECcamQNTEYQQLLDIK	Peptide	keratin	X	X	E
-2083.00908	[M+H]+	LGEHNIDVLEGNEQFINAA	Peptide	"porcine trypsin, truncated"	X	X	E
-2109.01285	[M+H]+	ELQSQISDTSVVLSMDNSR	Peptide	keratin	X	X	E
-2150.07777	[M+H]+	THNLEPYFESFINNLRR	Peptide	keratin (human)	X	X	K
-2155.08522	[M+H]+	IITHPNFNGNTLDNDIMLI	Peptide	"trypsin-like artefact, truncated"	X	X	E
-2163.05642	[M+H]+	LGEDNINVVEGNEQFISASK	Peptide	bovine trypsin	X	X	G
-2171.02466	[M+H]+	SDLEMQYETLQEELMALK	Peptide	keratin	X	X	E
-2184.12551	[M+H]+	NKLNDLEDALQQAKEDLAR	Peptide	keratin	X	X	E
-2185.03837	[M+Na]+	LGEDNINVVEGNEQFISASK sodiated	Peptide	bovine trypsin	X	X	"G, K"
-2193.00248	[M+H]+	MFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
-2193.99436	[M+K]+	SAYPGQITSNMFCAGYLEGGK	Peptide	bovine trypsin	X	X	"G, K"
-2201.01231	[M+H]+	LGEDNINVVEGNEQFISASK potassiated	Peptide	bovine trypsin	X	X	"G, K"
-2208.9974	[M+H]+	MoxFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
-2209.98927	[M+H]+	SAYPGQITSNMoxFCAGYLEGGK 	Peptide	bovine trypsin	X	X	"G, K"
-2211.10404	[M+H]+	LGEHNIDVLEGNEQFINAAK	Peptide	porcine trypsin	X	X	"G, K"
-2225.11969	[M+H]+	"LGEHNIDVLEGNEQFINAAK, K part. methylated"	Peptide	porcine trypsin	X	X	"G, K"
-2225.15608	[f+H]+	SIVHPSYNSNTLNNDIMoxLIK -[CH3SOH]	Peptide	"bovine trypsin, ion source fragment"	X	X	"G, K"
-2239.13534	[M+H]+	"LGEHNIDVLEGNEQFINAAK, K methylated"	Peptide	porcine trypsin	X	X	"G, K"
-2240.16966	[M+H]+	ADLEFQIESLTEELAYLKK	Peptide	keratin	X	X	E
-2251.01582	[M+H]+	SAYPGQITSNMFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	G
-2267.01074	[M+H]+	SAYPGQITSNMoxFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	G
-2273.15944	[M+H]+	SIVHPSYNSNTLNNDIMLIK	Peptide	bovine trypsin	X	X	"G, K"
-2283.18018	[M+H]+	IITHPNFNGNTLDNDIMLIK	Peptide	bovine trypsin	X	X	"G, K"
-2283.18018	[M+H]+	IITHPNFNGNTLDNDIMLIK	Peptide	porcine trypsin	X	X	"G, K"
-2286.12484	[M+H]+	AEAESLYQSKYEELQITAGR	Peptide	keratin (human)	X	X	G
-2289.15437	[M+H]+	SIVHPSYNSNTLNNDIMoxLIK (M - oxid.)	Peptide	bovine trypsin	X	X	"G, K"
-2295.14139	[M+Na]+	SIVHPSYNSNTLNNDIMLIK sodiated	Peptide	bovine trypsin	X	X	"G, K"
-2297.19584	[M+H]+	"IITHPNFNGNTLDNDIMLIK, K part. methylated"	Peptide	"porcine trypsin, methylated"	X	X	J
-2305.14928	[M+H]+	SIVHPSYNSNTLNNDIMoxoxLIK (M - 2 oxid.)	Peptide	bovine trypsin	X	X	"G, K"
-2311.13631	[M+Na]+	SIVHPSYNSNTLNNDIMoxLIK (M - oxid.) sodiated	Peptide	bovine trypsin	X	X	"G, K"
-2321.20707	[M+H]+	LQGIVSWGSGCAQKNKPGVYTK	Peptide	bovine trypsin	X	X	"G, K"
-2329.17425	[M+H]+	QISNLQQSISDAEQRGENALK	Peptide	keratin	X	X	E
-2343.18901	[M+Na]+	LQGIVSWGSGCAQKNKPGVYTK sodiated	Peptide	bovine trypsin	X	X	"G, K"
-2353.1969	[M+H]+	LQGIVSWGSGCAQKNKPGVYTK (W - oxid.)	Peptide	bovine trypsin	X	X	"G, K"
-2367.26267	[M+H]+	NQILNLTTDNANILLQIDNAR	Peptide	keratin (human)	X	X	G
-2375.17884	[M+Na]+	LQGIVSWGSGCAQKNKPGVYTK (W - oxid.) sodiated	Peptide	bovine trypsin	X	X	"G, K"
-2383.95186	[M+H]+	GGGGGGYGSGGSSYGSGGGSYGSGGGGGGGR	Peptide	keratin (human)	X	X	G
-2400.27441	[M+H]+	IIKHPNYSSWTLNNDIMLIK	Peptide	bovine trypsin	X	X	"G, K"
-2501.06722	[M+H]+	AAFGGSGGRGSSSGGGYSSGSSSYGSGGR	Peptide	keratin (human)	X	X	G
-2501.25182	[M+H]+	SKAEAESLYQSKYEELQITAGR	Peptide	keratin (human)	X	X	G
-2510.13177	[M+H]+	EIETYHNLLEGGQEDFESSGAGK	Peptide	keratin (human)	X	X	"E, G"
-2514.33847	[M+H]+	SIVHPSYNSNTLNNDIMLIKLK	Peptide	bovine trypsin	X	X	"G, K"
-2530.33339	[M+H]+	SIVHPSYNSNTLNNDIMoxLIKLK	Peptide	bovine trypsin	X	X	"G, K"
-2550.23269	[M+H]+	"VASISLPTSCASAGTQCLISGWGNTK, -S-S-bond"	Peptide	bovine trypsin	X	X	J
-2552.24834	[M+H]+	VASISLPTSCASAGTQCLISGWGNTK 	Peptide	bovine trypsin	X	X	J
-2564.18093	[M+H]+	"SGSHFCGGSLINSQWVVSAAHCYK, -S-S- bond"	Peptide	"porcine trypsin, methylated"	X	X	J
-2564.36786	[M+H]+	EVTQLRHGVQELEIELQSQLSK	Peptide	keratin	X	X	E
-2566.27838	[M+H]+	SKEEAEALYHSKYEELQVTVGR	Peptide	keratin (human)	X	X	G
-2581.19473	[M+H]+	FSGECcamAPNVSVSVSTSHTTISGGGSR	Peptide	keratin	X	X	E
-2612.18093	[M+H]+	"SGYHFCGGSLINSQWVVSAAHCYK, -S-S- bond"	Peptide	bovine trypsin	X	X	J
-2613.34938	[M+H]+	NKPGVYTKVCNYVSWIKQTIASN	Peptide	bovine trypsin	X	X	J
-2614.19658	[M+H]+	SGYHFCGGSLINSQWVVSAAHCYK	Peptide	bovine trypsin	X	X	J
-2666.29127	[M+H]+	VASISLPTSCcamASAGTQCcamLISGWGNTK 	Peptide	bovine trypsin	X	X	J
-2670.37084	[M+H]+	NKPGVYTKVCcamNYVSWIKQTIASN	Peptide	bovine trypsin	X	X	J
-2705.16112	[M+H]+	GGGGSFGYSYGGGSGGGFSASSLGGGFGGGSR	Peptide	keratin	X	X	E
-2707.41621	[M+H]+	IQVRLGEHNIDVLEGNEQFINAAK	Peptide	"porcine trypsin, methylated"	X	X	J
-2720.36337	[M+H]+	"IVGGYTCAAN & TKSSGSSYPSLLQCLK, via S-S bond"	Peptide	"porcine trypsin, methylated"	X	X	J
-2728.23951	[M+H]+	SGYHFCcamGGSLINSQWVVSAAHCcamYK	Peptide	bovine trypsin	X	X	J
-2746.41925	[M+H]+	YCcamVQLSQIQAQISALEEQLQQIR	Peptide	keratin	X	X	E
-2748.39467	[M+H]+	"IVGGYTCAAN & TKSSGSSYPSLLQCLK, via S-S bond, N-term. Methyl."	Peptide	"porcine trypsin, methylated"	X	X	J
-2807.31407	[M+H]+	"SGSHFCGGSLINSQWVVSAAHCYKSR, -S-S- bond"	Peptide	"porcine trypsin, methylated"	X	X	J
-2872.39278	[M+H]+	NVSTGDVNVEMNAAPGVDLTQLLNNMR	Peptide	keratin	X	X	E
-2902.41052	[M+H]+	NYSPYYNTIDDLKDQIVDLTVGNNK	Peptide	keratin	X	X	E
-2904.38261	[M+H]+	NVSTGDVNVEMoxNAAPGVDLTQLLNNMoxR	Peptide	keratin	X	X	E
-2914.50576	[M+H]+	"LGEHNIDVLEGNEQFINAAKIITHPN, K methylated"	Peptide	"porcine trypsin, methylated"	X	X	J
-2932.51632	[M+H]+	FLEQQNQVLQTKWELLQQVDTSTR	Peptide	keratin (human)	X	X	G
-3211.47446	[M+H]+	SAYPGQITSNMFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
-3223.28159	[M+H]+	GGSGGSHGGGSGFGGESGGSYGGGEEASGSGGGYGGGSGK	Peptide	keratin	X	X	E
-3227.46937	[M+H]+	SAYPGQITSNMoxFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
-3312.30814	[M+H]+	GSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYR	Peptide	keratin (human)	X	X	G
-3337.73214	[M+H]+	IITHPNFNGNTLDNDIMLIRLSSPATLNSR	Peptide	"trypsin-like artefact, truncated"	X	X	E
-3346.68149	[M+H]+	"LGEHNIDVLEGNEQFINAAKIITHPNFNGN, K methylated"	Peptide	"porcine trypsin, methylated"	X	X	J
-3353.72706	[M+H]+	IITHPNFNGNTLDNDIMoxLIRLSSPATLNSR	Peptide	"trypsin-like artefact, truncated"	X	X	E
+Ion ID	Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit or sequence	Compound ID or species	Possible origin and other comments 	ESI	MALDI	References 
+1	33.03349	[M+H]+	CH3OH	Methanol	Acetonitrile, solvent	X		A
+2	42.03383	[M+H]+	CH3CN	ACN	Acetonitrile, solvent	X		A
+3	59.06037	[M+NH4]+	CH3CN	ACN	Acetonitrile, solvent	X		A, F
+4	63.04406	[A1B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+5	64.01577	[M+Na]+	CH3CN	ACN	Acetonitrile, solvent	X		A, F
+6	65.05971	[M2+H]+	CH3OH	Methanol	Methanol, solvent	X		A
+7	74.06004	[M+H]+	C3H7NO	Dimethyl formamide	solvent	X		A, C, F
+8	74.06004	[A1B1+H]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		K
+9	77.05971	[A1B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+10	79.02121	[M+H]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A
+11	83.06037	[M2+H]+	CH3CN	Acetonitrile	ESI solvents	X		A, C
+12	85.026	[A1B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+13	85.05887	[M+H]+	C2D6OS	d6-DMSO	d6-Dimethylsulfoxide, solvent	X		A
+14	88.03931	[A1B1+H]+	(CH3CN)n(HCOOH)m	Acetonitrile/Formic Acid	ESI solvents	X		A, C
+15	96.04198	[A1B1+Na]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		C
+16	99.04165	[A1B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+17	100.07569	[M+H]+	C5H10NO	NMP	N-methyl 2-pyrrolidone; solvent, floor stripper	X		K
+18	100.99994	[A1B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+19	101.00316	[M+Na]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A, C
+20	101.08084	[A2B2+H]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
+21	102.05496	[A1B1+H]+	(CH3CN)n(CH3COOH)m	Acetonitrile/Acetic Acid	ESI solvents	X		K
+22	102.12773	[M+H]+	C6H15N	TEA	Triethylamine, buffer	X		A, C
+23	103.9556	[M+63Cu]+	C2H3N	ACN	Acetonitrile, solvent	X		A,C
+24	104.99229	[M+Na]+	C2H3O2Na	Sodium acetate	ESI solvents	X		K
+25	105.04232	[M2+Na]+	C2H3N	ACN	Acetonitrile, solvent	X		A,C
+26	105.95379	[M+65Cu]+	C2H3N	ACN	Acetonitrile, solvent	X		A, C
+27	107.07027	[A2B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+28	115.01559	[A1B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+29	115.08659	[A1B1+H]+	(CH3CN)n(C3H7NO)m	Acetonitrile/Dimethylformamide	solvent	X		A
+30	120.04776	[M+CH3CN+H]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A
+31	122.08117	[M+H]+	C4H11NO3	TRIS	TRIS, buffer	X		A
+32	123.06278	[A2B2+Na]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
+33	123.09167	[M+H]+	C7H10N2	DMAP	Dimethylaminopyridine, solvent	X		A, C
+34	124.0369	[A1B1+Na]+	(CH3CN)n(CH3COOH)m	Acetonitrile/Acetic Acid	ESI solvents	X		K
+35	129.05222	[A2B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+36	130.15903	[M+H]+	C8H19N	DIPEA	Diisopropylethylamine, solvent	X		A
+37	132.9049	M+	Cs	Cs-133	Cesium, from Cesium Iodide used as calibrant	X		V
+38	133.10705	[A3B2+H]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
+39	135.10157	[A2B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+40	137.07431	[M+CH3CN+NH4]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A, F
+41	142.02971	[M+CH3CN+Na]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A
+42	144.17468	[M+H]+	C9H21N	TPA	Tripropylamine, solvent	X		A, C
+43	144.98215	[M2+63Cu]+	CH3CN	ACN	Acetonitrile, solvent, together with m/z 147	X		A, C
+44	145.02615	[A2B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+45	146.06887	[M3+Na]+	CH3CN	ACN	Acetonitrile, solvent	X		A, C
+46	146.98034	[M2+65Cu]+	CH3CN	ACN	Acetonitrile, solvent, together with m/z 145	X		A, C
+47	147.1128	[A2B2+H]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		K
+48	149.02332	[f+H]+	C8H4O3	Pthalic Anhydride	fragment ion originating from phthalate esters	X		A, Z
+49	150.12773	[M+H]+	C10H15N	Phenyldiethylamine	solvent	X		A, C
+50	151.09649	[A3B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+51	153.13862	[M+H]+	C9H16N2	DBU	1,8-Diazabicyclo[5.4.0]undec-7-ene	X		A, C
+52	155.089	[A3B2+Na]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
+53	157.03515	[M2+H]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A, C
+54	157.08352	[A2B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+55	158.96403	[M+Na]+	C2F3O2Na	NaTFA	Sodium trifluoroacetate, salt	X		A, C
+56	163.03897	[M-CH3OH+H]+	C10H10O4	Dimethyl phthalate	Phthalate esters, plasticizer	X		A
+57	163.13287	[M+H]+	C8H18O3	DGBE	Diethylene glycol monobutyl ether, cpd. In scintillation cocktail	X		Q
+58	169.09475	[A2B2+Na]+	(CH3CN)n(CH3OH)m	Acetonitrile/Methanol	ESI solvents	X		K
+59	169.11046	[M2+H]+	C2D6OS	d6-DMSO	d6-Dimethylsulfoxide, solvent	X		A
+60	171.00527	[f+Na]+	C8H4O3	Phthalic anhydride	from phthalate esters, plasticizer	X		A
+61	172.03931	[M-H2O+H]+	C10H7NO3	4-HCCA	matrix compound		X	H, I, J
+62	173.05745	[A2B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+63	173.07843	[A3B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+64	179.01709	[M2+Na]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A, C
+65	181.12231	[M+H]+	C11H16O2	BHA	Butylated hydroxyanisole, antioxidant additives	X		K
+66	183.08044	[M+H]+	C13H10O	DPK	Diphenyl ketone	X		K
+67	183.14383	[A4B3+H]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
+68	185.11482	[M+Na]+	C8H18O3	GE	glycol ether	X		K
+69	186.22163	[M+H]+	C12H27N	TBA	Tributylamine, solvent	X		A
+70	189.05237	[A3B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+71	190.04987	[M+H]+	C10H7NO3	4-HCCA	matrix compound		X	H, I, J
+72	193.14344	[A3B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+73	195.06519	[M+H]+	C10H10O4	Dimethyl phthalate	Phthalate esters, plasticizer	X		A
+74	195.1227	[A4B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+75	203.10425	[M+Na]+	C11H16O2	BHA	Butylated hydroxyanisole, antioxidant additives	X		K
+76	205.12578	[A4B3+Na]+	[MeOH]n[H2O]m	Methanol/Water	ESI solvents	X		K
+77	212.03181	[M+Na]+	C10H7NO3	4-HCCA	matrix compound, sodiated		X	H, I, J
+78	214.08963	[M+H]+	C10H15NO2S	n-BBS	n-butyl benzenesulfonamide, plasticizer	X		A, K
+79	215.12538	[A3B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+80	217.10465	[A4B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+81	221.18999	[M+H]+	C15H24O	BTH	Butylated hydroxytoluene, Antioxidant	X		K
+82	225.19614	[M+H]+	C13H24N2O	DCU	N,N'-Dicyclohexylurea	X		A
+83	228.00575	[M+K]+	C10H7NO3	4-HCCA	matrix compound, potassiated		X	H, I, J
+84	231.09932	[A3B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+85	231.11618	[M+NH4]+	C10H15NO2S	n-BBS	n-butyl benzenesulfonamide, plasticizer	X		A
+86	233.07858	[A4B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+87	236.07157	[M+Na]+	C10H15NO2S	n-BBS	n-butyl benzenesulfonamide, plasticizer	X		A
+88	239.14892	[A5B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+89	239.22485	[(M.H35Cl)2-Cl]+	C6H15N	TEA.HCl	Triethylamine-hydrochloride, buffer	X		A
+90	241.2219	[(M.H37Cl)2-Cl]+	C6H15N	TEA.HCl	Triethylamine-hydrochloride, buffer	X		A
+91	242.28423	M+	C16H36N	TBA	Tetrabutylammonium, buffer	X		A, C
+92	243.11683	M+	C19H15	Trityl cation	Trityl cation, [Ph3C]+	X		A
+93	243.17194	[M+Na]+	C15H24O	BTH	Butylated hytroxytoluene, Antioxidant additives	X		K
+94	251.1853	[A4B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+95	251.20056	[AB1+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+96	257.03103	[M3+Na]+	C2H6OS	DMSO	Dimethylsulfoxide, solvent	X		A
+97	261.13086	[A5B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+98	265.21621	[AB1+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+99	267.17197	[M+H]+	C12H27O4P	TBP	Tributylphosphate	X		A
+100	273.12739	M+	C20H17O	MMT	Monomethoxytrityl cation	X		A
+101	273.16725	[A4B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+102	273.1825	[AB1+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+103	277.1048	[A5B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+104	279.09333	[M+H]+	C18H15OP	TPO	Triphenylphosphine oxide	X		A
+105	279.15909	[M+H]+	C16H22O4	Dibutylphthalate	Plasticiser, phtalate ester	X		A, C
+106	279.22945	[AB1+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X		D, K
+107	282.27914	[M+H]+	C18H35NO	Oleamide	Slip agent in polyethylene films	X		A
+108	283.17513	[A6B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+109	284.29479	[M+H]+	C18H37NO	Stearamide	Slip agent in polyethylene films	X		A
+110	287.19815	[AB1+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+111	288.25332	[M+H]+	C16H33NO3	n,n-DDA	n,n-bis(2-hydroxyethyl) dodecanamide, anti-static agent	X		A
+112	289.14118	[A4B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+113	293.2451	[AB1+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X		D, K
+114	295.22677	[AB2+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+115	301.14103	[M+Na]+	C16H22O4	Dibutylphthalate	Dibutylphthalate, plasticizer	X		A
+116	304.26108	[M+Na]+	C18H35NO	Oleamide	Slip agent in polyethylene films	X		A
+117	305.15708	[A6B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+118	306.27673	[M+Na]+	C18H37NO	Stearamide	Slip agent in polyethylene films	X		A
+119	309.22717	[A5B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+120	309.24242	[AB2+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+121	315.25299	[M+H]+	C18H34O4	DBS	Dibutyl sebacate, plasticizer			X
+122	317.11497	[M+K]+	C16H22O4	Dibutylphthalate	Dibutylphthalate, plasticizer	X		A
+123	317.20872	[AB2+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+124	321.13101	[A6B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+125	323.25567	[AB2+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X		D, K
+126	325.25847	[M2+H]+	C8H18O3	DGBE	Diethylene glycol monobutyl ether, cpd. In scintillation cocktail	X		Q
+127	327.07807	[M+H]+	C18H15O4P	TPP	Triphenyl phosphate, flame retardant in plastics	X		X
+128	327.20135	[A7B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+129	331.20911	[A5B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+130	331.22437	[AB2+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+131	337.11841	[M+H]+;  (120Sn)	C13H28O2Sn	Tributyl tin formate	Tributyl tin formate, catalyst	X		A
+132	337.27132	[AB2+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X		D, K
+133	338.34174	[M+H]+	C22H43NO	Erucamide	Erucamide, (Cis-13-docosenoic amide)	X		A
+134	339.25299	[AB3+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+135	347.18305	[A5B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+136	349.18329	[A7B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+137	353.26864	[AB3+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+138	355.06994	[M+H-CH4]+	[C2H6SiO]5	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 371)	X		A, C, L
+139	355.36829	[M-Cl]+	C22H47N2OCl		Palmitamidopropyl-trimonium chloride, personal care products additive	X		O
+140	360.32368	[M+Na]+	C22H43NO	Erucamide	Erucamide, (Cis-13-docosenoic amide)	X		A
+141	361.23493	[AB3+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+142	365.15723	[A7B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+143	367.26903	[A6B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+144	367.28188	[AB3+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X		D, K
+145	368.42508	[M-Cl]+	C25H54NCl	BTAC-228	Behentrimonium chloride, personal care product additive	X		O
+146	371.10124	[M+H]+	[C2H6SiO]5	Polysiloxane	Polysiloxane, followed by m/z 388	X		A, C., E, L
+147	371.22756	[A8B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+148	371.31559	[M+H]+	C22H42O4	DEHA	Bis(2-ethylhexyl) adipate, plasticizer	X		N, X
+149	371.31559	[M+H]+	C22H42O4	DOA	Dioctyl adipate, plasticizer	X		X
+150	375.25058	[AB3+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+151	379.09246	[M2+H]+	C10H7NO3	4-HCCA	matrix cluster, dimer		X	H, I, J
+152	381.29753	[AB3+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X		D, K
+153	383.2792	[AB4+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
+154	388.12779	[M+NH4]+	[C2H6SiO]5	Polysiloxane	Polysiloxane, (see m/z 371)	X		A, C, L
+155	389.25098	[A6B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X		D, K
+156	391.28429	[M+H]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X		A, C, E
+157	393.20951	[A8B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
+158	397.29485	[AB4+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
+159	405.22491	[A6B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+160	405.26115	[AB4+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+161	409.18344	[A8B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+162	411.3081	[AB4+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+163	413.26623	[M+Na]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X	X	A, C, E
+164	415.25378	[A9B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+165	419.2768	[AB4+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+166	425.3109	[A7B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+167	425.32375	[AB4+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+168	427.30542	[AB5+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+169	429.08873	[M+H-CH4]+	[C2H6SiO]6	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 445)	X	X	L
+170	429.24017	[M+K]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X	X	A, C
+171	437.23572	[A9B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+172	441.01479	[M3+63Cu(I)]+	C10H7NO3	4-HCCA	matrix-copper adduct, together with m/z 443		X	K
+173	441.32107	[AB5+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+174	443.01298	[M3+65Cu(I)]+	C10H7NO3	4-HCCA	matrix-copper adduct, together with m/z 443		X	K
+175	445.12003	[M+H]+	[C2H6SiO]6	Polysiloxane	Polysiloxane, followed by m/z 462	X	X	A, C, E, L
+176	447.29284	[M+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+177	449.28736	[AB5+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+178	449.385	[M2+H]+	C13H24N2O	DCU	N,N'-Dicyclohexylurea	X	X	A, C
+179	453.20966	[A9B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+180	453.34353	[M+H]+	C24H44N4O4	nylon 	Cyclic oligomer of polyamide 66, (adipic acid/hexylmethylene diamine condensation) 	X	X	M
+181	454.29278	[M+CH3CN+Na]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X	X	A
+182	455.33431	[AB5+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+183	459.27999	[A10B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+184	462.14658	[M+NH4]+	[C2H6SiO]6	Polysiloxane	Polysiloxane (see m/z 445)	X	X	A, L
+185	463.26678	[A7B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+186	463.30301	[AB5+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+187	469.34996	[AB5+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+188	471.33163	[AB6+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+189	472.28781	[M+H]+	SLPR	Peptide	porcine trypsin	X	X	G
+190	481.26194	[A10B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+191	483.35276	[A8B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+192	485.34728	[AB6+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+193	493.31358	[AB6+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+194	494.56593	[M-Cl]+	C34H72NCl	DPDMA	Dipalmityldimethylammonium chloride, catalyst, personal care products additive	X	X	O, K
+195	497.23587	[A10B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+196	499.36053	[AB6+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+197	503.10752	[M+H-CH4]+	[C2H6SiO]7	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 519)	X	X	A, L
+198	503.30621	[A11B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+199	505.33471	[A8B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+200	507.32923	[AB6+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+201	513.37618	[AB6+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+202	515.33001	[M+H]+	IQVR	Peptide	trypsin-like artefact	X	X	E
+203	515.35785	[AB7+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+204	515.41286	[M+H]+	C30H58O4S	DDTDP	Didodecyl 3,3?-thiodipropionate, antioxidant	X	X	W
+205	519.13882	[M+H]+	[C2H6SiO]7	Polysiloxane	Polysiloxane, followed by m/z 536	X	X	A, L
+206	521.30864	[A8B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+207	522.59723	[M-Cl]+	C36H76NCl	SPDMA	Stearyl-palmityldimethylammonium chloride, catalyst, personal care product additive	X	X	O, K
+208	525.28815	[A11B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+209	529.3735	[AB7+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+210	531.40777	[M+H]+	C30H58O5S	DDTDP	Didodecyl 3,3?-thiodipropionate oxidized to sulfoxide, antioxidant	X	X	W
+211	531.47717	[M+H]+	C35H62O3	Irganox	Irganox 1076, antioxidant in synthetic polymers, antioxidant	X	X	W
+212	536.16537	[M+NH4]+	[C2H6SiO]7	Polysiloxane	Polysiloxane (see m/z 519)	X	X	A, L
+213	537.33979	[AB7+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+214	537.87901	[M6-6H+3Fe+O]+	C2H4O2	Acetic acid-Fe-O- complex	during ESI with metal tips and acetic acid	X		A, B, E, Y
+215	541.26209	[A11B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+216	541.39463	[A9B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+217	543.38674	[AB7+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+218	547.33242	[A12B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+219	547.40269	[M+H]+	C30H58O6S	DDTDP	Didodecyl 3,3?-thiodipropionate oxidized to sulfone, antioxidant	X	X	W
+220	550.62853	[M-Cl]+	C38H80NCl	DSDMA	Distearyldimethylammonium chloride, catalyst, personal care products additive	X	X	A, K, O
+221	551.35544	[AB7+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+222	553.38972	[M+Na]+	C30H58O5S	DDTDP	Didodecyl 3,3?-thiodipropionate oxidized to sulfoxide, antioxidant	X	X	A, W
+223	553.45912	[M+Na]+	C35H62O3	Irganox	Irganox 1076, antioxidant in synthetic polymers, antioxidant	X	X	A, W
+224	555.88957	[M6-6H+H2O+3Fe+O]+	C2H4O2	Acetic acid-Fe-O- complex	during ESI with metal tips and acetic acid	X		A, B, E, Y
+225	557.40239	[AB7+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+226	559.38406	[AB8+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+227	563.37657	[A9B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+228	568.13506	[M3+H]+	C10H7NO3	4-HCCA	matrix cluster, trimer		X	H, I, J
+229	569.31437	[A12B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+230	571.35622	[M+H]+	VSLPR	Peptide	porcine trypsin	X	X	G
+231	573.39971	[AB8+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+232	577.12631	[M+H-CH4]+	[C2H6SiO]8	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 593)	X	X	L
+233	579.35051	[A9B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+234	581.36601	[AB8+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+235	585.2883	[A12B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+236	587.41296	[AB8+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+237	591.35864	[A13B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+238	593.15761	[M+H]+	[C2H6SiO]8	Polysiloxane	Polysiloxane, followed by m/z 610	X	X	A, L
+239	595.38166	[AB8+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+240	597.90014	[M7-6H+3Fe+O]+	C2H4O2	Acetic acid-Fe-O- complex	during ESI with metal tips and acetic acid	X		B, E, Y
+241	599.43649	[A10B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+242	601.42861	[AB8+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+243	603.41028	[AB9+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+244	606.09149	[M3+K]+	C10H7NO3	4-HCCA	matrix cluster, trimer, potassiated		X	H, I, J
+245	610.18416	[M+NH4]+	[C2H6SiO]8	Polysiloxane	Polysiloxane (see m/z 593)	X	X	L
+246	613.34058	[A13B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+247	615.40375	[M+H]+	C32H58N2O7S	CHAPS	3-[(3-Cholamidopropyl)dimethylammonio]-1-propanesulfonate	X	X	E
+248	617.42593	[AB9+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+249	621.41844	[A10B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+250	621.97291	[M6-6H+3Fe+O]+	C3H6O2	Propionic acid Fe-O complex	during ESI with metal tips and acetic acid	X		Y
+251	625.39222	[AB9+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+252	629.31452	[A13B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+253	631.43917	[AB9+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+254	633.32023	[M+H]+	QTIASN	Peptide	Bovine trypsin	X	X	K
+255	635.38485	[A14B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+256	637.39237	[A10B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+257	639.40787	[AB9+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+258	645.45482	[AB9+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+259	646.35187	[f+H]+	GLTAER (from YLDGLTAER)	Peptide	keratin (human), ion source fragment	X	X	G, K
+260	647.43649	[AB10+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+261	651.1451	[M+H-CH4]+	[C2H6SiO]9	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 667)	X	X	L
+262	657.3668	[A14B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+263	657.47836	[A11B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+264	659.3835	[M+H]+	SGIQVR	Peptide	Bovine trypsin	X	X	K
+265	661.45214	[AB10+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+266	667.1764	[M+H]+	[C2H6SiO]9	Polysiloxane	Polysiloxane, followed by m/z 684	X	X	L
+267	669.41844	[AB10+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+268	672.4039	[M+H]+	TVSLPR	Peptide	porcine trypsin	X	X	K
+269	672.4039	[M+H]+	TVSLPR	Peptide	porcine trypsin	X	X	K
+270	673.34073	[A14B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+271	675.46539	[AB10+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+272	679.41107	[A15B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+273	679.4603	[A11B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+274	679.51166	[M+H]+	C36H66N6O6	nylon 	Cyclic oligomer of polyamide 66, (adipic acid/hexylmethylene diamine condensation) 	X	X	M
+275	683.43409	[AB10+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+276	684.20295	[M+NH4]+	[C2H6SiO]9	Polysiloxane	Polysiloxane (see m/z 667)	X	X	L
+277	689.48104	[AB10+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+278	691.46271	[AB11+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+279	695.43424	[A11B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+280	701.39301	[A15B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+281	704.3825	[M+H]+	LDSELK	Peptide	keratin	X	X	E
+282	705.47836	[AB11+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+283	713.44465	[AB11+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+284	715.52022	[A12B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+285	717.36695	[A15B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+286	719.4916	[AB11+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+287	723.43728	[A16B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+288	725.1639	[M+H-CH4]+	[C2H6SiO]10	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 741)	X	X	L
+289	727.4603	[AB11+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+290	732.46544	[M+H]+	GLVLIAF	Peptide	bovine serum albumin (BSA)	X	X	E
+291	733.50725	[AB11+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+292	735.48892	[AB12+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+293	737.50217	[A12B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+294	741.1952	[M+H]+	[C2H6SiO]10	Polysiloxane	Polysiloxane, followed by m/z 758	X	X	L
+295	742.44979	[M+H]+	GPFPILV	Peptide	bovine casein alpha-S1	X	X	E
+296	743.44101	[M+H]+	ATVSLPR	Peptide	porcine trypsin	X	X	G
+297	745.41923	[A16B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+298	749.50457	[AB12+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+299	753.4761	[A12B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+300	757.47087	[AB12+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+301	758.22175	[M+NH4]+	[C2H6SiO]10	Polysiloxane	Polysiloxane (see m/z 741)	X	X	L
+302	758.41553	[M+H]+	PATLNSR	Peptide	porcine trypsin	X	X	G
+303	761.39316	[A16B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+304	763.51782	[AB12+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+305	767.4635	[A17B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+306	771.48652	[AB12+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+307	773.56209	[A13B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+308	777.53347	[AB12+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+309	779.51514	[AB13+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+310	789.44544	[A17B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+311	793.53079	[AB13+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+312	795.54403	[A13B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+313	798.58785	[M2+NH4]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X	X	A, C, E
+314	801.49708	[AB13+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+315	802.43051	[M+H]+	LSSPATLN	Peptide	porcine trypsin, truncated	X	X	E
+316	803.54324	[M2+Na]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X	X	A, C, E
+317	804.40978	[M+H]+	SEIDNVK	Peptide	keratin (human)	X	X	G
+318	805.41626	[M+H]+	SAASLNSR	Peptide	bovine trypsin	X	X	G, K
+319	805.41938	[A17B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+320	807.39954	[M+H]+	LAADDFR	Peptide	keratin (human)	X	X	G, K
+321	807.54403	[AB13+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+322	809.44035	[M+H]+	LASYLDK	Peptide	keratin	X	X	E
+323	809.48691	[AB10+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+324	811.48971	[A18B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+325	811.51797	[A13B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+326	815.51273	[AB13+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+327	819.51718	[M2+K]+	C24H38O4	Diisooctyl phthalate	Diisooctyl phthalate, plasticiser	X	X	A, K
+328	821.55968	[AB13+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+329	823.54135	[AB14+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+330	824.49887	[M+H]+	PGVVSLPR	Peptide	trypsin-like artefact	X	X	E
+331	827.42978	[M+H]+	FASFIDK	Peptide	keratin (human)	X	X	E, G, K
+332	827.46214	[M+H]+	PEIQNVK	Peptide	keratin (human)	X	X	G, K
+333	831.60395	[A14B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+334	832.4887	[M+H]+	SISISVAR	Peptide	keratin (human)	X	X	G, K
+335	833.47166	[A18B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+336	837.557	[AB14+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+337	839.09742	[M4-2H+K+2Na]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+338	842.50943	[M+H]+	VATVSLPR	Peptide	porcine trypsin	X	X	E, G, K
+339	845.10543	[M4-3H+4Na]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+340	845.5233	[AB14+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+341	848.49886	[M+H]+	AFIDKVR	Peptide	keratin (human)	X	X	G, K
+342	849.44559	[A18B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+343	851.57025	[AB14+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+344	853.51313	[AB11+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+345	853.5859	[A14B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+346	855.07136	[M4-2H+Na+2K]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+347	855.51593	[A19B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+348	859.53895	[AB14+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+349	861.07937	[M4-3H+3Na+K]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+350	863.47338	[f+H]+	SFLINNR (from THNLEPYFESFINNLR)	Peptide	keratin (human), ion source fragment	X	X	G, K
+351	865.4778	[f+H]+	IEIATYR (from LALDIEIATYR)	Peptide	keratin (human), ion source fragment	X	X	G, K
+352	865.54951	[AB10+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+353	865.5859	[AB14+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+354	867.08737	[M4-4H+5Na]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+355	867.56757	[AB15+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+356	869.55983	[A14B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+357	870.54073	[M+H]+	VATVSLPR  N-term. methylated 	Peptide	porcine trypsin - methylated	X	X	J
+358	871.0453	[M4-2H+3K]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+359	871.49959	[M+H]+	QATVSLPR	Peptide	trypsin-like artefact	X	X	E
+360	874.49926	[M+H]+	SLVNLGGSK	Peptide	keratin (human)	X	X	E, G, K
+361	877.49787	[A19B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+362	881.47271	[M+H]+	SLYGLGGSK	Peptide	keratin (human)	X	X	G, K
+363	881.58322	[AB15+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+364	883.51485	[M+H]+	RVYVHPI	Peptide	Angiotensin standards	X	X	E
+365	889.54951	[AB15+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+366	889.64582	[A15B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+367	891.56516	[AB10+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+368	893.47181	[A19B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+369	893.58081	[AB10+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+370	895.59646	[AB15+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents		X	D, K
+371	897.53934	[AB12+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+372	899.53089	[M+H]+	VQTVSLPR	Peptide	trypsin-like artefact	X	X	E
+373	899.54214	[A20B+H]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+374	903.56516	[AB15+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+375	905.67979	[M+H]+	C48H88N8O8	nylon 	Cyclic oligomer of polyamide 66, (adipic acid/hexylmethylene diamine condensation) 	X	X	M
+376	906.50434	[M+H]+	NKPGVYTK	Peptide	bovine trypsin	X	X	G, K
+377	906.50434	[M+H]+	NKPGVYTK	Peptide	porcine trypsin	X	X	G, K
+378	909.57573	[AB11+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+379	909.61211	[AB15+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+380	911.59378	[AB16+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+381	911.62776	[A15B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+382	917.4992	[M+H]+	RVYVHPF	Peptide	Angiotensin standards (bovine)	X	X	E
+383	921.52409	[A20B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+384	925.60943	[AB16+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+385	927.6017	[A15B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+386	931.51485	[M+H]+	RVYIHPF	Peptide	Angiotensin standards (human)	X	X	E
+387	933.57573	[AB16+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+388	935.59138	[AB11+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+389	937.49802	[A20B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X	X	D, K
+390	937.60703	[AB11+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+391	939.62268	[AB16+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+392	941.56556	[AB13+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+393	947.59138	[AB16+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+394	947.68768	[A16B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+395	950.47305	[M+H]+	YVNWIQQ	Peptide	trypsin-like artefact, truncated	X	X	E
+396	953.60194	[AB12+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+397	953.63833	[AB16+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+398	955.62	[AB17+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+399	969.63565	[AB17+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+400	969.66963	[A16B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+401	973.53129	[M+H]+	IEISELNR	Peptide	keratin (human)	X	X	E, G, K
+402	977.60194	[AB17+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+403	979.50949	[M+H]+	GTSYPDVLK	Peptide	bovine trypsin	X	X	G, K
+404	979.61759	[AB12+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+405	981.63324	[AB12+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+406	983.64889	[AB17+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+407	985.59177	[AB14+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+408	985.64356	[A16B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+409	991.61759	[AB17+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+410	994.15551	[M5-H2O-2H+3Na]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+411	995.51966	[M+H]+	IKEWYEK	Peptide	keratin	X	X	E
+412	997.62816	[AB13+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+413	997.66454	[AB17+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+414	999.64621	[AB18+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+415	1000.56734	[M+H]+	LQAEIEGLK	Peptide	keratin	X	X	E
+416	1002.58299	[M+H]+	LVVSTQTALA, C-terminus	Peptide	bovine serum albumin (BSA)	X	X	E
+417	1003.55309	[M+H]+	SEITELRR	Peptide	keratin	X	X	E
+418	1005.72955	[A17B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+419	1013.66186	[AB18+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+420	1020.50302	[M+H]+	APILSDSSCK	Peptide	bovine trypsin	X	X	G, K
+421	1020.53604	[M+H]+	SIPYQVSLN	Peptide	trypsin-like artefact, truncated	X	X	E
+422	1021.62816	[AB18+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+423	1023.47417	[M+H]+	SSYPGQITGN	Peptide	trypsin-like artefact, truncated	X	X	E
+424	1023.51055	[M+H]+	NEQFISASK	Peptide	bovine trypsin	X	X	G, K
+425	1023.64381	[AB13+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+426	1025.65946	[AB13+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+427	1027.67511	[AB18+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+428	1027.71149	[A17B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+429	1029.61799	[AB15+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+430	1031.5983	[M+H]+	VLDELTLTK	Peptide	keratin (human)	X	X	E, G, K
+431	1033.51603	[M+H]+	TLLEGEESR	Peptide	keratin (human)	X	X	E, G, K
+432	1035.64381	[AB18+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+433	1036.08277	[M5-2H2O-4H+4Na+K]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+434	1036.53229	[M+H]+	IRDWYQR	Peptide	keratin	X	X	E
+435	1037.5262	[M+H]+	YLDGLTAER	Peptide	keratin (human)	X	X	G, K
+436	1041.65437	[AB14+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+437	1041.69076	[AB18+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+438	1043.67243	[AB19+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+439	1043.68543	[A17B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+440	1044.11395	[M5-2H+Na+2K]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+441	1045.56365	[M+H]+	LSSPATLNSR	Peptide	porcine trypsin	X	X	G, K
+442	1046.59528	[M+H]+	LKSAASLNSR	Peptide	bovine trypsin	X	X	G, K
+443	1054.09334	[M5-H2O-4H+4Na+K]+	C10H7NO3	4-HCCA	matrix cluster		X	H, I, J
+444	1057.68808	[AB19+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+445	1060.08789	[M5-2H+3K]+	C10H7NO3	4-HCCA	matrix cluster, pentamer, triply potassiated		X	H, I, J
+446	1060.56331	[M+H]+	TLLDIDNTR	Peptide	keratin (human)	X	X	E, G, K
+447	1063.77141	[A18B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+448	1064.57349	[M+H]+	DIIRAVGAYS	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
+449	1064.60987	[M+H]+	LASYLDKVR	Peptide	keratin (human)	X	X	G, K
+450	1065.49934	[M+H]+	STMQELNSR	Peptide	keratin	X	X	E
+451	1065.65437	[AB19+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+452	1066.0959	[M5-3H+2K+2Na]+	C10H7NO3	4-HCCA	matrix cluster, pentamer, potassiated, sodiated		X	H, I, J
+453	1066.60439	[M+H]+	FAAFIDKVR	Peptide	keratin (human)	X	X	G, K
+454	1067.67002	[AB14+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+455	1069.68567	[AB14+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+456	1071.60445	[M+H]+	LAGLEEALQK	Peptide	keratin (human)	X	X	G, K
+457	1071.70132	[AB19+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+458	1073.6442	[AB16+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+459	1079.67002	[AB19+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+460	1080.53201	[f+H]+	GNEQFISASK (from LGEDNINVVEGNEQFISASK)	Peptide	bovine trypsin, in source fragment	X	X	G, K
+461	1082.59931	[M+H]+	FASFIDKVR	Peptide	keratin (human)	X	X	G, K
+462	1085.68059	[AB15+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+463	1085.71697	[AB19+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+464	1085.75336	[A18B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+465	1087.69864	[AB20+H]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+466	1090.53097	[M+H]+	VTMQNLNDR	Peptide	keratin (human)	X	X	G, K
+467	1091.548	[M+H]+	GNEQFINAAK	Peptide	porcine trypsin	X	X	G, K
+468	1101.71429	[AB20+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+469	1101.72729	[A18B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+470	1109.48982	[M+H]+	DAEAWFNEK	Peptide	keratin (human)	X	X	G, K
+471	1109.68059	[AB20+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X	X	D, K
+472	1111.56048	[M+H]+	VCNYVSWIK	Peptide	bovine trypsin		X	G, K
+473	1111.69624	[AB15+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+474	1113.71189	[AB15+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+475	1115.72754	[AB20+Na]+	[C14H28O][C2H4O]n	Triton, reduced	X-100R, X-114R, X-405R, or X-45R Detergents	X	X	D, K
+476	1117.67042	[AB17+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+477	1118.5086	[M+H]+	HGNSHQGEPR	Peptide	keratin (human)	X	X	G, K
+478	1121.58372	[M+H]+	QEYEQLIAK	Peptide	keratin (human)	X	X	G, K
+479	1121.81328	[A19B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+480	1123.69624	[AB20+Na]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X	X	D, K
+481	1126.56399	[M+H]+	IITHPNFNGN	Peptide	porcine trypsin, methylated, truncated	X	X	E, J
+482	1129.62117	[M+H]+	LSELEAALQR	Peptide	Keratin	X	X	E
+483	1129.7068	[AB16+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+484	1129.74319	[AB20+Na]+	[C15H30O][C2H4O]n	Triton, reduced	101R Detergents	X	X	D, K
+485	1141.51941	[M+H]+	DYQELMNTK	Peptide	Keratin	X	X	E
+486	1143.55031	[M+H]+	VCNYVSWIK (W - oxid.)	Peptide	bovine trypsin	X	X	G, K
+487	1143.79522	[A19B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+488	1153.57354	[M+H]+	SSGTSYPDVLK	Peptide	bovine trypsin	X	X	G, K
+489	1155.72245	[AB16+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+490	1157.59093	[M+H]+	QGVDADINGLR	Peptide	keratin (human)	X	X	G, K
+491	1157.7381	[AB16+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+492	1159.76916	[A19B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+493	1161.69663	[AB18+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+494	1165.58478	[M+H]+	LENEIQTYR	Peptide	keratin (human)	X	X	E, G, K
+495	1168.58194	[M+H]+	VCcamNYVSWIK	Peptide	bovine trypsin		X	G, K
+496	1173.73302	[AB17+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+497	1175.52238	[M+H]+	MFCAGYLEGGK	Peptide	bovine trypsin	X	X	J
+498	1175.63404	[M+H]+	TLDNDIMLIK	Peptide	porcine trypsin	X	X	E, G, K
+499	1179.60043	[M+H]+	YEELQITAGR	Peptide	keratin (human)	X	X	E, G, K
+500	1179.85514	[A20B+H]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+501	1183.61574	[M+H]+	NVEIDPEIQK	Peptide	keratin (human)	X	X	G, K
+502	1190.60855	[M+H]+	QVLDNLTMEK	Peptide	kereatin	X	X	E
+503	1191.5173	[M+H]+	MoxFCAGYLEGGK	Peptide	bovine trypsin	X	X	J
+504	1191.62896	[M+H]+	TLDNDIMoxLIK	Peptide	porcine trypsin	X	X	E, G, K
+505	1193.61608	[M+H]+	YEELQVTVGR	Peptide	keratin (human)	X	X	G, K
+506	1199.74867	[AB17+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+507	1200.57177	[M+H]+	VCcamNYVSWIK (W - oxid.)	Peptide	bovine trypsin	X	X	G, K
+508	1201.76432	[AB17+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+509	1201.83709	[A20B+Na]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+510	1203.64019	[M+H]+	TLDNDIMLIR	Peptide	trypsin-like artefact	X	X	E
+511	1205.72285	[AB19+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+512	1208.61574	[M+H]+	TAAENDFVTLK	Peptide	keratin (human)	X	X	G, K
+513	1210.59501	[M+H]+	SSGGTSYPDVLK	Peptide	keratin (human)	X	X	G, K
+514	1210.59501	[M+H]+	SSGGTSYPDVLK	Peptide	bovine trypsin	X	X	G, K
+515	1217.75923	[AB18+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+516	1217.81102	[A20B+K]+	[C3H6O]nH2O	PPG	Polypropylene glycol, ubiquitous polyether	X	X	D, K
+517	1219.6351	[M+H]+	TLDNDIMoxLIR	Peptide	trypsin-like artefact	X	X	E
+518	1220.59059	[M+H]+	EGNEQFINAAK	Peptide	porcine trypsin	X	X	G, K
+519	1225.12537	[M6-2H2O-4H+4Na+K]+	C10H7NO3	4-HCCA	matrix cluster, hexamer, potassiated, sodiated		X	H, I, J
+520	1229.80022	[M2+H]+	C32H58N2O7S	CHAPS	3-[(3-Cholamidopropyl)dimethylammonio]-1-propanesulfonate	X	X	E
+521	1232.54385	[M+H]+	MFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	J
+522	1232.5978	[M+H]+	SGGGGGGGLGSGGSIR	Peptide	keratin (human)	X	X	G, K
+523	1235.52873	[M+H]+	FSSSSGYGGGSSR	Peptide	keratin (human)	X	X	G, K
+524	1243.77488	[AB18+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+525	1245.79053	[AB18+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+526	1248.53876	[M+H]+	MoxFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	J
+527	1249.74906	[AB20+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+528	1251.70959	[M+H]+	YIPIQYVLSR	Peptide	bovine casein alpha-S1	X	X	E
+529	1254.6073	[M+H]+	GFSSGSAVVSGGSR	Peptide	keratin (human)	X	X	G, K
+530	1261.78545	[AB19+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+531	1262.59714	[M+H]+	SLLEGEGSSGGGGR	Peptide	keratin	X	X	E
+532	1262.75793	[M+H]+	LLHGVATVSLPR	Peptide	trypsin-like artefact	X	X	E
+533	1265.63721	[M+H]+	TNAENEFVTIK	Peptide	keratin (human)	X	X	G, K
+534	1267.7045	[M+H]+	YLGYLEQLLR	Peptide	bovine casein alpha-S1	X	X	E
+535	1277.63319	[M+H]+	SDQSRLDSELK	Peptide	keratin (human)	X	X	G, K
+536	1277.70998	[M+H]+	LALDIEIATYR	Peptide	keratin (human)	X	X	E, G, K
+537	1278.58553	[M+H]+	GSCcamGIGGGIGGGSSR	Peptide	keratin	X	X	E
+538	1278.64369	[M+H]+	YEQLAEQNRK	Peptide	keratin (human)	X	X	G, K
+539	1282.66912	[M+H]+	DRVYVHPFHL	Peptide	Angiotensin standards (bovine)	X	X	E
+540	1287.8011	[AB19+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+541	1289.81675	[AB19+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+542	1293.77528	[AB21+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+543	1296.68477	[M+H]+	DRVYIHPFHL	Peptide	Angiotensin standards (human)	X	X	E
+544	1301.65834	[M+H]+	ALEEANADLEVK	Peptide	keratin	X	X	E
+545	1302.70121	[M+H]+	NSKIEISELNR	Peptide	keratin (human)	X	X	G, K
+546	1302.71512	[M+H]+	SLDLDSIIAEVK	Peptide	keratin (human)	X	X	E, G, K
+547	1305.71613	[M+H]+	HLVDEPQNLIK	Peptide	bovine serum albumin (BSA)	X	X	E
+548	1305.81166	[AB20+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+549	1307.67764	[M+H]+	IKFEMEQNLR 	Peptide	keratin (human)	X	X	E, G, K
+550	1308.64302	[M+H]+	VEGNEQFISASK	Peptide	bovine trypsin	X	X	G, K
+551	1308.65426	[M+H]+	NKYEDEINKR	Peptide	keratin (human)	X	X	G, K
+552	1315.68523	[M+H]+	DQIVDLTVGNNK	Peptide	keratin	X	X	E
+553	1316.72425	[M+H]+	TLDNDIMLIRL	Peptide	trypsin-like artefact	X	X	E
+554	1320.58283	[M+H]+	HGGGGGGFGGGGFGSR	Peptide	keratin (human)	X	X	G, K
+555	1323.67255	[M+H]+	IKFEMoxEQNLR 	Peptide	keratin (human)	X	X	G, K
+556	1329.63933	[M+H]+	NVQDAIADAEQR	Peptide	keratin (human)	X	X	G, K
+557	1331.82731	[AB20+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+558	1332.71917	[M+H]+	TLDNDIMoxLIRL	Peptide	trypsin-like artefact	X	X	E
+559	1333.84296	[AB20+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+560	1336.71071	[M+H]+	TAAENDFVTLKK	Peptide	keratin (human)	X	X	G, K
+561	1337.80149	[AB22+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+562	1340.66924	[M+H]+	SKAEAESLYQSK	Peptide	keratin	X	X	E
+563	1344.67539	[M+H]+	ASLEAAIADAEQR	Peptide	keratin	X	X	E
+564	1349.83788	[AB21+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+565	1350.68729	[M+H]+	IGLGGRGGSGGSYGR	Peptide	keratin	X	X	E
+566	1357.69579	[M+H]+	LNDLEDALQQAK	Peptide	keratin (human)	X	X	E, G, K
+567	1357.71825	[M+H]+	QSVEADINGLRR	Peptide	keratin (human)	X	X	G, K
+568	1365.63933	[M+H]+	SQYEQLAEQNR	Peptide	keratin (human)	X	X	G, K
+569	1366.69612	[M+H]+	RISNSTSPTSFVA	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
+570	1367.67024	[M+H]+	VFTSWTGGGAAASR	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
+571	1371.71144	[M+H]+	LNDLEEALQQAK	Peptide	keratin (human)	X	X	E, G, K
+572	1374.69334	[M+H]+	DLNMDNIVAEIK	Peptide	keratin (human)	X	X	G
+573	1375.85353	[AB21+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+574	1377.86918	[AB21+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+575	1381.64817	[M+H]+	ALEESNYELEGK	Peptide	keratin (human)	X	X	E, G
+576	1381.82771	[AB23+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+577	1383.69031	[M+H]+	SLNNQFASFIDK	Peptide	keratin (human)	X	X	E, G
+578	1384.72999	[M+H]+	FFVAPFPEVFGK	Peptide	bovine casein alpha-S1	X	X	E
+579	1390.68087	[M+H]+	QSLEASLAETEGR	Peptide	keratin	X	X	E
+580	1393.73217	[M+H]+	TNAENEFVTIKK	Peptide	keratin (human)	X	X	E, G
+581	1393.86409	[AB22+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+582	1399.69262	[M+H]+	TVMENFVAFVDK	Peptide	bovine serum albumin (BSA)	X	X	E
+583	1399.70048	[f+H]+	PYFESFINNLR (from THNLEPYFESFINNLR)	Peptide	keratin (human), ion-source fragment	X	X	G, K
+584	1418.72742	[M+H]+	VDALNDEINFLR	Peptide	keratin	X	X	E
+585	1419.74783	[M+H]+	LEGLTDEINFLR	Peptide	keratin	X	X	E
+586	1419.79544	[M+H]+	LGLDIEIATYRR	Peptide	keratin (human)	X	X	G
+587	1419.87974	[AB22+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+588	1421.89539	[AB22+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+589	1424.76448	[M+H]+	AAKIITHPNFNGN	Peptide	porcine trypsin, methylated	X	X	J
+590	1425.85392	[AB24+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+591	1433.72056	[M+H]+	LQGIVSWGSGCAQK	Peptide	bovine trypsin	X	X	G
+592	1434.76996	[M+H]+	IRLENEIQTYR	Peptide	keratin (human)	X	X	G
+593	1437.89031	[AB23+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+594	1438.74374	[M+H]+	NNQFASFIDKVR	Peptide	keratin (human)	X	X	G
+595	1439.81176	[M+H]+	RHPEYAVSVLLR	Peptide	bovine serum albumin (BSA)	X	X	E
+596	1442.80019	[M+H]+	LPDIFEAQIAGLR	Peptide	keratin	X	X	E
+597	1443.64204	[M+H]+	YICcamDNQDTISSK	Peptide	bovine serum albumin (BSA)	X	X	E
+598	1447.7751	[M+H]+	AIGGGLSSVGGGSSTIK	Peptide	keratin (human)	X	X	G
+599	1449.71548	[M+H]+	LQGIVSWGSGCAQK (W - oxid. I)	Peptide	bovine trypsin	X	X	G
+600	1453.83731	[M+H]+	EVTINQSLLAPLR	Peptide	keratin	X	X	E
+601	1463.90596	[AB23+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+602	1465.71039	[M+H]+	LQGIVSWGSGCAQK (W - oxid. II)	Peptide	bovine trypsin	X	X	G
+603	1465.92161	[AB23+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+604	1469.88014	[AB25+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+605	1475.74888	[M+H]+	WELLQQVDTSTR	Peptide	keratin (human)	X	X	E, G
+606	1475.78527	[M+H]+	FLEQQNQVLQTK	Peptide	keratin (human)	X	X	E, G
+607	1476.80567	[M+H]+	FLEQQNKVLETK	Peptide	keratin	X	X	E
+608	1479.79544	[M+H]+	LGEYGFQNALIVR	Peptide	bovine serum albumin (BSA)	X	X	E
+609	1481.91652	[AB24+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+610	1490.74203	[M+H]+	LQGIVSWGSGCcamAQK	Peptide	bovine trypsin	X	X	G
+611	1491.7438	[M+H]+	WELLQQVDTSTR (W - oxid. I)	Peptide	keratin (human)	X	X	G
+612	1491.75185	[M+H]+	FYAPELLYYANK	Peptide	bovine serum albumin (BSA)	X	X	E
+613	1493.59953	[M+H]+	DSCQGDSGGPVVCSGK ox. S-S bond	Peptide	porcine trypsin	X	X	J
+614	1493.7343	[M+H]+	SQYEQLAEQNRK	Peptide	keratin (human)	X	X	E, G
+615	1495.61518	[M+H]+	DSCQGDSGGPVVCSGK	Peptide	bovine trypsin	X	X	G
+616	1507.73872	[M+H]+	WELLQQVDTSTR (W - oxid. II)	Peptide	keratin (human)	X	X	G
+617	1507.93217	[AB24+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+618	1509.94782	[AB24+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+619	1513.90635	[AB26+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+620	1521.75436	[M+H]+	NVVEGNEQFISASK	Peptide	bovine trypsin	X	X	G
+621	1522.73186	[M+H]+	LQGIVSWoxGSGCcamAQK	Peptide	bovine trypsin	X	X	G
+622	1525.94274	[AB25+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+623	1549.6772	[M+H]+	SGGGGGGGGCcamGGGGGVSSLR	Peptide	keratin	X	X	E
+624	1551.95839	[AB25+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+625	1553.97404	[AB25+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+626	1557.93257	[AB27+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+627	1566.73944	[M+H]+	LGEHNIDVLEGNEQ	Peptide	porcine trypsin, truncated	X	X	E, G
+628	1567.74274	[M+H]+	DAFLGSFLYEYSR	Peptide	bovine serum albumin (BSA)	X	X	E
+629	1569.96895	[AB26+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+630	1585.7584	[M+H]+	VQALEEANNDLENK	Peptide	keratin (human)	X	X	E, G
+631	1595.9846	[AB26+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+632	1598.00025	[AB26+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+633	1599.83368	[M+H]+	NKLNDLEDALQQAK	Peptide	keratin	X	X	E
+634	1601.95878	[AB28+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+635	1613.99517	[AB27+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+636	1623.88532	[M+H]+	EQFINAAKIITHPN	Peptide	porcine trypsin, methylated	X	X	J
+637	1638.76566	[M+H]+	SLNNQFASFIDKVR	Peptide	keratin (human)	X	X	G
+638	1640.01082	[AB27+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+639	1639.93775	[M+H]+	KVPQVSTPTLVEVSR	Peptide	bovine serum albumin (BSA)	X	X	E
+640	1642.02647	[AB27+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+641	1645.985	[AB29+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+642	1657.79287	[M+H]+	SGGGFSSGSAGIINYQR	Peptide	keratin (human)	X	X	E, G
+643	1658.02138	[AB28+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+644	1665.90443	[M+H]+	TKPSQARGFHPRAGR	Peptide	keratin (human)	X	X	G
+645	1676.77623	[M+H]+	LGEDNINVVEGNEQF	Peptide	bovine trypsin	X	X	J
+646	1684.03703	[AB28+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+647	1686.05268	[AB28+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+648	1687.97011	[M+H]+	SLVNLGGSKSISISVAR	Peptide	keratin (human)	X	X	G
+649	1690.01121	[AB30+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+650	1702.0476	[AB29+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+651	1707.77214	[M+H]+	GSLGGGFSSGGFSGGSFSR	Peptide	keratin (human)	X	X	E, G
+652	1708.71325	[M+H]+	FSSCGGGGGSFGAGGGFGSR	Peptide	keratin (human)	X	X	G
+653	1713.80785	[M+H]+	LGEHNIDVLEGNEQF	Peptide	porcine trypsin, truncated	X	X	E, G
+654	1716.85112	[M+H]+	QISNLQQSISDAEQR	Peptide	keratin (human)	X	X	E, G
+655	1725.86287	[M+H]+	VCNYVSWIKQTIASN	Peptide	bovine trypsin	X	X	G
+656	1728.06325	[AB29+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+657	1730.0789	[AB29+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+658	1734.03743	[AB31+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+659	1744.92283	[M+H]+	NNLEPILEGYISNLR	Peptide	keratin (human)	X	X	G
+660	1746.07381	[AB30+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+661	1757.8527	[M+H]+	VCNYVSWIKQTIASN (W - oxid.)	Peptide	bovine trypsin	X	X	G
+662	1765.73471	[M+H]+	FSSCcamGGGGGSFGAGGGFGSR	Peptide	keratin (human)	X	X	E, G
+663	1772.08946	[AB30+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+664	1774.10511	[AB30+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+665	1774.85026	[M+H]+	IVGGYTCGANTVPY & CLK via S-S bond	Peptide	bovine trypsin	X	X	J
+666	1774.897	[M+H]+	NIDVLEGNEQFINAAK	Peptide	porcine trypsin	X	X	G
+667	1778.06364	[AB32+Na]+	[C18H34O6][C2H4O]n	Tween	Tween 20	X	X	D, K
+668	1790.10003	[AB31+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+669	1791.72772	[M+H]+	GGSGGSYGGGGSGGGYGGGSGSR	Peptide	keratin (human)	X	X	E, G
+670	1792.87858	[M+H]+	LEAELGNMQGLVEDFK	Peptide	keratin	X	X	E
+671	1797.01165	[M+H]+	NVQALEIELQSQLALK	Peptide	keratin	X	X	E
+672	1816.11568	[AB31+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+673	1818.13133	[AB31+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+674	1830.84056	[M+H]+	SDQYGRVFTSWTGGGAAA	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
+675	1834.12624	[AB32+Na]+	[C22H42O6][C2H4O]n	Tween	Tween 40	X	X	D, K
+676	1837.96542	[M+H]+	HGVQELEIELQSQLSK	Peptide	keratin	X	X	E
+677	1838.91439	[M+H]+	SISISVAGGGGGFGAAGGFGGR	Peptide	keratin (human)	X	X	G
+678	1847.8051	[M+H]+	SNMDNMFESYINNLR	Peptide	keratin	X	X	E
+679	1851.92693	[M+H]+	TLNDMRQEYEQLIAK	Peptide	keratin	X	X	E
+680	1860.14189	[AB32+Na]+	[C24H44O6][C2H4O]n	Tween	Tween 80	X	X	D, K
+681	1862.15754	[AB32+Na]+	[C24H46O6][C2H4O]n	Tween	Tween 60	X	X	D, K
+682	1940.93485	[M+H]+	LGEHNIDVLEGNEQFIN	Peptide	porcine trypsin, truncated, methylated	X	X	E, J
+683	1987.07801	[M+H]+	TLDNDIMLIKLSSPATLN, K methylated	Peptide	porcine trypsin, methylated	X	X	J
+684	1993.97666	[M+H]+	THNLEPYFESFINNLR	Peptide	keratin (human)	X	X	E, K
+685	1993.98253	[M+H]+	SSGGSSSVKFVSTTYSGVTR	Peptide	keratin (human)	X	X	G
+686	2003.07293	[M+H]+	TLDNDIMoxLIKLSSPATLN, K methylated	Peptide	porcine trypsin, methylated	X	X	J
+687	2021.98868	[M+H]+	SSGGSSSVRFVSTTYSGVTR 	Peptide	keratin (human)	X	X	G
+688	2055.01485	[M+H]+	RVLGQLHGGPSSCcamSATGTNR	Peptide	lysyl endopeptidase (Lys-C)	X	X	E
+689	2082.96483	[M+H]+	AETECcamQNTEYQQLLDIK	Peptide	keratin	X	X	E
+690	2083.00908	[M+H]+	LGEHNIDVLEGNEQFINAA	Peptide	porcine trypsin, truncated	X	X	E
+691	2109.01285	[M+H]+	ELQSQISDTSVVLSMDNSR	Peptide	keratin	X	X	E
+692	2150.07777	[M+H]+	THNLEPYFESFINNLRR	Peptide	keratin (human)	X	X	K
+693	2155.08522	[M+H]+	IITHPNFNGNTLDNDIMLI	Peptide	trypsin-like artefact, truncated	X	X	E
+694	2163.05642	[M+H]+	LGEDNINVVEGNEQFISASK	Peptide	bovine trypsin	X	X	G
+695	2171.02466	[M+H]+	SDLEMQYETLQEELMALK	Peptide	keratin	X	X	E
+696	2184.12551	[M+H]+	NKLNDLEDALQQAKEDLAR	Peptide	keratin	X	X	E
+697	2185.03837	[M+Na]+	LGEDNINVVEGNEQFISASK sodiated	Peptide	bovine trypsin	X	X	G, K
+698	2193.00248	[M+H]+	MFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
+699	2193.99436	[M+K]+	SAYPGQITSNMFCAGYLEGGK	Peptide	bovine trypsin	X	X	G, K
+700	2201.01231	[M+H]+	LGEDNINVVEGNEQFISASK potassiated	Peptide	bovine trypsin	X	X	G, K
+701	2208.9974	[M+H]+	MoxFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
+702	2209.98927	[M+H]+	SAYPGQITSNMoxFCAGYLEGGK 	Peptide	bovine trypsin	X	X	G, K
+703	2211.10404	[M+H]+	LGEHNIDVLEGNEQFINAAK	Peptide	porcine trypsin	X	X	G, K
+704	2225.11969	[M+H]+	LGEHNIDVLEGNEQFINAAK, K part. methylated	Peptide	porcine trypsin	X	X	G, K
+705	2225.15608	[f+H]+	SIVHPSYNSNTLNNDIMoxLIK -[CH3SOH]	Peptide	bovine trypsin, ion source fragment	X	X	G, K
+706	2239.13534	[M+H]+	LGEHNIDVLEGNEQFINAAK, K methylated	Peptide	porcine trypsin	X	X	G, K
+707	2240.16966	[M+H]+	ADLEFQIESLTEELAYLKK	Peptide	keratin	X	X	E
+708	2251.01582	[M+H]+	SAYPGQITSNMFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	G
+709	2267.01074	[M+H]+	SAYPGQITSNMoxFCcamAGYLEGGK	Peptide	bovine trypsin	X	X	G
+710	2273.15944	[M+H]+	SIVHPSYNSNTLNNDIMLIK	Peptide	bovine trypsin	X	X	G, K
+711	2283.18018	[M+H]+	IITHPNFNGNTLDNDIMLIK	Peptide	bovine trypsin	X	X	G, K
+712	2283.18018	[M+H]+	IITHPNFNGNTLDNDIMLIK	Peptide	porcine trypsin	X	X	G, K
+713	2286.12484	[M+H]+	AEAESLYQSKYEELQITAGR	Peptide	keratin (human)	X	X	G
+714	2289.15437	[M+H]+	SIVHPSYNSNTLNNDIMoxLIK (M - oxid.)	Peptide	bovine trypsin	X	X	G, K
+715	2295.14139	[M+Na]+	SIVHPSYNSNTLNNDIMLIK sodiated	Peptide	bovine trypsin	X	X	G, K
+716	2297.19584	[M+H]+	IITHPNFNGNTLDNDIMLIK, K part. methylated	Peptide	porcine trypsin, methylated	X	X	J
+717	2305.14928	[M+H]+	SIVHPSYNSNTLNNDIMoxoxLIK (M - 2 oxid.)	Peptide	bovine trypsin	X	X	G, K
+718	2311.13631	[M+Na]+	SIVHPSYNSNTLNNDIMoxLIK (M - oxid.) sodiated	Peptide	bovine trypsin	X	X	G, K
+719	2321.20707	[M+H]+	LQGIVSWGSGCAQKNKPGVYTK	Peptide	bovine trypsin	X	X	G, K
+720	2329.17425	[M+H]+	QISNLQQSISDAEQRGENALK	Peptide	keratin	X	X	E
+721	2343.18901	[M+Na]+	LQGIVSWGSGCAQKNKPGVYTK sodiated	Peptide	bovine trypsin	X	X	G, K
+722	2353.1969	[M+H]+	LQGIVSWGSGCAQKNKPGVYTK (W - oxid.)	Peptide	bovine trypsin	X	X	G, K
+723	2367.26267	[M+H]+	NQILNLTTDNANILLQIDNAR	Peptide	keratin (human)	X	X	G
+724	2375.17884	[M+Na]+	LQGIVSWGSGCAQKNKPGVYTK (W - oxid.) sodiated	Peptide	bovine trypsin	X	X	G, K
+725	2383.95186	[M+H]+	GGGGGGYGSGGSSYGSGGGSYGSGGGGGGGR	Peptide	keratin (human)	X	X	G
+726	2400.27441	[M+H]+	IIKHPNYSSWTLNNDIMLIK	Peptide	bovine trypsin	X	X	G, K
+727	2501.06722	[M+H]+	AAFGGSGGRGSSSGGGYSSGSSSYGSGGR	Peptide	keratin (human)	X	X	G
+728	2501.25182	[M+H]+	SKAEAESLYQSKYEELQITAGR	Peptide	keratin (human)	X	X	G
+729	2510.13177	[M+H]+	EIETYHNLLEGGQEDFESSGAGK	Peptide	keratin (human)	X	X	E, G
+730	2514.33847	[M+H]+	SIVHPSYNSNTLNNDIMLIKLK	Peptide	bovine trypsin	X	X	G, K
+731	2530.33339	[M+H]+	SIVHPSYNSNTLNNDIMoxLIKLK	Peptide	bovine trypsin	X	X	G, K
+732	2550.23269	[M+H]+	VASISLPTSCASAGTQCLISGWGNTK, -S-S-bond	Peptide	bovine trypsin	X	X	J
+733	2552.24834	[M+H]+	VASISLPTSCASAGTQCLISGWGNTK 	Peptide	bovine trypsin	X	X	J
+734	2564.18093	[M+H]+	SGSHFCGGSLINSQWVVSAAHCYK, -S-S- bond	Peptide	porcine trypsin, methylated	X	X	J
+735	2564.36786	[M+H]+	EVTQLRHGVQELEIELQSQLSK	Peptide	keratin	X	X	E
+736	2566.27838	[M+H]+	SKEEAEALYHSKYEELQVTVGR	Peptide	keratin (human)	X	X	G
+737	2581.19473	[M+H]+	FSGECcamAPNVSVSVSTSHTTISGGGSR	Peptide	keratin	X	X	E
+738	2612.18093	[M+H]+	SGYHFCGGSLINSQWVVSAAHCYK, -S-S- bond	Peptide	bovine trypsin	X	X	J
+739	2613.34938	[M+H]+	NKPGVYTKVCNYVSWIKQTIASN	Peptide	bovine trypsin	X	X	J
+740	2614.19658	[M+H]+	SGYHFCGGSLINSQWVVSAAHCYK	Peptide	bovine trypsin	X	X	J
+741	2666.29127	[M+H]+	VASISLPTSCcamASAGTQCcamLISGWGNTK 	Peptide	bovine trypsin	X	X	J
+742	2670.37084	[M+H]+	NKPGVYTKVCcamNYVSWIKQTIASN	Peptide	bovine trypsin	X	X	J
+743	2705.16112	[M+H]+	GGGGSFGYSYGGGSGGGFSASSLGGGFGGGSR	Peptide	keratin	X	X	E
+744	2707.41621	[M+H]+	IQVRLGEHNIDVLEGNEQFINAAK	Peptide	porcine trypsin, methylated	X	X	J
+745	2720.36337	[M+H]+	IVGGYTCAAN & TKSSGSSYPSLLQCLK, via S-S bond	Peptide	porcine trypsin, methylated	X	X	J
+746	2728.23951	[M+H]+	SGYHFCcamGGSLINSQWVVSAAHCcamYK	Peptide	bovine trypsin	X	X	J
+747	2746.41925	[M+H]+	YCcamVQLSQIQAQISALEEQLQQIR	Peptide	keratin	X	X	E
+748	2748.39467	[M+H]+	IVGGYTCAAN & TKSSGSSYPSLLQCLK, via S-S bond, N-term. Methyl.	Peptide	porcine trypsin, methylated	X	X	J
+749	2807.31407	[M+H]+	SGSHFCGGSLINSQWVVSAAHCYKSR, -S-S- bond	Peptide	porcine trypsin, methylated	X	X	J
+750	2872.39278	[M+H]+	NVSTGDVNVEMNAAPGVDLTQLLNNMR	Peptide	keratin	X	X	E
+751	2902.41052	[M+H]+	NYSPYYNTIDDLKDQIVDLTVGNNK	Peptide	keratin	X	X	E
+752	2904.38261	[M+H]+	NVSTGDVNVEMoxNAAPGVDLTQLLNNMoxR	Peptide	keratin	X	X	E
+753	2914.50576	[M+H]+	LGEHNIDVLEGNEQFINAAKIITHPN, K methylated	Peptide	porcine trypsin, methylated	X	X	J
+754	2932.51632	[M+H]+	FLEQQNQVLQTKWELLQQVDTSTR	Peptide	keratin (human)	X	X	G
+755	3211.47446	[M+H]+	SAYPGQITSNMFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
+756	3223.28159	[M+H]+	GGSGGSHGGGSGFGGESGGSYGGGEEASGSGGGYGGGSGK	Peptide	keratin	X	X	E
+757	3227.46937	[M+H]+	SAYPGQITSNMoxFCAGYLEGGK & APILSDSSCK via S-S bond	Peptide	bovine trypsin	X	X	J
+758	3312.30814	[M+H]+	GSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYR	Peptide	keratin (human)	X	X	G
+759	3337.73214	[M+H]+	IITHPNFNGNTLDNDIMLIRLSSPATLNSR	Peptide	trypsin-like artefact, truncated	X	X	E
+760	3346.68149	[M+H]+	LGEHNIDVLEGNEQFINAAKIITHPNFNGN, K methylated	Peptide	porcine trypsin, methylated	X	X	J
+761	3353.72706	[M+H]+	IITHPNFNGNTLDNDIMoxLIRLSSPATLNSR	Peptide	trypsin-like artefact, truncated	X	X	E

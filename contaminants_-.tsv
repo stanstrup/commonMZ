@@ -1,21 +1,21 @@
-Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit or sequence	Compound ID or species	Possible origin and other comments 	References 
-26.00362	f-	CN	Acetonitrile 	Fragment from acetonitrile 	F
-44.9982	[M-H]-	HCOOH	Formic acid	Formic acid	F
-59.01385	[M-H]-	CH3COOH	Acetic Acid	Acetic Acid	F
-78.95906	[M-H3O]-	H3PO4	Phosphoric acid	phosphate, also from oligonucleotides or phosphopeptides	F
-79.95737	[M-H2O]-	H2SO4	Sulfuric acid	sulfate, also from other sulfated materials	F
-94.98084	[M-H]-	CH3SO3H	Methanesulfuric acid	Methanesulfuric acid (methanesulfonate)	F
-96.96011	[M-H]-	H2SO4	Sulfuric acid	Sulfate anion	F
-96.96962	[M-H]-	H3PO4	Phosphoric acid	phosphate, also from oligonucleotides or phosphopeptides	F
-112.98559	[M-H]-	CF3COOH	Trifluoroacetic acid, TFA	Trifluoroacetic acid	F
-112.98563	[M2+Na-2H]-	HCOOH	Formic acid	Formic acid dimer	F
-126.90502	A-	I	Iodine	Iodine	V
-162.9824	[M-H]-	CF3CF2COOH	Pentafluoropropionic acid, Perfluoropropionic acid	Pentafluoropropionic acid, Perfluoropropionic acid	E
-212.07507	[M-H]-	C10H15NO2S	n-butyl benzenesulfonamide	n-butyl benzenesulfonamide	A, K
-226.97845	[M2-H]-	CF3COOH	Trifluoroacetic acid, TFA	Trifluoroacetic acid	A
-248.9604	[M2+Na-2H]-	CF3COOH	Trifluoroacetic acid, TFA	Trifluoroacetic acid, sodiated	A
-255.23295	[M-H]-	C16H32O2	Palmitic acid C16:0	Palmitic acid C16:0	K
-281.2486	[M-H]-	C18H34O2	Oleic acid C18:1	Oleic acid C18:1	K
-283.26425	[M-H]-	C18H36O2	Stearic acid 18:0	Stearic acid 18:0	K
-316.7391	[63CuI+I]-	CuI	Copper iodide	Copper catalyst iodide adduct	K
-318.73729	[65CuI+I]-	CuI	Copper iodide	Copper catalyst iodide adduct	K
+Ion ID	Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit or sequence	Compound ID or species	Possible origin and other comments 	References 
+1	26.00362	f-	CN	Acetonitrile 	Fragment from acetonitrile 	F
+2	44.9982	[M-H]-	HCOOH	Formic acid	Formic acid	F
+3	59.01385	[M-H]-	CH3COOH	Acetic Acid	Acetic Acid	F
+4	78.95906	[M-H3O]-	H3PO4	Phosphoric acid	phosphate, also from oligonucleotides or phosphopeptides	F
+5	79.95737	[M-H2O]-	H2SO4	Sulfuric acid	sulfate, also from other sulfated materials	F
+6	94.98084	[M-H]-	CH3SO3H	Methanesulfuric acid	Methanesulfuric acid (methanesulfonate)	F
+7	96.96011	[M-H]-	H2SO4	Sulfuric acid	Sulfate anion	F
+8	96.96962	[M-H]-	H3PO4	Phosphoric acid	phosphate, also from oligonucleotides or phosphopeptides	F
+9	112.98559	[M-H]-	CF3COOH	Trifluoroacetic acid, TFA	Trifluoroacetic acid	F
+10	112.98563	[M2+Na-2H]-	HCOOH	Formic acid	Formic acid dimer	F
+11	126.90502	A-	I	Iodine	Iodine	V
+12	162.9824	[M-H]-	CF3CF2COOH	Pentafluoropropionic acid, Perfluoropropionic acid	Pentafluoropropionic acid, Perfluoropropionic acid	E
+13	212.07507	[M-H]-	C10H15NO2S	n-butyl benzenesulfonamide	n-butyl benzenesulfonamide	A, K
+14	226.97845	[M2-H]-	CF3COOH	Trifluoroacetic acid, TFA	Trifluoroacetic acid	A
+15	248.9604	[M2+Na-2H]-	CF3COOH	Trifluoroacetic acid, TFA	Trifluoroacetic acid, sodiated	A
+16	255.23295	[M-H]-	C16H32O2	Palmitic acid C16:0	Palmitic acid C16:0	K
+17	281.2486	[M-H]-	C18H34O2	Oleic acid C18:1	Oleic acid C18:1	K
+18	283.26425	[M-H]-	C18H36O2	Stearic acid 18:0	Stearic acid 18:0	K
+19	316.7391	[63CuI+I]-	CuI	Copper iodide	Copper catalyst iodide adduct	K
+20	318.73729	[65CuI+I]-	CuI	Copper iodide	Copper catalyst iodide adduct	K
