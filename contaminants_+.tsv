@@ -137,7 +137,7 @@ Ion ID	Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit 
 136	349.18329	[A7B+Na]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
 137	353.26864	[AB3+H]+	[C15H24O][C2H4O]n	Triton	101 Detergents	X		D, K
 138	355.06994	[M+H-CH4]+	[C2H6SiO]5	Polysiloxane	Polysiloxane, (neutral methane loss from m/z 371)	X		A, C, L
-139	355.36829	[M-Cl]+	C22H47N2OCl		Palmitamidopropyl-trimonium chloride, personal care products additive	X		O
+139	355.36829	[M-Cl]+	C22H47N2OCl	Palmitamidopropyl-trimonium chloride	Personal care products additive	X		O
 140	360.32368	[M+Na]+	C22H43NO	Erucamide	Erucamide, (Cis-13-docosenoic amide)	X		A
 141	361.23493	[AB3+Na]+	[C14H22O][C2H4O]n	Triton	X-100, X-114, X-405, or X-45 Detergents	X		D, K
 142	365.15723	[A7B+K]+	[C2H4O]nH2O	PEG	Polyethylene glycol, ubiquitous polyether	X		D, K
