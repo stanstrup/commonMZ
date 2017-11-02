@@ -1,0 +1,17 @@
+Package: commonMZ
+Type: Package
+Title: common_mz
+Version: 0.0.1
+Date: 2017-11-01
+Author: Jan Stanstrup
+Maintainer: Jan Stanstrup <stanstrup@gmail.com>
+Description: A collection of tables with common adducts, fragments and contaminations.
+Depends: R (>= 3.0)
+Imports: readr, readxl, magrittr, dplyr, tidyr
+Suggests: knitr
+License: GPL (>= 2)
+URL: None
+biocViews: MassSpectrometry, Metabolomics
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+Remotes: 

@@ -1,4 +1,4 @@
-Mass difference ±	Origin	Reference(s)
+mz_diff	origin	reference
 0.98402	"OH <-> NH2, e.g. de-amidiation, CHNO compounds"	F
 1.97975	"K+ <-> Cl-+2H2+, salt adduct"	AA
 1.99566	"F <-> OH, halogen exchange with hydroxy group (typically -F + OH)"	F
@@ -59,7 +59,7 @@ Mass difference ±	Origin	Reference(s)
 61.9156	"79Br <-> OH, halogen exchange with hydroxy group (typically -Br + OH)"	F
 63.91355	"81Br <-> OH, halogen exchange with hydroxy group (typically -Br + OH)"	F
 63.9619	"± SO2, sulfur compounds"	F
-63.99829	#NAME?	T
+63.99829	"-CH3SOH, specific loss from singly oxidized methionine residues"	T
 77.91051	"79Br <-> H, halogen exchange"	F
 79.90847	"81Br <-> H, halogen exchange"	F
 79.95682	"± SO3, sulfur compounds"	F

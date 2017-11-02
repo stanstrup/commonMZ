@@ -1,4 +1,4 @@
-Ion ID	Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit or sequence	Compound ID or species	Possible origin and other comments 	References 
+ion_ID	mz	ion_type	molecular_formula	compound_ID	origin 	references
 1	26.00362	f-	CN	Acetonitrile 	Fragment from acetonitrile 	F
 2	44.9982	[M-H]-	HCOOH	Formic acid	Formic acid	F
 3	59.01385	[M-H]-	CH3COOH	Acetic Acid	Acetic Acid	F

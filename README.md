@@ -1,12 +1,23 @@
-# common_mz
+# commonMZ
 This is a collection of common *m/z* values found in mass spectrometry.
+The tables are available through an R package.
+You can find the table files in the "inst\extdata" subfolder.
+
+Contributions are welcomed.
 
 It contains these tab delimited files:
-* **`contaminants_+.tsv`**: A list of common contaminant masses in positive ionization mode.
-* **`contaminants_-.tsv`**: A list of common contaminant masses in negative ionization mode.
-* **`adducts_fragments.tsv`**: A list of common fragment and adducts. The list mass refers to mass differences.
-* **`repeating_units_+.tsv`**: A list of common series of repeated units (mass differences) in positive ionization mode.
-* **`repeating_units_-.tsv`**: A list of common series of repeated units (mass differences) in negative ionization mode.
+* **`contaminants_+.tsv`**: A table of common contaminant masses in positive ionization mode.
+* **`contaminants_-.tsv`**: A table of common contaminant masses in negative ionization mode.
+* **`adducts_fragments.tsv`**: A table of common fragment and adducts. The listed mass refers to mass differences.
+* **`repeating_units_+.tsv`**: A table of common series of repeated units (mass differences) in positive ionization mode.
+* **`repeating_units_-.tsv`**: A table of common series of repeated units (mass differences) in negative ionization mode.
+
+And these excel files:
+* **`CAMERA_rules_pos.xlsx`**: A table of common fragment and adducts for use with CAMERA in positive mode. The listed mass refers to mass differences to the uncharged species.
+* **`CAMERA_rules_neg.xlsx`**: A table of common fragment and adducts for use with CAMERA in negative mode. The listed mass refers to mass differences to the uncharged species.
+* **`CAMERA_rules_EI.xlsx`**: A table of common fragment and adducts for use with CAMERA in EI mode. The listed mass refers to mass differences to the uncharged species.
+
+*Excel files are used to make it easier to work with since adducts/fragment types have been colored*.
 
 
 

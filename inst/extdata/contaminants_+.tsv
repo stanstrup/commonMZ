@@ -1,4 +1,4 @@
-Ion ID	Monoisotopic ion mass (singly charged)	Ion type	Formula for M or subunit or sequence	Compound ID or species	Possible origin and other comments 	ESI	MALDI	References 
+ion_ID	mz	ion_type	molecular_formula	compound_ID	origin 	ESI 	MALDI	references
 1	33.03349	[M+H]+	CH3OH	Methanol	Acetonitrile, solvent	X		A
 2	42.03383	[M+H]+	CH3CN	ACN	Acetonitrile, solvent	X		A
 3	59.06037	[M+NH4]+	CH3CN	ACN	Acetonitrile, solvent	X		A, F
