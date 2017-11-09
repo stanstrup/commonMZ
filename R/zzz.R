@@ -9,8 +9,8 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
 
     
     
-    # .adducts_fragments
-    .adducts_fragments <- 
+    # adducts_fragments
+    adducts_fragments <- 
         readr::read_tsv(system.file("extdata/adducts_fragments.tsv", package=pkgname, lib.loc=libname),
                         col_names=TRUE,
                         col_types = readr::cols(mz_diff = readr::col_double(), 
@@ -19,11 +19,12 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                                                )
                        )
 
-    assign(".adducts_fragments", .adducts_fragments, envir=ns)
+     assign("adducts_fragments", adducts_fragments, envir=ns)
+     namespaceExport(ns, "adducts_fragments")
     
     
     # .contaminants_neg
-    .contaminants_neg <- 
+    contaminants_neg <- 
         readr::read_tsv(system.file("extdata/contaminants_-.tsv", package=pkgname, lib.loc=libname),
                         col_names=TRUE,
                         col_types = readr::cols(ion_ID = readr::col_integer(),
@@ -36,11 +37,11 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                                                )
                        )
 
-    assign(".contaminants_neg", .contaminants_neg, envir=ns)
-    
+    assign("contaminants_neg", contaminants_neg, envir=ns)
+    namespaceExport(ns, "contaminants_neg")
     
     # .contaminants_pos
-    .contaminants_pos <- 
+    contaminants_pos <- 
         readr::read_tsv(system.file("extdata/contaminants_+.tsv", package=pkgname, lib.loc=libname),
                         col_names=TRUE,
                         col_types = readr::cols(ion_ID = readr::col_integer(),
@@ -55,14 +56,15 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                                                )
                        )  
         
-    .contaminants_pos$ESI <- x2loc(.contaminants_pos$ESI)
-    .contaminants_pos$MALDI <- x2loc(.contaminants_pos$MALDI)
+    contaminants_pos$ESI <- x2loc(contaminants_pos$ESI)
+    contaminants_pos$MALDI <- x2loc(contaminants_pos$MALDI)
     
 
-    assign(".contaminants_pos", .contaminants_pos, envir=ns)
+    assign("contaminants_pos", contaminants_neg, envir=ns)
+    namespaceExport(ns, "contaminants_pos")
     
     # .repeating_units_neg
-    .repeating_units_neg <- 
+    repeating_units_neg <- 
         readr::read_tsv(system.file("extdata/repeating_units_-.tsv", package=pkgname, lib.loc=libname),
                         col_names=TRUE,
                         col_types = readr::cols(mz_diff = readr::col_double(),
@@ -73,11 +75,11 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                        )  
         
 
-    assign(".repeating_units_neg", .repeating_units_neg, envir=ns)
-    
+    assign("repeating_units_neg", contaminants_neg, envir=ns)
+    namespaceExport(ns, "repeating_units_neg")
     
     # .repeating_units_pos
-    .repeating_units_pos <- 
+    repeating_units_pos <- 
         readr::read_tsv(system.file("extdata/repeating_units_+.tsv", package=pkgname, lib.loc=libname),
                         col_names=TRUE,
                         col_types = readr::cols(mz_diff = readr::col_double(),
@@ -88,8 +90,8 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                        )  
         
 
-    assign(".repeating_units_pos", .repeating_units_pos, envir=ns)
-    
+    assign("repeating_units_pos", contaminants_neg, envir=ns)
+    namespaceExport(ns, "repeating_units_pos")
     
     #.CAMERA_rules_pos
     .CAMERA_rules_pos <- 
