@@ -60,7 +60,7 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
     contaminants_pos$MALDI <- x2loc(contaminants_pos$MALDI)
     
 
-    assign("contaminants_pos", contaminants_neg, envir=ns)
+    assign("contaminants_pos", contaminants_pos, envir=ns)
     namespaceExport(ns, "contaminants_pos")
     
     # .repeating_units_neg
@@ -75,7 +75,7 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                        )  
         
 
-    assign("repeating_units_neg", contaminants_neg, envir=ns)
+    assign("repeating_units_neg", repeating_units_neg, envir=ns)
     namespaceExport(ns, "repeating_units_neg")
     
     # .repeating_units_pos
@@ -90,7 +90,7 @@ x2loc <- function(x) ifelse(grepl("X", x),TRUE,FALSE)
                        )  
         
 
-    assign("repeating_units_pos", contaminants_neg, envir=ns)
+    assign("repeating_units_pos", repeating_units_pos, envir=ns)
     namespaceExport(ns, "repeating_units_pos")
     
     #.CAMERA_rules_pos
