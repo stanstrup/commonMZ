@@ -1,7 +1,7 @@
 Package: commonMZ
 Type: Package
 Title: common_mz
-Version: 0.0.1
+Version: 0.0.2
 Date: 2017-11-01
 Author: Jan Stanstrup
 Maintainer: Jan Stanstrup <stanstrup@gmail.com>
@@ -14,4 +14,3 @@ URL: None
 biocViews: MassSpectrometry, Metabolomics
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
-Remotes: 
