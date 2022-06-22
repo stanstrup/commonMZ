@@ -13,4 +13,5 @@ License: GPL (>= 2)
 URL: None
 biocViews: MassSpectrometry, Metabolomics
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.2.0
+Encoding: UTF-8

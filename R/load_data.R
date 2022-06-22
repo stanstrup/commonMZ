@@ -9,10 +9,10 @@
     mat <- outer(x,x,comp_FUN,...)
     
     mat %<>%
-        as_data_frame %>% 
+        as_tibble(.name_repair =  make.names) %>% 
         setNames(paste0("col",1:ncol(.))) %>% 
         mutate(row=1:n()) %>% 
-        gather("col", "value", -row) %>% 
+        pivot_longer(-row, names_to = "col", values_to = "value") %>% 
         mutate(col=gsub("col","",col)) %>% 
         filter(row>col)
     
@@ -58,8 +58,8 @@
 #' 
 #' 
 #' @importFrom magrittr %<>% extract2
-#' @importFrom dplyr as_data_frame mutate filter rename select %>% n
-#' @importFrom tidyr gather
+#' @importFrom dplyr as_tibble mutate filter rename select %>% n
+#' @importFrom tidyr pivot_longer
 #' @importFrom stats setNames
 #' 
 MZ_CAMERA <- function(mode, warn_clash = TRUE, clash_ppm){
