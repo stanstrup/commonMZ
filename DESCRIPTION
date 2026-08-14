@@ -10,7 +10,8 @@ Depends: R (>= 3.0)
 Imports: readr, readxl, magrittr, dplyr, tidyr
 Suggests: knitr
 License: GPL (>= 2)
-URL: None
+URL: https://stanstrup.github.io/commonMZ/, https://github.com/stanstrup/commonMZ
+BugReports: https://github.com/stanstrup/commonMZ/issues
 biocViews: MassSpectrometry, Metabolomics
 VignetteBuilder: knitr
 RoxygenNote: 7.3.1

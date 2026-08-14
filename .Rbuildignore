@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 README_cache
 README.Rmd
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
