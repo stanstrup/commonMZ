@@ -8,11 +8,13 @@ Maintainer: Jan Stanstrup <stanstrup@gmail.com>
 Description: A collection of tables with common adducts, fragments and contaminations.
 Depends: R (>= 3.0)
 Imports: readr, readxl, magrittr, dplyr, tidyr
-Suggests: knitr
+Suggests: knitr, quarto, Rdisop, ggplot2, tibble
 License: GPL (>= 2)
 URL: https://stanstrup.github.io/commonMZ/, https://github.com/stanstrup/commonMZ
 BugReports: https://github.com/stanstrup/commonMZ/issues
 biocViews: MassSpectrometry, Metabolomics
-VignetteBuilder: knitr
+VignetteBuilder: knitr, quarto
+SystemRequirements: Quarto (>= 1.3); Quarto CLI (https://quarto.org)
+Additional_repositories: https://bioconductor.org/packages/release/bioc
 RoxygenNote: 7.3.1
 Encoding: UTF-8
