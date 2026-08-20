@@ -1,4 +1,4 @@
----
+﻿---
 title: "Simulating isotope fine structure for a formula"
 subtitle: "Problem: I have a candidate formula. What does its fine structure look like, and could I resolve it?"
 format:
@@ -17,7 +17,7 @@ execute:
   message: false
 knitr:
   opts_chunk:
-    dev: svg
+    dev: svglite
 vignette: >
   %\VignetteIndexEntry{Simulating isotope fine structure for a formula}
   %\VignetteEngine{quarto::format}
@@ -27,7 +27,7 @@ vignette: >
 ```{r setup}
 library(commonMZ)
 library(dplyr)
-library(tibble)
+library(purrr)
 library(ggplot2)
 
 BLUE <- "#2a78d6"
@@ -42,29 +42,27 @@ recipe you can run on any formula of your own: build the fine structure, check
 whether your instrument would resolve the candidates that matter, and see the
 simulated peak shape at your own resolving power.
 
-## Step 1 — build the fine structure
+## Step 1 --- build the fine structure
 
-`isotope_fine_pattern()` wraps [enviPat](https://cran.r-project.org/package=enviPat)
-to enumerate every isotopologue of a formula above a threshold, labelled by which
-isotopes produced it. Swap in your own candidate formula here:
+Swap in your own candidate formula here:
 
 ```{r pattern}
 formula <- "C14H11Cl2NO2"   # diclofenac -- replace with your own candidate
 
 pat <- isotope_fine_pattern(formula)
-pat %>% arrange(desc(abundance)) %>%
+pat %>% arrange(mz) %>%
   mutate(mz = round(mz, 5), abundance = round(abundance, 4),
          label = ifelse(label == "", "M (monoisotopic)", label)) %>%
   knitr::kable(caption = paste("Every isotopologue of", formula, "above the default 0.01% threshold."))
 ```
 
 Grouping by nominal mass reproduces the coarse M/M+1/M+2 pattern any calculator
-would give you — diclofenac's two chlorines make this one unambiguous even at unit
+would give you --- diclofenac's two chlorines make this one unambiguous even at unit
 resolution:
 
 ```{r coarse}
 #| fig-cap: "Diclofenac's coarse isotope pattern: two chlorines produce a textbook M/M+2/M+4 barcode."
-base_mz <- pat$mz[pat$label == ""]
+base_mz <- pat %>% filter(label == "") %>% pull(mz)
 coarse <- pat %>% mutate(nominal = round(mz - base_mz)) %>%
   group_by(nominal) %>%
   summarise(mz = base_mz + first(nominal), abundance = sum(abundance), .groups = "drop")
@@ -80,16 +78,16 @@ ggplot(coarse, aes(mz, abundance)) +
   theme(panel.grid.minor = element_blank())
 ```
 
-## Step 2 — zoom into one nominal level
+## Step 2 --- zoom into one nominal level
 
 Plotting the isotopologues of a single nominal level directly on the m/z axis
-shows what is really inside it — here M+2, where a 37Cl isotopologue dominates so
+shows what is really inside it --- here M+2, where a 37Cl isotopologue dominates so
 completely that a small 13C,13C shoulder is almost invisible on a linear scale:
 
 ```{r zoom}
 #| fig-cap: "Diclofenac M+2: two chlorines dominate so completely that the tiny 13C,13C shoulder barely registers, even though it sits at a perfectly resolvable distance."
 plot_level <- function(pattern, level, title) {
-  base <- pattern$mz[pattern$label == ""]
+  base <- pattern %>% filter(label == "") %>% pull(mz)
   d <- pattern %>% mutate(nominal = round(mz - base)) %>% filter(nominal == level) %>%
     mutate(element = sub(",.*", "", label), element = sub("^[0-9]+", "", element),
            col = ifelse(label == "" | grepl(",", label), "combo", element),
@@ -108,7 +106,7 @@ plot_level <- function(pattern, level, title) {
 plot_level(pat, 2, paste(formula, "M+2"))
 ```
 
-## Step 3 — would your instrument resolve the candidates?
+## Step 3 --- would your instrument resolve the candidates?
 
 For every pair of isotopologues at a nominal level, the resolving power needed to
 put a valley between them is `(m1+m2) / 2 / |m1-m2|` at that m/z; translated to the
@@ -124,21 +122,21 @@ fwhm_at  <- function(mz, R_ref, mz_ref = 200) mz / R_at_mz(mz, R_ref, mz_ref)
 ## candidates (< min_abundance percent) are dropped so the table stays a short,
 ## readable list of comparisons an analyst could actually be faced with.
 separations <- function(pattern, level, R_ref = 120000, mz_ref = 200, min_abundance = 0.01) {
-  base <- pattern$mz[pattern$label == ""]
+  base <- pattern %>% filter(label == "") %>% pull(mz)
   d <- pattern %>% mutate(nominal = round(mz - base)) %>%
     filter(nominal == level, abundance >= min_abundance) %>%
     mutate(label = ifelse(label == "", "M", label))
   if (nrow(d) < 2) return(tibble())
   ix <- combn(seq_len(nrow(d)), 2)
-  bind_rows(lapply(seq_len(ncol(ix)), function(i) {
+  map_dfr(seq_len(ncol(ix)), function(i) {
     ra <- d[ix[1, i], ]; rb <- d[ix[2, i], ]
     sep_da <- abs(ra$mz - rb$mz)
-    Rreq <- (ra$mz + rb$mz) / 2 / sep_da                       # R needed AT that m/z
-    Rref_req <- Rreq / sqrt(mz_ref / mean(c(ra$mz, rb$mz)))    # translated to the R_ref convention
+    Rreq <- (ra$mz + rb$mz) / 2 / sep_da
+    Rref_req <- Rreq / sqrt(mz_ref / mean(c(ra$mz, rb$mz)))
     tibble(a = ra$label, b = rb$label, abundance_a_pct = round(ra$abundance, 3),
            abundance_b_pct = round(rb$abundance, 3), separation_Da = round(sep_da, 5),
            R_needed_here = round(Rreq), R_needed_at200 = round(Rref_req))
-  })) %>% arrange(R_needed_at200)
+  }) %>% arrange(R_needed_at200)
 }
 
 sep2 <- separations(pat, 2)
@@ -154,11 +152,11 @@ cat(sprintf("`37Cl` needs only R ~ %s at m/z 200 to separate from its closest co
             format(top$R_needed_at200, big.mark = ","), ifelse(top$a == "37Cl", top$b, top$a)))
 ```
 
-## Step 4 — simulate the profile at your own resolving power
+## Step 4 --- simulate the profile at your own resolving power
 
 Numbers on a table are one thing; seeing whether two peaks actually merge is more
 convincing. `isotope_profile()` sums a Gaussian peak of the right width for each
-candidate — pass it the *actual* resolving power at this m/z, converting from an
+candidate --- pass it the *actual* resolving power at this m/z, converting from an
 Orbitrap's `R_ref @ 200` setting with `R_at_mz()` first:
 
 ```{r sim-profile}
@@ -167,16 +165,16 @@ Rs <- c(30000, 60000, 120000)
 R_label <- function(r) sprintf("R = %s @200", format(r, big.mark = ",", trim = TRUE))
 pat2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2)
 
-prof <- bind_rows(lapply(Rs, function(r)
+prof <- map_dfr(Rs, function(r)
   isotope_profile(pat2, resolution = R_at_mz(mean(pat2$mz), r)) %>%
-    mutate(R = R_label(r))))
+    mutate(R = R_label(r)))
 ticks <- pat2 %>% filter(abundance > 0.5)
 
 ggplot(prof, aes(mz, intensity)) +
   geom_area(fill = BLUE, alpha = .25) +
   geom_line(colour = BLUE, linewidth = .8) +
   geom_rug(data = ticks, aes(x = mz), inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
-  facet_wrap(~ factor(R, levels = vapply(Rs, R_label, "")), ncol = 1, scales = "free_y") +
+  facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
   scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
   labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
   theme_minimal(base_size = 12) +
@@ -184,7 +182,7 @@ ggplot(prof, aes(mz, intensity)) +
 ```
 
 Even at the lowest of these three resolving powers the two chlorines are already
-visually obvious as a separate hump — consistent with the table above, and the
+visually obvious as a separate hump --- consistent with the table above, and the
 kind of case where fine structure confirms what the coarse pattern already showed
 rather than revealing something it hid. For a case where fine structure genuinely
 changes the conclusion, see methionine's hidden sulfur in
@@ -197,10 +195,10 @@ changes the conclusion, see methionine's hidden sulfur in
    (`nC * 1.07%` for M+1; `choose(nC,2) * 0.0107^2 * 100%` for M+2). A large excess
    is the first signal that something heavier than carbon is present.
 2. **Zoom into the nominal level** that shows the excess to see which specific
-   isotopologues could produce it, and how far apart they sit in exact mass — in
+   isotopologues could produce it, and how far apart they sit in exact mass --- in
    Da, directly comparable to your spectrum's own axis.
 3. **Check the gap against your resolving power** with `separations()` before
-   concluding a peak is "clean" — a shoulder that should be there but isn't
+   concluding a peak is "clean" --- a shoulder that should be there but isn't
    resolved is not evidence it's absent, only evidence you didn't have the
    resolving power to see it.
 4. **Simulate the profile** with `isotope_profile()` at your instrument's actual
@@ -209,5 +207,5 @@ changes the conclusion, see methionine's hidden sulfur in
 
 None of `plot_level()` or `separations()` are exported by commonMZ; only
 `isotope_fine_pattern()` and `isotope_profile()` are. The two helpers above are
-short enough to copy into your own analysis — that's the point of showing their
+short enough to copy into your own analysis --- that's the point of showing their
 full source here.

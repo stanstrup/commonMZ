@@ -8,7 +8,7 @@ Maintainer: Jan Stanstrup <stanstrup@gmail.com>
 Description: A collection of tables with common adducts, fragments and contaminations.
 Depends: R (>= 3.0)
 Imports: readr, readxl, magrittr, dplyr, tidyr, tibble, enviPat
-Suggests: knitr, quarto, ggplot2, DT, htmltools, plotly, scales, RefManageR
+Suggests: knitr, quarto, ggplot2, DT, htmltools, plotly, scales, svglite, purrr, RefManageR
 Config/Needs/website: RefManageR
 License: MIT + file LICENSE
 URL: https://stanstrup.github.io/commonMZ/, https://github.com/stanstrup/commonMZ

@@ -37,7 +37,8 @@ in a spectrum).}
 }
 \value{
 \code{table}, filtered to rows within tolerance of \code{delta},
-  with an added \code{error_Da} column, sorted by \code{abs(error_Da)}.
+  with added \code{error_Da} and \code{error_ppm} columns,
+  sorted by \code{abs(error_Da)}.
 }
 \description{
 The interpretation workhorse behind "what could this delta be": given a

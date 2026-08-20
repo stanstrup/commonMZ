@@ -70,7 +70,8 @@ mz_diff_table <- function(mode = c("both", "pos", "neg")) {
 #'   in a spectrum).
 #'
 #' @return \code{table}, filtered to rows within tolerance of \code{delta},
-#'   with an added \code{error_Da} column, sorted by \code{abs(error_Da)}.
+#'   with added \code{error_Da} and \code{error_ppm} columns,
+#'   sorted by \code{abs(error_Da)}.
 #'
 #' @examples
 #' mz_diff_lookup(18.0106, tol = 100, unit = "ppm")   # water
@@ -86,6 +87,7 @@ mz_diff_lookup <- function(delta, tol = 100, unit = c("ppm", "Da"),
   err <- table$mz_diff - delta
   keep <- abs(err) <= tol_da
   hit <- table[keep, , drop = FALSE]
-  hit$error_Da <- err[keep]
+  hit$error_Da  <- err[keep]
+  hit$error_ppm <- err[keep] / abs(delta) * 1e6
   hit[order(abs(hit$error_Da)), , drop = FALSE]
 }
