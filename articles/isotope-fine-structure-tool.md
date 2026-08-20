@@ -8,7 +8,7 @@ fine structure, check whether your instrument would resolve the
 candidates that matter, and see the simulated peak shape at your own
 resolving power.
 
-## Step 1 — build the fine structure
+## Step 1: build the fine structure
 
 Swap in your own candidate formula here:
 
@@ -59,7 +59,7 @@ Every isotopologue of C14H11Cl2NO2 above the default 0.01% threshold.
 {.table .caption-top}
 
 Grouping by nominal mass reproduces the coarse M/M+1/M+2 pattern any
-calculator would give you — diclofenac’s two chlorines make this one
+calculator would give you; diclofenac’s two chlorines make this one
 unambiguous even at unit resolution:
 
 ``` r
@@ -85,12 +85,12 @@ ggplot(coarse, aes(mz, abundance)) +
 Diclofenac’s coarse isotope pattern: two chlorines produce a textbook
 M/M+2/M+4 barcode.
 
-## Step 2 — zoom into one nominal level
+## Step 2: zoom into one nominal level
 
 Plotting the isotopologues of a single nominal level directly on the m/z
-axis shows what is really inside it — here M+2, where a 37Cl
-isotopologue dominates so completely that a small 13C,13C shoulder is
-almost invisible on a linear scale:
+axis shows what is really inside it. For M+2, a 37Cl isotopologue
+dominates so completely that the small 13C,13C shoulder is almost
+invisible on a linear scale:
 
 ``` r
 
@@ -120,11 +120,11 @@ Diclofenac M+2: two chlorines dominate so completely that the tiny
 13C,13C shoulder barely registers, even though it sits at a perfectly
 resolvable distance.
 
-## Step 3 — would your instrument resolve the candidates?
+## Step 3: would your instrument resolve the candidates?
 
 For every pair of isotopologues at a nominal level the table below
 reports the resolving power (Orbitrap convention, quoted at m/z 200) at
-which the two Gaussian peaks would show a ~50% valley between them —
+which the two Gaussian peaks would show a ~50% valley between them,
 enough for a centroid algorithm to find two separate peaks. Two Gaussian
 peaks of equal height separated by 1.5 × FWHM produce a valley at about
 50% of peak height; translating that to the R@200 Orbitrap convention
@@ -157,7 +157,7 @@ sep2 <- separations(pat, 2)
 sep2 %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
                               "separation (Da)", "R at this m/z", "R @200"),
-               caption = "Every pair of M+2 candidates above 0.01% abundance. R@200 is the Orbitrap resolving power (quoted at m/z 200) at which the two peaks show a ~50% valley --- enough for centroiding to find two peaks.")
+               caption = "Every pair of M+2 candidates above 0.01% abundance. R@200 is the Orbitrap resolving power (quoted at m/z 200) at which the two peaks show a ~50% valley, enough for centroiding to find two peaks.")
 ```
 
 | a | b | abundance a % | abundance b % | separation (Da) | R at this m/z | R @200 |
@@ -180,26 +180,26 @@ sep2 %>%
 
 Every pair of M+2 candidates above 0.01% abundance. R@200 is the
 Orbitrap resolving power (quoted at m/z 200) at which the two peaks show
-a ~50% valley — enough for centroiding to find two peaks. {.table
+a ~50% valley, enough for centroiding to find two peaks. {.table
 .caption-top}
 
 ``` r
 
 top <- sep2 %>% filter(a == "37Cl" | b == "37Cl") %>% slice_min(R_at200, n = 1)
-cat(sprintf("`37Cl` needs only R ~ %s @200 to show a distinct peak from its closest competitor (`%s`) --- comfortably within reach on any current Orbitrap.",
+cat(sprintf("`37Cl` needs only R ~ %s @200 to show a distinct peak from its closest competitor (`%s`), comfortably within reach on any current Orbitrap.",
             format(top$R_at200, big.mark = ","), ifelse(top$a == "37Cl", top$b, top$a)))
 ```
 
 `37Cl` needs only R ~ 43,153 @200 to show a distinct peak from its
-closest competitor (`13C, 2H`) — comfortably within reach on any current
+closest competitor (`13C, 2H`), comfortably within reach on any current
 Orbitrap.
 
-## Step 4 — simulate the profile at your own resolving power
+## Step 4: simulate the profile at your own resolving power
 
 Numbers on a table are one thing; seeing whether two peaks actually
 merge is more convincing.
 [`isotope_profile()`](https://stanstrup.github.io/commonMZ/reference/isotope_profile.md)
-sums a Gaussian peak of the right width for each candidate — pass it the
+sums a Gaussian peak of the right width for each candidate. Pass it the
 *actual* resolving power at this m/z, converting from an Orbitrap’s
 `R_ref @ 200` setting with `R_at_mz()` first:
 
@@ -229,8 +229,8 @@ ggplotly(p, tooltip = c("x", "y"))
 ```
 
 Even at the lowest of these three resolving powers the two chlorines are
-already visually obvious as a separate hump — consistent with the table
-above, and the kind of case where fine structure confirms what the
+already visually obvious as a separate hump, consistent with the table
+above. This is the kind of case where fine structure confirms what the
 coarse pattern already showed rather than revealing something it hid.
 For a case where fine structure genuinely changes the conclusion, see
 methionine’s hidden sulfur in [*Reading isotopic fine
@@ -245,12 +245,12 @@ structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure
     first signal that something heavier than carbon is present.
 2.  **Zoom into the nominal level** that shows the excess to see which
     specific isotopologues could produce it, and how far apart they sit
-    in exact mass — in Da, directly comparable to your spectrum’s own
-    axis.
+    in exact mass (in Da, directly comparable to your spectrum’s own
+    axis).
 3.  **Check the gap against your resolving power** with `separations()`
-    before concluding a peak is “clean” — a shoulder that should be
-    there but isn’t resolved is not evidence it’s absent, only evidence
-    you didn’t have the resolving power to see it.
+    before concluding a peak is “clean”: a shoulder that should be there
+    but isn’t resolved is not evidence it’s absent, only evidence you
+    didn’t have the resolving power to see it.
 4.  **Simulate the profile** with
     [`isotope_profile()`](https://stanstrup.github.io/commonMZ/reference/isotope_profile.md)
     at your instrument’s actual resolving power (converted from its
@@ -262,4 +262,4 @@ None of `plot_level()` or `separations()` are exported by commonMZ; only
 and
 [`isotope_profile()`](https://stanstrup.github.io/commonMZ/reference/isotope_profile.md)
 are. The two helpers above are short enough to copy into your own
-analysis — that’s the point of showing their full source here.
+analysis; that’s the point of showing their full source here.

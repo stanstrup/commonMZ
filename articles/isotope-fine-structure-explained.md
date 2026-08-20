@@ -65,10 +65,10 @@ below work through for a concrete example.
 
 ## When the coarse pattern hides the answer
 
-**Methionine**, C₅H₁₁NO₂S, is about as ordinary as a metabolite gets —
+**Methionine**, C₅H₁₁NO₂S, is about as ordinary as a metabolite gets,
 one of the twenty proteinogenic amino acids, present in every untargeted
 metabolomics urine or plasma run. It also carries one sulfur, and
-sulfur’s own +2 isotope, ³⁴S, sits at 4.25% abundance — two orders of
+sulfur’s own +2 isotope, ³⁴S, sits at 4.25% abundance, two orders of
 magnitude more abundant than the +1 isotopes of the CHNO elements.
 Nothing about a coarse M+1/M+2 barcode makes that obvious the way
 diclofenac’s two chlorines are obvious.
@@ -99,26 +99,26 @@ ggplot(coarse_met, aes(mz, abundance)) +
 Methionine’s coarse isotope pattern. M+2 is bigger than five carbons
 alone would ever produce - but the bars alone don’t say why.
 
-Five carbons predict an M+1 of roughly `5 * 1.07% ≈ 5.4%` of M —
+Five carbons predict an M+1 of roughly `5 * 1.07% ≈ 5.4%` of M,
 reasonably close to what the chart shows, since carbon dominates M+1 for
 any CHNOS compound this size. But M+2 at 5.1% is the number that should
 make you stop: naively, M+2 “ought” to come from picking any two of
 those five carbons to both be ¹³C, which combinatorics puts at only
-`choose(5,2) * 0.0107^2 * 100 ≈ 0.11%` — **roughly 40 times smaller**
+`choose(5,2) * 0.0107^2 * 100 ≈ 0.11%`, **roughly 40 times smaller**
 than what is actually observed. Something other than double-¹³C is
 producing most of that peak, and the coarse pattern alone cannot tell
 you what. That gap between the naive ¹³C-only prediction and the
 observed M+2 height is itself a diagnostic: whenever M+2 badly
 overshoots what carbon alone predicts, suspect S, Cl, Br, Si, or a metal
-before anything else — which is exactly the reasoning
+before anything else; that is exactly the reasoning
 [`contaminants_+.tsv`](https://stanstrup.github.io/commonMZ/articles/contaminants_+.tsv)’s
 metal-complex entries were built on.
 
 ## What is actually inside methionine’s M+2
 
 [`isotope_fine_pattern()`](https://stanstrup.github.io/commonMZ/reference/isotope_fine_pattern.md)
-doesn’t stop at the nominal sum — every row is one isotopologue, at its
-own exact mass, labelled by which isotopes produced it:
+reports each isotopologue separately, at its own exact mass, labelled by
+which isotopes produced it:
 
 ``` r
 
@@ -150,9 +150,9 @@ pat_met %>% arrange(desc(abundance)) %>%
 Every isotopologue of methionine above the default 0.01% threshold.
 {.table .caption-top}
 
-Plotted directly on the m/z axis — the same Da scale your spectrum
-viewer uses, no milli-Da rescaling — the M+1 and M+2 regions each split
-into several distinct peaks:
+Plotted on the m/z axis (the same Da scale your spectrum viewer uses, no
+milli-Da rescaling), the M+1 and M+2 regions each split into several
+distinct peaks:
 
 ``` r
 
@@ -194,24 +194,24 @@ pattern above.
 
 Two things the coarse bar chart could never show are visible here.
 First, **sulfur’s own +2 isotope physically sits apart from every
-carbon-based explanation** — `13C, 13C` (two different carbons, both
-¹³C) sits 0.01091 Da away from `34S`, a large enough gap that they are
-two genuinely different masses, not two names for the same peak. Second,
-the height difference *is* the sulfur signal: `34S` towers over every
+carbon-based explanation**: `13C, 13C` (two different carbons, both ¹³C)
+sits 0.01091 Da away from `34S`, a large enough gap that they are two
+genuinely different masses, not two names for the same peak. Second, the
+height difference *is* the sulfur signal: `34S` towers over every
 combination of carbons, nitrogens and oxygens that could also reach +2,
 which is the fine-structure version of the 40-fold excess already
-spotted in the coarse pattern — now with a specific competing hypothesis
-(¹³C¹³C) sitting at a specific, different mass, instead of a vague
-“something else.”
+spotted in the coarse pattern, now with a specific competing hypothesis
+(¹³C¹³C) at a specific, different mass instead of a vague “something
+else.”
 
 ## Whether you’d actually see it depends on resolving power
 
 A mass difference on paper is not the same as two resolved peaks on a
 chromatogram. Whether `34S` and `13C, 13C` show up as one blob or two
-depends entirely on the resolving power available at that m/z — and
-resolving power is not a fixed number: Orbitraps are quoted at a
-reference m/z (typically 200) and lose resolving power roughly as
-`1/sqrt(m/z)` away from it.
+depends entirely on the resolving power available at that m/z. Resolving
+power is not a fixed number: Orbitraps are quoted at a reference m/z
+(typically 200) and lose resolving power roughly as `1/sqrt(m/z)` away
+from it.
 [`isotope_profile()`](https://stanstrup.github.io/commonMZ/reference/isotope_profile.md)
 turns that into a picture rather than an abstraction, by summing a
 Gaussian peak of the right width for each isotopologue and showing what
@@ -247,7 +247,7 @@ Methionine’s M+2 region simulated at three Orbitrap resolving powers
 (quoted @ m/z 200). Vertical ticks mark where each candidate actually
 sits. At 15,000 the shoulder is invisible; by 60,000 it is unambiguous.
 
-At 15,000 the ³⁴S peak is a single, slightly lopsided blob — the ¹³C¹³C
+At 15,000 the ³⁴S peak is a single, slightly lopsided blob; the ¹³C¹³C
 shoulder is in there, but you cannot see it. By 60,000 it is an
 unmistakable second peak. This is the actual lesson of fine structure:
 it is not a yes/no property of a molecule, it is a question you can only
@@ -256,18 +256,18 @@ instrument could show it to you*.
 
 ## Where to go from here
 
-This document was about understanding *why* — the arithmetic behind a
-mass defect, and why resolving power changes what you can conclude from
-a spectrum. Two companion vignettes turn that understanding into a
-workflow you can run on your own data:
+This document covered the *why*: the arithmetic behind a mass defect and
+why resolving power changes what you can conclude from a spectrum. Two
+companion vignettes turn that understanding into a workflow you can run
+on your own data:
 
 - [**Simulating isotope fine structure for a
-  formula**](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md)
-  — given a candidate formula, get its full fine-structure table, a
+  formula**](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md):
+  given a candidate formula, get its full fine-structure table, a
   resolving-power calculator for every pair of candidates, and a
   simulated profile at your own instrument’s settings.
 - [**Looking up an unexplained mass
-  difference**](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.md)
-  — the opposite problem: you have a delta between two peaks and no
+  difference**](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.md):
+  the opposite problem: you have a delta between two peaks and no
   formula yet, and want to search it against every known adduct,
   in-source fragment and repeating-unit difference in commonMZ at once.

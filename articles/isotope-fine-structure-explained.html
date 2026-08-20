@@ -140,7 +140,7 @@
 <p>The 10.9 mDa gap between ¹³C¹³C and ³⁴S is larger than the mass accuracy of any modern high-resolution instrument: they are at genuinely different masses. Whether your spectrum actually resolves them as two peaks rather than one depends on resolving power – which the sections below work through for a concrete example.</p>
 </section><section class="level2"><h2 id="when-the-coarse-pattern-hides-the-answer">When the coarse pattern hides the answer<a class="anchor" aria-label="anchor" href="#when-the-coarse-pattern-hides-the-answer"></a>
 </h2>
-<p><strong>Methionine</strong>, C₅H₁₁NO₂S, is about as ordinary as a metabolite gets — one of the twenty proteinogenic amino acids, present in every untargeted metabolomics urine or plasma run. It also carries one sulfur, and sulfur’s own +2 isotope, ³⁴S, sits at 4.25% abundance — two orders of magnitude more abundant than the +1 isotopes of the CHNO elements. Nothing about a coarse M+1/M+2 barcode makes that obvious the way diclofenac’s two chlorines are obvious.</p>
+<p><strong>Methionine</strong>, C₅H₁₁NO₂S, is about as ordinary as a metabolite gets, one of the twenty proteinogenic amino acids, present in every untargeted metabolomics urine or plasma run. It also carries one sulfur, and sulfur’s own +2 isotope, ³⁴S, sits at 4.25% abundance, two orders of magnitude more abundant than the +1 isotopes of the CHNO elements. Nothing about a coarse M+1/M+2 barcode makes that obvious the way diclofenac’s two chlorines are obvious.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pat_met</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern</a></span><span class="op">(</span><span class="st">"C5H11NO2S"</span><span class="op">)</span></span>
@@ -167,10 +167,10 @@
 </div>
 </div>
 </div>
-<p>Five carbons predict an M+1 of roughly <code>5 * 1.07% ≈ 5.4%</code> of M — reasonably close to what the chart shows, since carbon dominates M+1 for any CHNOS compound this size. But M+2 at 5.1% is the number that should make you stop: naively, M+2 “ought” to come from picking any two of those five carbons to both be ¹³C, which combinatorics puts at only <code>choose(5,2) * 0.0107^2 * 100 ≈ 0.11%</code> — <strong>roughly 40 times smaller</strong> than what is actually observed. Something other than double-¹³C is producing most of that peak, and the coarse pattern alone cannot tell you what. That gap between the naive ¹³C-only prediction and the observed M+2 height is itself a diagnostic: whenever M+2 badly overshoots what carbon alone predicts, suspect S, Cl, Br, Si, or a metal before anything else — which is exactly the reasoning <a href="contaminants_+.tsv"><code>contaminants_+.tsv</code></a>’s metal-complex entries were built on.</p>
+<p>Five carbons predict an M+1 of roughly <code>5 * 1.07% ≈ 5.4%</code> of M, reasonably close to what the chart shows, since carbon dominates M+1 for any CHNOS compound this size. But M+2 at 5.1% is the number that should make you stop: naively, M+2 “ought” to come from picking any two of those five carbons to both be ¹³C, which combinatorics puts at only <code>choose(5,2) * 0.0107^2 * 100 ≈ 0.11%</code>, <strong>roughly 40 times smaller</strong> than what is actually observed. Something other than double-¹³C is producing most of that peak, and the coarse pattern alone cannot tell you what. That gap between the naive ¹³C-only prediction and the observed M+2 height is itself a diagnostic: whenever M+2 badly overshoots what carbon alone predicts, suspect S, Cl, Br, Si, or a metal before anything else; that is exactly the reasoning <a href="contaminants_+.tsv"><code>contaminants_+.tsv</code></a>’s metal-complex entries were built on.</p>
 </section><section class="level2"><h2 id="what-is-actually-inside-methionines-m2">What is actually inside methionine’s M+2<a class="anchor" aria-label="anchor" href="#what-is-actually-inside-methionines-m2"></a>
 </h2>
-<p><code><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern()</a></code> doesn’t stop at the nominal sum — every row is one isotopologue, at its own exact mass, labelled by which isotopes produced it:</p>
+<p><code><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern()</a></code> reports each isotopologue separately, at its own exact mass, labelled by which isotopes produced it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pat_met</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">abundance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -270,7 +270,7 @@
 </table>
 </div>
 </div>
-<p>Plotted directly on the m/z axis — the same Da scale your spectrum viewer uses, no milli-Da rescaling — the M+1 and M+2 regions each split into several distinct peaks:</p>
+<p>Plotted on the m/z axis (the same Da scale your spectrum viewer uses, no milli-Da rescaling), the M+1 and M+2 regions each split into several distinct peaks:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_level</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pattern</span>, <span class="va">level</span>, <span class="va">title</span><span class="op">)</span> <span class="op">{</span></span>
@@ -308,10 +308,10 @@
 </div>
 </div>
 </div>
-<p>Two things the coarse bar chart could never show are visible here. First, <strong>sulfur’s own +2 isotope physically sits apart from every carbon-based explanation</strong> — <code>13C, 13C</code> (two different carbons, both ¹³C) sits 0.01091 Da away from <code>34S</code>, a large enough gap that they are two genuinely different masses, not two names for the same peak. Second, the height difference <em>is</em> the sulfur signal: <code>34S</code> towers over every combination of carbons, nitrogens and oxygens that could also reach +2, which is the fine-structure version of the 40-fold excess already spotted in the coarse pattern — now with a specific competing hypothesis (¹³C¹³C) sitting at a specific, different mass, instead of a vague “something else.”</p>
+<p>Two things the coarse bar chart could never show are visible here. First, <strong>sulfur’s own +2 isotope physically sits apart from every carbon-based explanation</strong>: <code>13C, 13C</code> (two different carbons, both ¹³C) sits 0.01091 Da away from <code>34S</code>, a large enough gap that they are two genuinely different masses, not two names for the same peak. Second, the height difference <em>is</em> the sulfur signal: <code>34S</code> towers over every combination of carbons, nitrogens and oxygens that could also reach +2, which is the fine-structure version of the 40-fold excess already spotted in the coarse pattern, now with a specific competing hypothesis (¹³C¹³C) at a specific, different mass instead of a vague “something else.”</p>
 </section><section class="level2"><h2 id="whether-youd-actually-see-it-depends-on-resolving-power">Whether you’d actually see it depends on resolving power<a class="anchor" aria-label="anchor" href="#whether-youd-actually-see-it-depends-on-resolving-power"></a>
 </h2>
-<p>A mass difference on paper is not the same as two resolved peaks on a chromatogram. Whether <code>34S</code> and <code>13C, 13C</code> show up as one blob or two depends entirely on the resolving power available at that m/z — and resolving power is not a fixed number: Orbitraps are quoted at a reference m/z (typically 200) and lose resolving power roughly as <code>1/sqrt(m/z)</code> away from it. <code><a href="../reference/isotope_profile.html">isotope_profile()</a></code> turns that into a picture rather than an abstraction, by summing a Gaussian peak of the right width for each isotopologue and showing what the region would actually look like at a chosen resolving power:</p>
+<p>A mass difference on paper is not the same as two resolved peaks on a chromatogram. Whether <code>34S</code> and <code>13C, 13C</code> show up as one blob or two depends entirely on the resolving power available at that m/z. Resolving power is not a fixed number: Orbitraps are quoted at a reference m/z (typically 200) and lose resolving power roughly as <code>1/sqrt(m/z)</code> away from it. <code><a href="../reference/isotope_profile.html">isotope_profile()</a></code> turns that into a picture rather than an abstraction, by summing a Gaussian peak of the right width for each isotopologue and showing what the region would actually look like at a chosen resolving power:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">R_at_mz</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mz</span>, <span class="va">R_ref</span>, <span class="va">mz_ref</span> <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="va">R_ref</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">mz_ref</span> <span class="op">/</span> <span class="va">mz</span><span class="op">)</span></span>
@@ -341,15 +341,15 @@
 </div>
 </div>
 </div>
-<p>At 15,000 the ³⁴S peak is a single, slightly lopsided blob — the ¹³C¹³C shoulder is in there, but you cannot see it. By 60,000 it is an unmistakable second peak. This is the actual lesson of fine structure: it is not a yes/no property of a molecule, it is a question you can only answer once you know both <em>what</em> could be there and <em>whether your instrument could show it to you</em>.</p>
+<p>At 15,000 the ³⁴S peak is a single, slightly lopsided blob; the ¹³C¹³C shoulder is in there, but you cannot see it. By 60,000 it is an unmistakable second peak. This is the actual lesson of fine structure: it is not a yes/no property of a molecule, it is a question you can only answer once you know both <em>what</em> could be there and <em>whether your instrument could show it to you</em>.</p>
 </section><section class="level2"><h2 id="where-to-go-from-here">Where to go from here<a class="anchor" aria-label="anchor" href="#where-to-go-from-here"></a>
 </h2>
-<p>This document was about understanding <em>why</em> — the arithmetic behind a mass defect, and why resolving power changes what you can conclude from a spectrum. Two companion vignettes turn that understanding into a workflow you can run on your own data:</p>
+<p>This document covered the <em>why</em>: the arithmetic behind a mass defect and why resolving power changes what you can conclude from a spectrum. Two companion vignettes turn that understanding into a workflow you can run on your own data:</p>
 <ul>
 <li>
-<a href="isotope-fine-structure-tool.html"><strong>Simulating isotope fine structure for a formula</strong></a> — given a candidate formula, get its full fine-structure table, a resolving-power calculator for every pair of candidates, and a simulated profile at your own instrument’s settings.</li>
+<a href="isotope-fine-structure-tool.html"><strong>Simulating isotope fine structure for a formula</strong></a>: given a candidate formula, get its full fine-structure table, a resolving-power calculator for every pair of candidates, and a simulated profile at your own instrument’s settings.</li>
 <li>
-<a href="mass-difference-lookup.html"><strong>Looking up an unexplained mass difference</strong></a> — the opposite problem: you have a delta between two peaks and no formula yet, and want to search it against every known adduct, in-source fragment and repeating-unit difference in commonMZ at once.</li>
+<a href="mass-difference-lookup.html"><strong>Looking up an unexplained mass difference</strong></a>: the opposite problem: you have a delta between two peaks and no formula yet, and want to search it against every known adduct, in-source fragment and repeating-unit difference in commonMZ at once.</li>
 </ul></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);

@@ -3,16 +3,16 @@
 [*Reading isotopic fine
 structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-explained.md)
 and its companion tool both start from a candidate formula. Most of the
-time you don’t have one yet — you have two peaks in a spectrum and a
-delta between them, and the actual question is “what family of thing
-produces a gap this size?” An in-source fragment loses a neutral (water,
-CO₂, a whole side chain). A homologous series steps by a repeating unit
-(CH₂, C₂H₄O, a whole PEG monomer). An adduct swaps one attached ion for
+time you don’t have one yet: you have two peaks in a spectrum and a
+delta between them, and the question is “what family of thing produces a
+gap this size?” An in-source fragment loses a neutral (water, CO₂, a
+whole side chain). A homologous series steps by a repeating unit (CH₂,
+C₂H₄O, a whole PEG monomer). An adduct swaps one attached ion for
 another (Na⁺ for K⁺, formate for acetate). All three are catalogued in
-commonMZ already — `adducts_fragments` and
-`repeating_units_pos`/`repeating_units_neg` — and
+commonMZ already: `adducts_fragments` and
+`repeating_units_pos`/`repeating_units_neg`, merged by
 [`mz_diff_table()`](https://stanstrup.github.io/commonMZ/reference/mz_diff_table.md)
-merges them into one searchable reference:
+into one searchable reference:
 
 ``` r
 
@@ -22,15 +22,15 @@ nrow(diffs)
 
     [1] 128
 
-Isotope spacings are deliberately not in this table — they depend on
-which formula produced the peaks, so they belong to [the fine-structure
+Isotope spacings are deliberately not in this table; they depend on
+which formula produced the peaks and belong to [the fine-structure
 tool](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md)
 instead.
 
 ## The map: where do the known differences sit?
 
 Before searching for one specific value, it helps to see the whole
-landscape at once — whether your observed delta lands inside a crowded
+landscape at once: whether your observed delta lands inside a crowded
 region (several candidate explanations) or an empty one (nothing
 catalogued matches, which is itself useful information). Hover any point
 for its origin:
@@ -38,7 +38,7 @@ for its origin:
 ``` r
 
 p <- ggplot(diffs, aes(mz_diff, category, colour = category,
-                       text = sprintf("%.4f Da --- %s\n%s", mz_diff, mode, origin))) +
+                       text = sprintf("%.4f Da | %s\n%s", mz_diff, mode, origin))) +
   geom_point(size = 2, alpha = .7, position = position_jitter(height = 0.15, seed = 1)) +
   scale_colour_manual(values = c(`adduct/fragment` = COL[["C"]], `repeating unit` = COL[["S"]]),
                       guide = "none") +
@@ -58,7 +58,7 @@ origin.
 This is
 [`mz_diff_lookup()`](https://stanstrup.github.io/commonMZ/reference/mz_diff_lookup.md)’s
 job for a single value called from R. Tolerance is in ppm of the
-difference by default — the usual way instrument accuracy is quoted —
+difference by default (the usual way instrument accuracy is quoted),
 though note that is *not* the same as ppm of either peak’s own m/z; see
 the function’s documentation
 ([`?mz_diff_lookup`](https://stanstrup.github.io/commonMZ/reference/mz_diff_lookup.md))
@@ -76,10 +76,10 @@ knitr::kable(mz_diff_lookup(18.0106, tol = 100))   # water, 100 ppm of the delta
 | 18.01057 | repeating unit | pos | H2O, water clusters | F | -3e-05 | -1.665686 |
 | 18.01057 | repeating unit | neg | H2O, water clusters | F | -3e-05 | -1.665686 |
 
-And a delta that is genuinely ambiguous without more context — several
-catalogued differences sit within a few ppm of each other, so the delta
-alone does not decide; you still need to ask whether the sample
-plausibly contains an alkane chain, an acrylamide adduct, or neither:
+And a delta genuinely ambiguous without more context: several catalogued
+differences sit within a few ppm of each other, so the delta alone does
+not decide; you still need to ask whether the sample plausibly contains
+an alkane chain, an acrylamide adduct, or neither:
 
 ``` r
 
@@ -96,7 +96,7 @@ knitr::kable(mz_diff_lookup(14.0157, tol = 50))
 ## Working interactively
 
 For browsing without writing R code, type a difference and a ppm
-tolerance and click *Search* — this is the electronic version of the
+tolerance and click *Search*; this is the electronic version of the
 `first_iso_diff`-style spreadsheets this tool is descended from. The
 table’s own *Search:* box (top right) still works as usual for browsing
 by category, mode or origin text.
@@ -201,8 +201,8 @@ full table.
     known adduct/fragment/repeating-unit difference in commonMZ at once.
 2.  **A delta rarely has only one explanation.** When several catalogued
     differences land within tolerance of each other, use what you know
-    about the sample — the matrix, the method, what’s chemically
-    plausible — to break the tie, the same way the mobile-phase
+    about the sample (the matrix, the method, what’s chemically
+    plausible) to break the tie, the same way the mobile-phase
     composition was what actually resolved the ambiguous formulas in
     `contaminants_+.tsv`’s metal-complex entries.
 3.  **Mind the tolerance convention.** ppm of a small delta is a much
@@ -211,6 +211,6 @@ full table.
     is uncatalogued.
 4.  **If you do have (or can guess) a formula**, switch to [*Simulating
     isotope fine structure for a
-    formula*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md)
-    — an isotope satellite is a different kind of delta than this table
+    formula*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md):
+    an isotope satellite is a different kind of delta than this table
     covers.
