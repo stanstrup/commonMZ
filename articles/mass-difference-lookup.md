@@ -1,14 +1,5 @@
 # Looking up an unexplained mass difference
 
-``` r
-
-library(commonMZ)
-library(ggplot2)
-
-COL <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
-        S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
-```
-
 [*Reading isotopic fine
 structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-explained.md)
 and its companion tool both start from a candidate formula. Most of the

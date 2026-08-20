@@ -1,51 +1,5 @@
 # Simulating isotope fine structure for a formula
 
-``` r
-
-library(commonMZ)
-library(dplyr)
-```
-
-
-    Attaching package: 'dplyr'
-
-    The following objects are masked from 'package:stats':
-
-        filter, lag
-
-    The following objects are masked from 'package:base':
-
-        intersect, setdiff, setequal, union
-
-``` r
-
-library(purrr)
-library(ggplot2)
-library(plotly)
-```
-
-
-    Attaching package: 'plotly'
-
-    The following object is masked from 'package:ggplot2':
-
-        last_plot
-
-    The following object is masked from 'package:stats':
-
-        filter
-
-    The following object is masked from 'package:graphics':
-
-        layout
-
-``` r
-
-BLUE <- "#2a78d6"
-COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
-         S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
-```
-
 This is the practical companion to [*Reading isotopic fine
 structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-explained.md),
 which explains the concept using methionine as a worked example. Here
@@ -258,7 +212,7 @@ pat2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2)
 prof <- map_dfr(Rs, function(r)
   isotope_profile(pat2, resolution = R_at_mz(mean(pat2$mz), r)) %>%
     mutate(R = R_label(r)))
-ticks <- pat2 %>% filter(abundance > 0.5)
+ticks <- pat2
 
 p <- ggplot(prof, aes(mz, intensity)) +
   geom_area(fill = BLUE, alpha = .25) +

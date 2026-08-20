@@ -1,32 +1,5 @@
 # Reading isotopic fine structure
 
-``` r
-
-library(commonMZ)
-library(dplyr)
-```
-
-
-    Attaching package: 'dplyr'
-
-    The following objects are masked from 'package:stats':
-
-        filter, lag
-
-    The following objects are masked from 'package:base':
-
-        intersect, setdiff, setequal, union
-
-``` r
-
-library(purrr)
-library(ggplot2)
-
-BLUE <- "#2a78d6"
-COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
-         S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
-```
-
 ## Chlorine’s M+2: an abundance effect
 
 Chlorine has two stable isotopes: ³⁵Cl (75.8% natural abundance,
