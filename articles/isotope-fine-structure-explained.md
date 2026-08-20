@@ -21,9 +21,10 @@ coarse_dic <- pat_dic %>%
   summarise(mz = base_dic + first(nominal), abundance = sum(abundance), .groups = "drop")
 
 ggplot(coarse_dic, aes(mz, abundance)) +
-  geom_segment(aes(xend = mz, y = 0, yend = abundance), colour = BLUE, linewidth = 2.2,
-               lineend = "round") +
-  geom_text(data = filter(coarse_dic, abundance > 1), aes(label = paste0("M+", nominal)),
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse_dic, abundance > 1),
+            aes(label = paste0("M+", nominal)),
             vjust = -0.6, size = 3.4, colour = "grey25") +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
   labs(x = "m/z (Da)", y = "relative abundance (%)") +
@@ -84,9 +85,10 @@ coarse_met <- pat_met %>%
   summarise(mz = base_met + first(nominal), abundance = sum(abundance), .groups = "drop")
 
 ggplot(coarse_met, aes(mz, abundance)) +
-  geom_segment(aes(xend = mz, y = 0, yend = abundance), colour = BLUE, linewidth = 2.2,
-               lineend = "round") +
-  geom_text(data = filter(coarse_met, abundance > 1), aes(label = paste0("M+", nominal)),
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse_met, abundance > 1),
+            aes(label = paste0("M+", nominal)),
             vjust = -0.6, size = 3.4, colour = "grey25") +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
   labs(x = "m/z (Da)", y = "relative abundance (%)") +
@@ -110,9 +112,7 @@ producing most of that peak, and the coarse pattern alone cannot tell
 you what. That gap between the naive ¹³C-only prediction and the
 observed M+2 height is itself a diagnostic: whenever M+2 badly
 overshoots what carbon alone predicts, suspect S, Cl, Br, Si, or a metal
-before anything else; that is exactly the reasoning
-[`contaminants_+.tsv`](https://stanstrup.github.io/commonMZ/articles/contaminants_+.tsv)’s
-metal-complex entries were built on.
+before anything else.
 
 ## What is actually inside methionine’s M+2
 
@@ -122,7 +122,7 @@ which isotopes produced it:
 
 ``` r
 
-pat_met %>% arrange(desc(abundance)) %>%
+pat_met %>% arrange(mz) %>%
   mutate(mz = round(mz, 5), abundance = round(abundance, 4),
          label = ifelse(label == "", "M (monoisotopic)", label)) %>%
   knitr::kable(caption = "Every isotopologue of methionine above the default 0.01% threshold.")
@@ -131,27 +131,26 @@ pat_met %>% arrange(desc(abundance)) %>%
 |       mz | abundance | label            |
 |---------:|----------:|:-----------------|
 | 149.0511 |  100.0000 | M (monoisotopic) |
-| 150.0544 |    5.4079 | 13C              |
-| 151.0469 |    4.4742 | 34S              |
-| 150.0504 |    0.7896 | 33S              |
-| 151.0553 |    0.4110 | 18O              |
 | 150.0481 |    0.3653 | 15N              |
-| 152.0502 |    0.2420 | 13C, 34S         |
-| 150.0573 |    0.1265 | 2H               |
-| 151.0578 |    0.1170 | 13C, 13C         |
+| 150.0504 |    0.7896 | 33S              |
+| 150.0544 |    5.4079 | 13C              |
 | 150.0553 |    0.0762 | 17O              |
-| 151.0538 |    0.0427 | 13C, 33S         |
-| 152.0587 |    0.0222 | 13C, 18O         |
+| 150.0573 |    0.1265 | 2H               |
+| 151.0469 |    4.4742 | 34S              |
 | 151.0514 |    0.0198 | 13C, 15N         |
-| 153.0511 |    0.0184 | 18O, 34S         |
+| 151.0538 |    0.0427 | 13C, 33S         |
+| 151.0553 |    0.4110 | 18O              |
+| 151.0578 |    0.1170 | 13C, 13C         |
 | 152.0439 |    0.0163 | 15N, 34S         |
+| 152.0502 |    0.2420 | 13C, 34S         |
+| 152.0587 |    0.0222 | 13C, 18O         |
 | 153.0461 |    0.0105 | 36S              |
+| 153.0511 |    0.0184 | 18O, 34S         |
 
 Every isotopologue of methionine above the default 0.01% threshold.
 {.table .caption-top}
 
-Plotted on the m/z axis (the same Da scale your spectrum viewer uses, no
-milli-Da rescaling), the M+1 and M+2 regions each split into several
+On the m/z axis, the M+1 and M+2 regions each split into several
 distinct peaks:
 
 ``` r
@@ -163,9 +162,11 @@ plot_level <- function(pattern, level, title) {
            col = ifelse(label == "" | grepl(",", label), "combo", element),
            col = ifelse(col %in% names(COL), col, "combo"))
   ggplot(d, aes(mz, abundance, colour = col)) +
-    geom_segment(aes(xend = mz, y = 0, yend = abundance), linewidth = 2.2, lineend = "round") +
+    geom_segment(aes(xend = mz, y = 0, yend = abundance),
+                 linewidth = 2.2, lineend = "round") +
     geom_text(data = slice_max(d, abundance, n = min(6, nrow(d))),
-              aes(label = label), angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
+              aes(label = label),
+              angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
     scale_colour_manual(values = COL, guide = "none") +
     scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
     scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .35))) +
@@ -230,18 +231,18 @@ prof <- map_dfr(Rs, function(r)
     mutate(R = R_label(r)))
 ticks <- pat_met2 %>% filter(abundance > 0.02)
 
-ggplot(prof, aes(mz, intensity)) +
+p <- ggplot(prof, aes(mz, intensity)) +
   geom_area(fill = BLUE, alpha = .25) +
   geom_line(colour = BLUE, linewidth = .8) +
-  geom_rug(data = ticks, aes(x = mz), inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
+  geom_rug(data = ticks, aes(x = mz),
+           inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
   facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
   scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
   labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
   theme_minimal(base_size = 12) +
   theme(panel.grid.minor = element_blank(), strip.text = element_text(hjust = 0))
+ggplotly(p, tooltip = c("x", "y"))
 ```
-
-![](isotope-fine-structure-explained_files/figure-html/sim-profile-1.png)
 
 Methionine’s M+2 region simulated at three Orbitrap resolving powers
 (quoted @ m/z 200). Vertical ticks mark where each candidate actually

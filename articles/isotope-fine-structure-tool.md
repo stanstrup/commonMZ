@@ -70,9 +70,10 @@ coarse <- pat %>% mutate(nominal = round(mz - base_mz)) %>%
   summarise(mz = base_mz + first(nominal), abundance = sum(abundance), .groups = "drop")
 
 ggplot(coarse, aes(mz, abundance)) +
-  geom_segment(aes(xend = mz, y = 0, yend = abundance), colour = BLUE, linewidth = 2.2,
-               lineend = "round") +
-  geom_text(data = filter(coarse, abundance > 1), aes(label = paste0("M+", nominal)),
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse, abundance > 1),
+            aes(label = paste0("M+", nominal)),
             vjust = -0.6, size = 3.4, colour = "grey25") +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
   labs(x = "m/z (Da)", y = "relative abundance (%)") +
@@ -101,9 +102,11 @@ plot_level <- function(pattern, level, title) {
            col = ifelse(label == "" | grepl(",", label), "combo", element),
            col = ifelse(col %in% names(COL), col, "combo"))
   ggplot(d, aes(mz, abundance, colour = col)) +
-    geom_segment(aes(xend = mz, y = 0, yend = abundance), linewidth = 2.2, lineend = "round") +
+    geom_segment(aes(xend = mz, y = 0, yend = abundance),
+                 linewidth = 2.2, lineend = "round") +
     geom_text(data = slice_max(d, abundance, n = min(6, nrow(d))),
-              aes(label = label), angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
+              aes(label = label),
+              angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
     scale_colour_manual(values = COL, guide = "none") +
     scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
     scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .35))) +
