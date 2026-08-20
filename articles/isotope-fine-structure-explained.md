@@ -1,11 +1,25 @@
 # Reading isotopic fine structure
 
-Show code
-
 ``` r
 
 library(commonMZ)
 library(dplyr)
+```
+
+
+    Attaching package: 'dplyr'
+
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
+
+``` r
+
+library(purrr)
 library(ggplot2)
 
 BLUE <- "#2a78d6"
@@ -13,60 +27,20 @@ COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
          S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
 ```
 
-## The question this document answers
+## Chlorine’s M+2: an abundance effect
 
-Every ion table in commonMZ — the adducts, the contaminants, the
-repeating units — describes a *monoisotopic* mass. But nothing you
-actually measure is monoisotopic only: every real peak drags a family of
-satellites behind it, one nominal mass unit up, then two, then three.
-Most of the time you glance at the M+1 and M+2 satellites, eyeball their
-height relative to M, and move on — “small M+1, must be a couple of
-carbons; big M+2, must be sulfur or chlorine.”
-
-That shortcut works because of a coincidence that is worth making
-explicit: **at unit mass resolution, M+2 looks like a single peak, but
-it is actually the sum of several physically distinct isotopologues that
-happen to round to the same nominal mass.** ¹³C¹³C, ³⁴S, ¹⁸O, ³⁷Cl and
-⁸¹Br can all land one M+2 satellite depending on what the molecule
-contains, and they do not have the same exact mass — each is off from
-the true integer by its own small mass defect, typically a few
-thousandths of a Da. At the resolving power routinely available on an
-Orbitrap, several of those gaps are wide enough to *see*: the “M+2 peak”
-resolves into two or three peaks that individually confirm which
-isotopes are actually present.
-
-This document builds that fine structure with commonMZ’s own
-[`isotope_fine_pattern()`](https://stanstrup.github.io/commonMZ/reference/isotope_fine_pattern.md),
-which wraps [enviPat](https://cran.r-project.org/package=enviPat) (Loos,
-Singer & Meringer, *Metabolites* 2015) — the same engine used in
-[xcmsVisGUI](https://github.com/stanstrup/xcmsVisGUI) — so every mass
-and natural abundance below is enviPat’s, never typed by hand. All
-masses and differences are reported in Da, at full precision, so you can
-compare them directly against the m/z axis of your own spectrum rather
-than mentally rescaling from milli-Da.
-
-Once you have the concept, two companion vignettes turn it into a
-workflow: [*Simulating isotope fine structure for a
-formula*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md)
-for “I have a candidate formula, what does its fine structure look
-like?”, and [*Looking up an unexplained mass
-difference*](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.md)
-for the opposite situation, where you have a delta between two peaks and
-no formula yet.
-
-## The coarse pattern everyone learns first
-
-Start with a compound whose isotope pattern needs no explaining:
-**diclofenac**, C₁₄H₁₁Cl₂NO₂, an anti-inflammatory drug common enough as
-a urinary xenobiotic that it turns up in untargeted metabolomics data.
-Two chlorines give it a textbook barcode.
-
-Show code
+Chlorine has two stable isotopes: ³⁵Cl (75.8% natural abundance,
+monoisotopic) and ³⁷Cl (24.2%). A molecule with two chlorines – like
+**diclofenac** (C₁₄H₁₁Cl₂NO₂) – has roughly a 37% chance of carrying
+exactly one ³⁷Cl, placing that molecule at M+2. The monoisotopic M peak
+is simultaneously thinned out as ions scatter across M+1, M+2, M+3 and
+M+4 – so M+2 ends up at ~65% of M, an excess so large that no
+fine-structure argument is required to recognize it.
 
 ``` r
 
 pat_dic <- isotope_fine_pattern("C14H11Cl2NO2")
-base_dic <- pat_dic$mz[pat_dic$label == ""]
+base_dic <- pat_dic %>% filter(label == "") %>% pull(mz)
 
 coarse_dic <- pat_dic %>%
   mutate(nominal = round(mz - base_dic)) %>%
@@ -84,22 +58,37 @@ ggplot(coarse_dic, aes(mz, abundance)) +
   theme(panel.grid.minor = element_blank())
 ```
 
-![](isotope-fine-structure-explained_files/figure-html/diclofenac-coarse-1.svg)
+![](isotope-fine-structure-explained_files/figure-html/diclofenac-coarse-1.png)
 
 Diclofenac’s isotope pattern at unit resolution. Two chlorines are
 unmissable without any fine-structure argument at all.
 
-That coarse view is just
+That coarse view is
 [`isotope_fine_pattern()`](https://stanstrup.github.io/commonMZ/reference/isotope_fine_pattern.md)’s
-output summed by nominal mass — the same number every isotope-pattern
-calculator reports. That is genuinely all you need here — M+2 at 65% of
-M is such an overwhelming excess over what carbon alone could produce
-that no fine-structure argument is required. Two chlorines announce
-themselves in a glance.
+output summed by nominal mass – the same number every isotope-pattern
+calculator reports. M+2 at ~65% follows directly from ³⁷Cl’s 24.2%
+natural abundance.
 
-The interesting cases are the ones where the coarse pattern is *not*
-dramatic enough to read at a glance, and the only way to be sure what is
-in a peak is to look inside it.
+## Why different elements land at different exact masses
+
+A “nominal +2” peak contains any isotopologue whose mass rounds to 2 Da
+above the monoisotopic peak. But exact masses differ: nuclear binding
+energy – the energy released when protons and neutrons form a nucleus –
+varies between nuclei, so the heavy isotope of each element sits at its
+own characteristic offset from the nearest integer.
+
+| Isotopologue | Shift from monoisotopic (Da) | Offset from nominal +2 (mDa) |
+|--------------|-----------------------------:|-----------------------------:|
+| ¹³C + ¹³C    |                      +2.0067 |                         +6.7 |
+| ¹⁸O          |                      +2.0042 |                         +4.2 |
+| ³⁷Cl         |                      +1.9971 |                         −2.9 |
+| ³⁴S          |                      +1.9958 |                         −4.2 |
+
+The 10.9 mDa gap between ¹³C¹³C and ³⁴S is larger than the mass accuracy
+of any modern high-resolution instrument: they are at genuinely
+different masses. Whether your spectrum actually resolves them as two
+peaks rather than one depends on resolving power – which the sections
+below work through for a concrete example.
 
 ## When the coarse pattern hides the answer
 
@@ -111,12 +100,10 @@ magnitude more abundant than the +1 isotopes of the CHNO elements.
 Nothing about a coarse M+1/M+2 barcode makes that obvious the way
 diclofenac’s two chlorines are obvious.
 
-Show code
-
 ``` r
 
 pat_met <- isotope_fine_pattern("C5H11NO2S")
-base_met <- pat_met$mz[pat_met$label == ""]
+base_met <- pat_met %>% filter(label == "") %>% pull(mz)
 
 coarse_met <- pat_met %>%
   mutate(nominal = round(mz - base_met)) %>%
@@ -134,7 +121,7 @@ ggplot(coarse_met, aes(mz, abundance)) +
   theme(panel.grid.minor = element_blank())
 ```
 
-![](isotope-fine-structure-explained_files/figure-html/methionine-coarse-1.svg)
+![](isotope-fine-structure-explained_files/figure-html/methionine-coarse-1.png)
 
 Methionine’s coarse isotope pattern. M+2 is bigger than five carbons
 alone would ever produce - but the bars alone don’t say why.
@@ -160,14 +147,12 @@ metal-complex entries were built on.
 doesn’t stop at the nominal sum — every row is one isotopologue, at its
 own exact mass, labelled by which isotopes produced it:
 
-Show code
-
 ``` r
 
 pat_met %>% arrange(desc(abundance)) %>%
   mutate(mz = round(mz, 5), abundance = round(abundance, 4),
          label = ifelse(label == "", "M (monoisotopic)", label)) %>%
-  knitr::kable(caption = "Every isotopologue of methionine above the default 0.01% threshold, from enviPat.")
+  knitr::kable(caption = "Every isotopologue of methionine above the default 0.01% threshold.")
 ```
 
 |       mz | abundance | label            |
@@ -189,19 +174,17 @@ pat_met %>% arrange(desc(abundance)) %>%
 | 152.0439 |    0.0163 | 15N, 34S         |
 | 153.0461 |    0.0105 | 36S              |
 
-Every isotopologue of methionine above the default 0.01% threshold, from
-enviPat. {.table .caption-top}
+Every isotopologue of methionine above the default 0.01% threshold.
+{.table .caption-top}
 
 Plotted directly on the m/z axis — the same Da scale your spectrum
 viewer uses, no milli-Da rescaling — the M+1 and M+2 regions each split
 into several distinct peaks:
 
-Show code
-
 ``` r
 
 plot_level <- function(pattern, level, title) {
-  base <- pattern$mz[pattern$label == ""]
+  base <- pattern %>% filter(label == "") %>% pull(mz)
   d <- pattern %>% mutate(nominal = round(mz - base)) %>% filter(nominal == level) %>%
     mutate(element = sub(",.*", "", label), element = sub("^[0-9]+", "", element),
            col = ifelse(label == "" | grepl(",", label), "combo", element),
@@ -220,19 +203,17 @@ plot_level <- function(pattern, level, title) {
 plot_level(pat_met, 1, "Methionine M+1")
 ```
 
-![](isotope-fine-structure-explained_files/figure-html/met-m1-1.svg)
+![](isotope-fine-structure-explained_files/figure-html/met-m1-1.png)
 
 Methionine, M+1: five candidate isotope substitutions, spread across
 0.009 Da. Carbon dominates, as it does for almost every organic ion.
-
-Show code
 
 ``` r
 
 plot_level(pat_met, 2, "Methionine M+2")
 ```
 
-![](isotope-fine-structure-explained_files/figure-html/met-m2-1.svg)
+![](isotope-fine-structure-explained_files/figure-html/met-m2-1.png)
 
 Methionine, M+2: 34S alone outweighs every carbon-only combination
 roughly 40-fold, exactly matching the excess spotted in the coarse
@@ -263,8 +244,6 @@ turns that into a picture rather than an abstraction, by summing a
 Gaussian peak of the right width for each isotopologue and showing what
 the region would actually look like at a chosen resolving power:
 
-Show code
-
 ``` r
 
 R_at_mz <- function(mz, R_ref, mz_ref = 200) R_ref * sqrt(mz_ref / mz)
@@ -273,23 +252,23 @@ Rs <- c(15000, 60000, 120000)
 R_label <- function(r) sprintf("R = %s @200", format(r, big.mark = ",", trim = TRUE))
 pat_met2 <- pat_met %>% mutate(nominal = round(mz - base_met)) %>% filter(nominal == 2)
 
-prof <- bind_rows(lapply(Rs, function(r)
+prof <- map_dfr(Rs, function(r)
   isotope_profile(pat_met2, resolution = R_at_mz(mean(pat_met2$mz), r)) %>%
-    mutate(R = R_label(r))))
+    mutate(R = R_label(r)))
 ticks <- pat_met2 %>% filter(abundance > 0.02)
 
 ggplot(prof, aes(mz, intensity)) +
   geom_area(fill = BLUE, alpha = .25) +
   geom_line(colour = BLUE, linewidth = .8) +
   geom_rug(data = ticks, aes(x = mz), inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
-  facet_wrap(~ factor(R, levels = vapply(Rs, R_label, "")), ncol = 1, scales = "free_y") +
+  facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
   scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
   labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
   theme_minimal(base_size = 12) +
   theme(panel.grid.minor = element_blank(), strip.text = element_text(hjust = 0))
 ```
 
-![](isotope-fine-structure-explained_files/figure-html/sim-profile-1.svg)
+![](isotope-fine-structure-explained_files/figure-html/sim-profile-1.png)
 
 Methionine’s M+2 region simulated at three Orbitrap resolving powers
 (quoted @ m/z 200). Vertical ticks mark where each candidate actually

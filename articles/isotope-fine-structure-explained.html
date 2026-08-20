@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Reading isotopic fine structure • commonMZ</title>
+<title>isotope-fine-structure-explained • commonMZ</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="isotope-fine-structure-explained_files/libs/quarto-html/popper.min.js"></script><script src="isotope-fine-structure-explained_files/libs/quarto-html/tippy.umd.min.js"></script><link href="isotope-fine-structure-explained_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="isotope-fine-structure-explained_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Reading isotopic fine structure">
+<meta property="og:title" content="isotope-fine-structure-explained">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -36,9 +36,9 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/isotope-fine-structure-explained.html">Reading isotopic fine structure</a></li>
-    <li><a class="dropdown-item" href="../articles/isotope-fine-structure-tool.html">Simulating isotope fine structure for a formula</a></li>
-    <li><a class="dropdown-item" href="../articles/mass-difference-lookup.html">Looking up an unexplained mass difference</a></li>
+<li><a class="dropdown-item" href="../articles/isotope-fine-structure-explained.html">UNKNOWN TITLE</a></li>
+    <li><a class="dropdown-item" href="../articles/isotope-fine-structure-tool.html">UNKNOWN TITLE</a></li>
+    <li><a class="dropdown-item" href="../articles/mass-difference-lookup.html">UNKNOWN TITLE</a></li>
   </ul>
 </li>
       </ul>
@@ -71,29 +71,38 @@
 
 
     <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stanstrup.github.io/commonMZ/">commonMZ</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">BLUE</span> <span class="op">&lt;-</span> <span class="st">"#2a78d6"</span></span>
 <span><span class="va">COL</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>C <span class="op">=</span> <span class="st">"#2a78d6"</span>, H <span class="op">=</span> <span class="st">"#eb6834"</span>, N <span class="op">=</span> <span class="st">"#1baf7a"</span>, O <span class="op">=</span> <span class="st">"#eda100"</span>,</span>
 <span>         S <span class="op">=</span> <span class="st">"#e87ba4"</span>, Cl <span class="op">=</span> <span class="st">"#008300"</span>, combo <span class="op">=</span> <span class="st">"#4a3aa7"</span><span class="op">)</span></span></code></pre></div>
-</details>
 </div>
-<section class="level2"><h2 id="the-question-this-document-answers">The question this document answers<a class="anchor" aria-label="anchor" href="#the-question-this-document-answers"></a>
+<section class="level2"><h2 id="chlorines-m2-an-abundance-effect">Chlorine’s M+2: an abundance effect<a class="anchor" aria-label="anchor" href="#chlorines-m2-an-abundance-effect"></a>
 </h2>
-<p>Every ion table in commonMZ — the adducts, the contaminants, the repeating units — describes a <em>monoisotopic</em> mass. But nothing you actually measure is monoisotopic only: every real peak drags a family of satellites behind it, one nominal mass unit up, then two, then three. Most of the time you glance at the M+1 and M+2 satellites, eyeball their height relative to M, and move on — “small M+1, must be a couple of carbons; big M+2, must be sulfur or chlorine.”</p>
-<p>That shortcut works because of a coincidence that is worth making explicit: <strong>at unit mass resolution, M+2 looks like a single peak, but it is actually the sum of several physically distinct isotopologues that happen to round to the same nominal mass.</strong> ¹³C¹³C, ³⁴S, ¹⁸O, ³⁷Cl and ⁸¹Br can all land one M+2 satellite depending on what the molecule contains, and they do not have the same exact mass — each is off from the true integer by its own small mass defect, typically a few thousandths of a Da. At the resolving power routinely available on an Orbitrap, several of those gaps are wide enough to <em>see</em>: the “M+2 peak” resolves into two or three peaks that individually confirm which isotopes are actually present.</p>
-<p>This document builds that fine structure with commonMZ’s own <code><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern()</a></code>, which wraps <a href="https://cran.r-project.org/package=enviPat" class="external-link">enviPat</a> (Loos, Singer &amp; Meringer, <em>Metabolites</em> 2015) — the same engine used in <a href="https://github.com/stanstrup/xcmsVisGUI" class="external-link">xcmsVisGUI</a> — so every mass and natural abundance below is enviPat’s, never typed by hand. All masses and differences are reported in Da, at full precision, so you can compare them directly against the m/z axis of your own spectrum rather than mentally rescaling from milli-Da.</p>
-<p>Once you have the concept, two companion vignettes turn it into a workflow: <a href="isotope-fine-structure-tool.html"><em>Simulating isotope fine structure for a formula</em></a> for “I have a candidate formula, what does its fine structure look like?”, and <a href="mass-difference-lookup.html"><em>Looking up an unexplained mass difference</em></a> for the opposite situation, where you have a delta between two peaks and no formula yet.</p>
-</section><section class="level2"><h2 id="the-coarse-pattern-everyone-learns-first">The coarse pattern everyone learns first<a class="anchor" aria-label="anchor" href="#the-coarse-pattern-everyone-learns-first"></a>
-</h2>
-<p>Start with a compound whose isotope pattern needs no explaining: <strong>diclofenac</strong>, C₁₄H₁₁Cl₂NO₂, an anti-inflammatory drug common enough as a urinary xenobiotic that it turns up in untargeted metabolomics data. Two chlorines give it a textbook barcode.</p>
+<p>Chlorine has two stable isotopes: ³⁵Cl (75.8% natural abundance, monoisotopic) and ³⁷Cl (24.2%). A molecule with two chlorines – like <strong>diclofenac</strong> (C₁₄H₁₁Cl₂NO₂) – has roughly a 37% chance of carrying exactly one ³⁷Cl, placing that molecule at M+2. The monoisotopic M peak is simultaneously thinned out as ions scatter across M+1, M+2, M+3 and M+4 – so M+2 ends up at ~65% of M, an excess so large that no fine-structure argument is required to recognize it.</p>
 <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pat_dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern</a></span><span class="op">(</span><span class="st">"C14H11Cl2NO2"</span><span class="op">)</span></span>
-<span><span class="va">base_dic</span> <span class="op">&lt;-</span> <span class="va">pat_dic</span><span class="op">$</span><span class="va">mz</span><span class="op">[</span><span class="va">pat_dic</span><span class="op">$</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">]</span></span>
+<span><span class="va">base_dic</span> <span class="op">&lt;-</span> <span class="va">pat_dic</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">mz</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">coarse_dic</span> <span class="op">&lt;-</span> <span class="va">pat_dic</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>nominal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mz</span> <span class="op">-</span> <span class="va">base_dic</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -109,22 +118,59 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"m/z (Da)"</span>, y <span class="op">=</span> <span class="st">"relative abundance (%)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</details><div class="cell-output-display">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="isotope-fine-structure-explained_files/figure-html/diclofenac-coarse-1.svg"></p>
+<figure><p><img src="isotope-fine-structure-explained_files/figure-html/diclofenac-coarse-1.png" width="672"></p>
 <figcaption>Diclofenac’s isotope pattern at unit resolution. Two chlorines are unmissable without any fine-structure argument at all.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>That coarse view is just <code><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern()</a></code>’s output summed by nominal mass — the same number every isotope-pattern calculator reports. That is genuinely all you need here — M+2 at 65% of M is such an overwhelming excess over what carbon alone could produce that no fine-structure argument is required. Two chlorines announce themselves in a glance.</p>
-<p>The interesting cases are the ones where the coarse pattern is <em>not</em> dramatic enough to read at a glance, and the only way to be sure what is in a peak is to look inside it.</p>
+<p>That coarse view is <code><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern()</a></code>’s output summed by nominal mass – the same number every isotope-pattern calculator reports. M+2 at ~65% follows directly from ³⁷Cl’s 24.2% natural abundance.</p>
+</section><section class="level2"><h2 id="why-different-elements-land-at-different-exact-masses">Why different elements land at different exact masses<a class="anchor" aria-label="anchor" href="#why-different-elements-land-at-different-exact-masses"></a>
+</h2>
+<p>A “nominal +2” peak contains any isotopologue whose mass rounds to 2 Da above the monoisotopic peak. But exact masses differ: nuclear binding energy – the energy released when protons and neutrons form a nucleus – varies between nuclei, so the heavy isotope of each element sits at its own characteristic offset from the nearest integer.</p>
+<table class="table caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead><tr class="header">
+<th>Isotopologue</th>
+<th style="text-align: right;">Shift from monoisotopic (Da)</th>
+<th style="text-align: right;">Offset from nominal +2 (mDa)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>¹³C + ¹³C</td>
+<td style="text-align: right;">+2.0067</td>
+<td style="text-align: right;">+6.7</td>
+</tr>
+<tr class="even">
+<td>¹⁸O</td>
+<td style="text-align: right;">+2.0042</td>
+<td style="text-align: right;">+4.2</td>
+</tr>
+<tr class="odd">
+<td>³⁷Cl</td>
+<td style="text-align: right;">+1.9971</td>
+<td style="text-align: right;">−2.9</td>
+</tr>
+<tr class="even">
+<td>³⁴S</td>
+<td style="text-align: right;">+1.9958</td>
+<td style="text-align: right;">−4.2</td>
+</tr>
+</tbody>
+</table>
+<p>The 10.9 mDa gap between ¹³C¹³C and ³⁴S is larger than the mass accuracy of any modern high-resolution instrument: they are at genuinely different masses. Whether your spectrum actually resolves them as two peaks rather than one depends on resolving power – which the sections below work through for a concrete example.</p>
 </section><section class="level2"><h2 id="when-the-coarse-pattern-hides-the-answer">When the coarse pattern hides the answer<a class="anchor" aria-label="anchor" href="#when-the-coarse-pattern-hides-the-answer"></a>
 </h2>
 <p><strong>Methionine</strong>, C₅H₁₁NO₂S, is about as ordinary as a metabolite gets — one of the twenty proteinogenic amino acids, present in every untargeted metabolomics urine or plasma run. It also carries one sulfur, and sulfur’s own +2 isotope, ³⁴S, sits at 4.25% abundance — two orders of magnitude more abundant than the +1 isotopes of the CHNO elements. Nothing about a coarse M+1/M+2 barcode makes that obvious the way diclofenac’s two chlorines are obvious.</p>
 <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pat_met</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern</a></span><span class="op">(</span><span class="st">"C5H11NO2S"</span><span class="op">)</span></span>
-<span><span class="va">base_met</span> <span class="op">&lt;-</span> <span class="va">pat_met</span><span class="op">$</span><span class="va">mz</span><span class="op">[</span><span class="va">pat_met</span><span class="op">$</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">]</span></span>
+<span><span class="va">base_met</span> <span class="op">&lt;-</span> <span class="va">pat_met</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">mz</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">coarse_met</span> <span class="op">&lt;-</span> <span class="va">pat_met</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>nominal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mz</span> <span class="op">-</span> <span class="va">base_met</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -140,9 +186,9 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"m/z (Da)"</span>, y <span class="op">=</span> <span class="st">"relative abundance (%)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</details><div class="cell-output-display">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="isotope-fine-structure-explained_files/figure-html/methionine-coarse-1.svg"></p>
+<figure><p><img src="isotope-fine-structure-explained_files/figure-html/methionine-coarse-1.png" width="672"></p>
 <figcaption>Methionine’s coarse isotope pattern. M+2 is bigger than five carbons alone would ever produce - but the bars alone don’t say why.</figcaption></figure>
 </div>
 </div>
@@ -152,14 +198,14 @@
 </h2>
 <p><code><a href="../reference/isotope_fine_pattern.html">isotope_fine_pattern()</a></code> doesn’t stop at the nominal sum — every row is one isotopologue, at its own exact mass, labelled by which isotopes produced it:</p>
 <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pat_met</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">abundance</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>mz <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mz</span>, <span class="fl">5</span><span class="op">)</span>, abundance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">abundance</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>         label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span>, <span class="st">"M (monoisotopic)"</span>, <span class="va">label</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Every isotopologue of methionine above the default 0.01% threshold, from enviPat."</span><span class="op">)</span></span></code></pre></div>
-</details><div class="cell-output-display">
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Every isotopologue of methionine above the default 0.01% threshold."</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
 <table class="table caption-top">
-<caption>Every isotopologue of methionine above the default 0.01% threshold, from enviPat.</caption>
+<caption>Every isotopologue of methionine above the default 0.01% threshold.</caption>
 <thead><tr class="header">
 <th style="text-align: right;">mz</th>
 <th style="text-align: right;">abundance</th>
@@ -252,9 +298,9 @@
 </div>
 <p>Plotted directly on the m/z axis — the same Da scale your spectrum viewer uses, no milli-Da rescaling — the M+1 and M+2 regions each split into several distinct peaks:</p>
 <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_level</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pattern</span>, <span class="va">level</span>, <span class="va">title</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">base</span> <span class="op">&lt;-</span> <span class="va">pattern</span><span class="op">$</span><span class="va">mz</span><span class="op">[</span><span class="va">pattern</span><span class="op">$</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">]</span></span>
+<span>  <span class="va">base</span> <span class="op">&lt;-</span> <span class="va">pattern</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">mz</span><span class="op">)</span></span>
 <span>  <span class="va">d</span> <span class="op">&lt;-</span> <span class="va">pattern</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>nominal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mz</span> <span class="op">-</span> <span class="va">base</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">nominal</span> <span class="op">==</span> <span class="va">level</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>element <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">",.*"</span>, <span class="st">""</span>, <span class="va">label</span><span class="op">)</span>, element <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">"^[0-9]+"</span>, <span class="st">""</span>, <span class="va">element</span><span class="op">)</span>,</span>
 <span>           col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">","</span>, <span class="va">label</span><span class="op">)</span>, <span class="st">"combo"</span>, <span class="va">element</span><span class="op">)</span>,</span>
@@ -271,19 +317,19 @@
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">plot_level</span><span class="op">(</span><span class="va">pat_met</span>, <span class="fl">1</span>, <span class="st">"Methionine M+1"</span><span class="op">)</span></span></code></pre></div>
-</details><div class="cell-output-display">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="isotope-fine-structure-explained_files/figure-html/met-m1-1.svg"></p>
+<figure><p><img src="isotope-fine-structure-explained_files/figure-html/met-m1-1.png" width="672"></p>
 <figcaption>Methionine, M+1: five candidate isotope substitutions, spread across 0.009 Da. Carbon dominates, as it does for almost every organic ion.</figcaption></figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_level</span><span class="op">(</span><span class="va">pat_met</span>, <span class="fl">2</span>, <span class="st">"Methionine M+2"</span><span class="op">)</span></span></code></pre></div>
-</details><div class="cell-output-display">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="isotope-fine-structure-explained_files/figure-html/met-m2-1.svg"></p>
+<figure><p><img src="isotope-fine-structure-explained_files/figure-html/met-m2-1.png" width="672"></p>
 <figcaption>Methionine, M+2: 34S alone outweighs every carbon-only combination roughly 40-fold, exactly matching the excess spotted in the coarse pattern above.</figcaption></figure>
 </div>
 </div>
@@ -293,30 +339,30 @@
 </h2>
 <p>A mass difference on paper is not the same as two resolved peaks on a chromatogram. Whether <code>34S</code> and <code>13C, 13C</code> show up as one blob or two depends entirely on the resolving power available at that m/z — and resolving power is not a fixed number: Orbitraps are quoted at a reference m/z (typically 200) and lose resolving power roughly as <code>1/sqrt(m/z)</code> away from it. <code><a href="../reference/isotope_profile.html">isotope_profile()</a></code> turns that into a picture rather than an abstraction, by summing a Gaussian peak of the right width for each isotopologue and showing what the region would actually look like at a chosen resolving power:</p>
 <div class="cell">
-<details class="code-fold"><summary>Show code</summary><div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">R_at_mz</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mz</span>, <span class="va">R_ref</span>, <span class="va">mz_ref</span> <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="va">R_ref</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">mz_ref</span> <span class="op">/</span> <span class="va">mz</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">Rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15000</span>, <span class="fl">60000</span>, <span class="fl">120000</span><span class="op">)</span></span>
 <span><span class="va">R_label</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"R = %s @200"</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">r</span>, big.mark <span class="op">=</span> <span class="st">","</span>, trim <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pat_met2</span> <span class="op">&lt;-</span> <span class="va">pat_met</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>nominal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mz</span> <span class="op">-</span> <span class="va">base_met</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">nominal</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">prof</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">Rs</span>, <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="va">prof</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="va">Rs</span>, <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="../reference/isotope_profile.html">isotope_profile</a></span><span class="op">(</span><span class="va">pat_met2</span>, resolution <span class="op">=</span> <span class="fu">R_at_mz</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pat_met2</span><span class="op">$</span><span class="va">mz</span><span class="op">)</span>, <span class="va">r</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>R <span class="op">=</span> <span class="fu">R_label</span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>R <span class="op">=</span> <span class="fu">R_label</span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ticks</span> <span class="op">&lt;-</span> <span class="va">pat_met2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">abundance</span> <span class="op">&gt;</span> <span class="fl">0.02</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">prof</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mz</span>, <span class="va">intensity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_area</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">BLUE</span>, alpha <span class="op">=</span> <span class="fl">.25</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">BLUE</span>, linewidth <span class="op">=</span> <span class="fl">.8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ticks</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mz</span><span class="op">)</span>, inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>, sides <span class="op">=</span> <span class="st">"b"</span>, colour <span class="op">=</span> <span class="st">"grey30"</span>, linewidth <span class="op">=</span> <span class="fl">.6</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">R</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">Rs</span>, <span class="va">R_label</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">R</span>, levels <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">Rs</span>, <span class="va">R_label</span><span class="op">)</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_number</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">0.0001</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"m/z (Da)"</span>, y <span class="op">=</span> <span class="st">"simulated intensity (% of M)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</details><div class="cell-output-display">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="isotope-fine-structure-explained_files/figure-html/sim-profile-1.svg"></p>
+<figure><p><img src="isotope-fine-structure-explained_files/figure-html/sim-profile-1.png" width="672"></p>
 <figcaption>Methionine’s M+2 region simulated at three Orbitrap resolving powers (quoted @ m/z 200). Vertical ticks mark where each candidate actually sits. At 15,000 the shoulder is invisible; by 60,000 it is unambiguous.</figcaption></figure>
 </div>
 </div>

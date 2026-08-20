@@ -1,7 +1,5 @@
 # Looking up an unexplained mass difference
 
-Show code
-
 ``` r
 
 library(commonMZ)
@@ -25,8 +23,6 @@ commonMZ already — `adducts_fragments` and
 [`mz_diff_table()`](https://stanstrup.github.io/commonMZ/reference/mz_diff_table.md)
 merges them into one searchable reference:
 
-Show code
-
 ``` r
 
 diffs <- mz_diff_table("both")
@@ -48,12 +44,10 @@ region (several candidate explanations) or an empty one (nothing
 catalogued matches, which is itself useful information). Hover any point
 for its origin:
 
-Show code
-
 ``` r
 
 p <- ggplot(diffs, aes(mz_diff, category, colour = category,
-                       text = sprintf("%.4f Da — %s\n%s", mz_diff, mode, origin))) +
+                       text = sprintf("%.4f Da --- %s\n%s", mz_diff, mode, origin))) +
   geom_point(size = 2, alpha = .7, position = position_jitter(height = 0.15, seed = 1)) +
   scale_colour_manual(values = c(`adduct/fragment` = COL[["C"]], `repeating unit` = COL[["S"]]),
                       guide = "none") +
@@ -80,37 +74,33 @@ the function’s documentation
 for why that distinction matters and when to widen the tolerance or pass
 an absolute `unit = "Da"` window instead.
 
-Show code
-
 ``` r
 
 knitr::kable(mz_diff_lookup(18.0106, tol = 100))   # water, 100 ppm of the delta
 ```
 
-|  mz_diff | category        | mode | origin                     | reference | error_Da |
-|---------:|:----------------|:-----|:---------------------------|:----------|---------:|
-| 18.01057 | adduct/fragment | both | ± H2O, water addition/loss | F         |   -3e-05 |
-| 18.01057 | repeating unit  | pos  | H2O, water clusters        | F         |   -3e-05 |
-| 18.01057 | repeating unit  | neg  | H2O, water clusters        | F         |   -3e-05 |
+| mz_diff | category | mode | origin | reference | error_Da | error_ppm |
+|---:|:---|:---|:---|:---|---:|---:|
+| 18.01057 | adduct/fragment | both | ± H2O, water addition/loss | F | -3e-05 | -1.665686 |
+| 18.01057 | repeating unit | pos | H2O, water clusters | F | -3e-05 | -1.665686 |
+| 18.01057 | repeating unit | neg | H2O, water clusters | F | -3e-05 | -1.665686 |
 
 And a delta that is genuinely ambiguous without more context — several
 catalogued differences sit within a few ppm of each other, so the delta
 alone does not decide; you still need to ask whether the sample
 plausibly contains an alkane chain, an acrylamide adduct, or neither:
 
-Show code
-
 ``` r
 
 knitr::kable(mz_diff_lookup(14.0157, tol = 50))
 ```
 
-| mz_diff | category | mode | origin | reference | error_Da |
-|---:|:---|:---|:---|:---|---:|
-| 14.01565 | adduct/fragment | both | ± CH2, alkane chains, waxes, fatty acids, methylation | F | -5e-05 |
-| 14.01565 | adduct/fragment | both | -\[C3H6ON\] \<-\> -\[C2H4ON\], acrylamide versus iodoacetamide in cysteine alkylation (gels) | T | -5e-05 |
-| 14.01565 | repeating unit | pos | -\[CH2\]-, alkane chains, waxes, fatty acids, methylation | F | -5e-05 |
-| 14.01565 | repeating unit | neg | -\[CH2\]-, alkane chains, waxes, fatty acids, methylation | F | -5e-05 |
+| mz_diff | category | mode | origin | reference | error_Da | error_ppm |
+|---:|:---|:---|:---|:---|---:|---:|
+| 14.01565 | adduct/fragment | both | ± CH2, alkane chains, waxes, fatty acids, methylation | F | -5e-05 | -3.567428 |
+| 14.01565 | adduct/fragment | both | -\[C3H6ON\] \<-\> -\[C2H4ON\], acrylamide versus iodoacetamide in cysteine alkylation (gels) | T | -5e-05 | -3.567428 |
+| 14.01565 | repeating unit | pos | -\[CH2\]-, alkane chains, waxes, fatty acids, methylation | F | -5e-05 | -3.567428 |
+| 14.01565 | repeating unit | neg | -\[CH2\]-, alkane chains, waxes, fatty acids, methylation | F | -5e-05 | -3.567428 |
 
 ## Working interactively
 
@@ -119,8 +109,6 @@ tolerance and click *Search* — this is the electronic version of the
 `first_iso_diff`-style spreadsheets this tool is descended from. The
 table’s own *Search:* box (top right) still works as usual for browsing
 by category, mode or origin text.
-
-Show code
 
 ``` r
 

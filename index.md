@@ -88,7 +88,7 @@ In the tables each entry references refers to the following table:
 | N | Verge, K. M.; Agnes, G. R. | J. Am. Soc. Mass Spectrom., 13 (2002) 901 |
 | O | Paez, A.; Howe, A. | Canadian Chemical News, 56 (2004) 14 |
 | P | Purves, R. W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
-| Q | Gibson, C. R.; Brown, C. M. | J. Am. Soc. Mass Spectrom., 14 (2003) 14 |
+| Q | Gibson, C. R.; Brown, C. M. | J. Am. Soc. Mass Spectrom., 14 (2003) 1247 |
 | R | Beavis, R. C.; Chait, B. T. | Anal. Chem., 62 (1990) 1836 |
 | S | Guzzetta, A. | [ionsource.com](http://www.ionsource.com) — Carbohydrate marker ions |
 | T | Clauser, K. R.; Hall, S. C.; Smith, D. M.; Webb, J. W.; Andrews, L. E.; Tran, H. M.; Epstein, L. B.; Burlingame, A. L. | Proc. Natl. Acad. Sci. USA, 92 (1995) 5072; [prospector.ucsf.edu](http://prospector.ucsf.edu) |

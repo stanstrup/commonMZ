@@ -57,8 +57,8 @@ mz_diff_lookup(
 
 ## Value
 
-`table`, filtered to rows within tolerance of `delta`, with an added
-`error_Da` column, sorted by `abs(error_Da)`.
+`table`, filtered to rows within tolerance of `delta`, with added
+`error_Da` and `error_ppm` columns, sorted by `abs(error_Da)`.
 
 ## Author
 
@@ -68,17 +68,17 @@ Jan Stanstrup, <stanstrup@gmail.com>
 
 ``` r
 mz_diff_lookup(18.0106, tol = 100, unit = "ppm")   # water
-#> # A tibble: 3 × 6
-#>   mz_diff category        mode  origin                     reference   error_Da
-#>     <dbl> <chr>           <chr> <chr>                      <chr>          <dbl>
-#> 1    18.0 adduct/fragment both  ± H2O, water addition/loss F         -0.0000300
-#> 2    18.0 repeating unit  pos   H2O, water clusters        F         -0.0000300
-#> 3    18.0 repeating unit  neg   H2O, water clusters        F         -0.0000300
+#> # A tibble: 3 × 7
+#>   mz_diff category        mode  origin              reference error_Da error_ppm
+#>     <dbl> <chr>           <chr> <chr>               <chr>        <dbl>     <dbl>
+#> 1    18.0 adduct/fragment both  ± H2O, water addit… F         -3.00e-5     -1.67
+#> 2    18.0 repeating unit  pos   H2O, water clusters F         -3.00e-5     -1.67
+#> 3    18.0 repeating unit  neg   H2O, water clusters F         -3.00e-5     -1.67
 mz_diff_lookup(18.0106, tol = 0.002, unit = "Da")  # same, as a flat window
-#> # A tibble: 3 × 6
-#>   mz_diff category        mode  origin                     reference   error_Da
-#>     <dbl> <chr>           <chr> <chr>                      <chr>          <dbl>
-#> 1    18.0 adduct/fragment both  ± H2O, water addition/loss F         -0.0000300
-#> 2    18.0 repeating unit  pos   H2O, water clusters        F         -0.0000300
-#> 3    18.0 repeating unit  neg   H2O, water clusters        F         -0.0000300
+#> # A tibble: 3 × 7
+#>   mz_diff category        mode  origin              reference error_Da error_ppm
+#>     <dbl> <chr>           <chr> <chr>               <chr>        <dbl>     <dbl>
+#> 1    18.0 adduct/fragment both  ± H2O, water addit… F         -3.00e-5     -1.67
+#> 2    18.0 repeating unit  pos   H2O, water clusters F         -3.00e-5     -1.67
+#> 3    18.0 repeating unit  neg   H2O, water clusters F         -3.00e-5     -1.67
 ```

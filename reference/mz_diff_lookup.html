@@ -24,9 +24,9 @@ returns every entry of mz_diff_table within tolerance.'></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/isotope-fine-structure-explained.html">Reading isotopic fine structure</a></li>
-    <li><a class="dropdown-item" href="../articles/isotope-fine-structure-tool.html">Simulating isotope fine structure for a formula</a></li>
-    <li><a class="dropdown-item" href="../articles/mass-difference-lookup.html">Looking up an unexplained mass difference</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/isotope-fine-structure-explained.html">UNKNOWN TITLE</a></li>
+    <li><a class="dropdown-item" href="../articles/isotope-fine-structure-tool.html">UNKNOWN TITLE</a></li>
+    <li><a class="dropdown-item" href="../articles/mass-difference-lookup.html">UNKNOWN TITLE</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -101,7 +101,8 @@ in a spectrum).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>table</code>, filtered to rows within tolerance of <code>delta</code>,
-  with an added <code>error_Da</code> column, sorted by <code>abs(error_Da)</code>.</p>
+  with added <code>error_Da</code> and <code>error_ppm</code> columns,
+  sorted by <code>abs(error_Da)</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -111,19 +112,19 @@ in a spectrum).</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mz_diff_lookup</span><span class="op">(</span><span class="fl">18.0106</span>, tol <span class="op">=</span> <span class="fl">100</span>, unit <span class="op">=</span> <span class="st">"ppm"</span><span class="op">)</span>   <span class="co"># water</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   mz_diff category        mode  origin                     reference   error_Da</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    18.0 adduct/fragment both  ± H2O, water addition/loss F         -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">030</span><span style="color: #BB0000;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    18.0 repeating unit  pos   H2O, water clusters        F         -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">030</span><span style="color: #BB0000;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    18.0 repeating unit  neg   H2O, water clusters        F         -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">030</span><span style="color: #BB0000;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   mz_diff category        mode  origin              reference error_Da error_ppm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    18.0 adduct/fragment both  ± H2O, water addit… F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    18.0 repeating unit  pos   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    18.0 repeating unit  neg   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
 <span class="r-in"><span><span class="fu">mz_diff_lookup</span><span class="op">(</span><span class="fl">18.0106</span>, tol <span class="op">=</span> <span class="fl">0.002</span>, unit <span class="op">=</span> <span class="st">"Da"</span><span class="op">)</span>  <span class="co"># same, as a flat window</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   mz_diff category        mode  origin                     reference   error_Da</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    18.0 adduct/fragment both  ± H2O, water addition/loss F         -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">030</span><span style="color: #BB0000;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    18.0 repeating unit  pos   H2O, water clusters        F         -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">030</span><span style="color: #BB0000;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    18.0 repeating unit  neg   H2O, water clusters        F         -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">030</span><span style="color: #BB0000;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   mz_diff category        mode  origin              reference error_Da error_ppm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    18.0 adduct/fragment both  ± H2O, water addit… F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    18.0 repeating unit  pos   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    18.0 repeating unit  neg   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
