@@ -33,8 +33,17 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::pkgdown, any::quarto, bioc::Rdisop, local::.
+          extra-packages: any::pkgdown, any::quarto, local::.
           needs: website
+
+      - name: Render README
+        run: quarto render README.qmd
+
+      - name: Commit README.md if changed
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git diff --quiet README.md || (git add README.md && git commit -m "Update README.md [skip ci]" && git push)
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
