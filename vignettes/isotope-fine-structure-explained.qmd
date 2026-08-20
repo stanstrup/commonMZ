@@ -30,6 +30,7 @@ library(commonMZ)
 library(dplyr)
 library(purrr)
 library(ggplot2)
+library(plotly)
 
 BLUE <- "#2a78d6"
 COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
@@ -56,9 +57,10 @@ coarse_dic <- pat_dic %>%
   summarise(mz = base_dic + first(nominal), abundance = sum(abundance), .groups = "drop")
 
 ggplot(coarse_dic, aes(mz, abundance)) +
-  geom_segment(aes(xend = mz, y = 0, yend = abundance), colour = BLUE, linewidth = 2.2,
-               lineend = "round") +
-  geom_text(data = filter(coarse_dic, abundance > 1), aes(label = paste0("M+", nominal)),
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse_dic, abundance > 1),
+            aes(label = paste0("M+", nominal)),
             vjust = -0.6, size = 3.4, colour = "grey25") +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
   labs(x = "m/z (Da)", y = "relative abundance (%)") +
@@ -110,9 +112,10 @@ coarse_met <- pat_met %>%
   summarise(mz = base_met + first(nominal), abundance = sum(abundance), .groups = "drop")
 
 ggplot(coarse_met, aes(mz, abundance)) +
-  geom_segment(aes(xend = mz, y = 0, yend = abundance), colour = BLUE, linewidth = 2.2,
-               lineend = "round") +
-  geom_text(data = filter(coarse_met, abundance > 1), aes(label = paste0("M+", nominal)),
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse_met, abundance > 1),
+            aes(label = paste0("M+", nominal)),
             vjust = -0.6, size = 3.4, colour = "grey25") +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
   labs(x = "m/z (Da)", y = "relative abundance (%)") +
@@ -130,8 +133,7 @@ actually observed. Something other than double-¹³C is producing most of that p
 and the coarse pattern alone cannot tell you what. That gap between the naive
 ¹³C-only prediction and the observed M+2 height is itself a diagnostic: whenever
 M+2 badly overshoots what carbon alone predicts, suspect S, Cl, Br, Si, or a metal
-before anything else; that is exactly the reasoning
-[`contaminants_+.tsv`](contaminants_+.tsv)'s metal-complex entries were built on.
+before anything else.
 
 ## What is actually inside methionine's M+2
 
@@ -139,14 +141,13 @@ before anything else; that is exactly the reasoning
 labelled by which isotopes produced it:
 
 ```{r met-fine-table}
-pat_met %>% arrange(desc(abundance)) %>%
+pat_met %>% arrange(mz) %>%
   mutate(mz = round(mz, 5), abundance = round(abundance, 4),
          label = ifelse(label == "", "M (monoisotopic)", label)) %>%
   knitr::kable(caption = "Every isotopologue of methionine above the default 0.01% threshold.")
 ```
 
-Plotted on the m/z axis (the same Da scale your spectrum viewer uses, no milli-Da
-rescaling), the M+1 and M+2 regions each split into several distinct peaks:
+On the m/z axis, the M+1 and M+2 regions each split into several distinct peaks:
 
 ```{r met-m1}
 #| fig-cap: "Methionine, M+1: five candidate isotope substitutions, spread across 0.009 Da. Carbon dominates, as it does for almost every organic ion."
@@ -157,9 +158,11 @@ plot_level <- function(pattern, level, title) {
            col = ifelse(label == "" | grepl(",", label), "combo", element),
            col = ifelse(col %in% names(COL), col, "combo"))
   ggplot(d, aes(mz, abundance, colour = col)) +
-    geom_segment(aes(xend = mz, y = 0, yend = abundance), linewidth = 2.2, lineend = "round") +
+    geom_segment(aes(xend = mz, y = 0, yend = abundance),
+                 linewidth = 2.2, lineend = "round") +
     geom_text(data = slice_max(d, abundance, n = min(6, nrow(d))),
-              aes(label = label), angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
+              aes(label = label),
+              angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
     scale_colour_manual(values = COL, guide = "none") +
     scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
     scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .35))) +
@@ -211,15 +214,17 @@ prof <- map_dfr(Rs, function(r)
     mutate(R = R_label(r)))
 ticks <- pat_met2 %>% filter(abundance > 0.02)
 
-ggplot(prof, aes(mz, intensity)) +
+p <- ggplot(prof, aes(mz, intensity)) +
   geom_area(fill = BLUE, alpha = .25) +
   geom_line(colour = BLUE, linewidth = .8) +
-  geom_rug(data = ticks, aes(x = mz), inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
+  geom_rug(data = ticks, aes(x = mz),
+           inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
   facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
   scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
   labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
   theme_minimal(base_size = 12) +
   theme(panel.grid.minor = element_blank(), strip.text = element_text(hjust = 0))
+ggplotly(p, tooltip = c("x", "y"))
 ```
 
 At 15,000 the ³⁴S peak is a single, slightly lopsided blob; the ¹³C¹³C shoulder is
