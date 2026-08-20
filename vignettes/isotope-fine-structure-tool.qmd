@@ -165,35 +165,21 @@ pat2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2)
 
 prof <- map_dfr(Rs, function(r)
   isotope_profile(pat2, resolution = R_at_mz(mean(pat2$mz), r)) %>%
-    mutate(R = R_label(r), R_order = r))
+    mutate(R = R_label(r)))
 ticks <- pat2 %>% filter(abundance > 0.5)
 
-R_levels <- map_chr(Rs, R_label)
-panels <- map(seq_along(Rs), function(i) {
-  d <- prof %>% filter(R == R_levels[i])
-  plot_ly(d, x = ~mz, y = ~intensity, type = "scatter", mode = "lines",
-          fill = "tozeroy", fillcolor = paste0(BLUE, "40"),
-          line = list(color = BLUE, width = 1.2),
-          showlegend = FALSE,
-          hovertemplate = "%{x:.4f} Da<br>%{y:.3f}%<extra></extra>") %>%
-    add_trace(data = ticks, x = ~mz, y = 0, type = "scatter", mode = "markers",
-              marker = list(symbol = "line-ns-open", size = 10, color = "grey30"),
-              showlegend = FALSE, hoverinfo = "none") %>%
-    layout(annotations = list(
-      list(x = 0.01, y = 0.97, text = R_levels[i], xref = "paper", yref = "paper",
-           xanchor = "left", yanchor = "top", showarrow = FALSE,
-           font = list(size = 12))
-    ))
-})
+p <- ggplot(prof, aes(mz, intensity)) +
+  geom_area(fill = BLUE, alpha = .25) +
+  geom_line(colour = BLUE, linewidth = .8) +
+  geom_rug(data = ticks, aes(x = mz), inherit.aes = FALSE,
+           sides = "b", colour = "grey30", linewidth = .6) +
+  facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
+  scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
+  labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(), strip.text = element_text(hjust = 0))
 
-subplot(panels, nrows = length(Rs), shareX = TRUE, titleY = FALSE) %>%
-  layout(
-    xaxis  = list(title = "m/z (Da)", tickformat = ".4f"),
-    yaxis  = list(title = "simulated intensity (% of M)"),
-    yaxis2 = list(title = ""),
-    yaxis3 = list(title = ""),
-    margin = list(l = 60)
-  )
+ggplotly(p, tooltip = c("x", "y"))
 ```
 
 Even at the lowest of these three resolving powers the two chlorines are already
