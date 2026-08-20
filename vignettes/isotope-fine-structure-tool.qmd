@@ -29,6 +29,7 @@ library(commonMZ)
 library(dplyr)
 library(purrr)
 library(ggplot2)
+library(plotly)
 
 BLUE <- "#2a78d6"
 COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
@@ -108,20 +109,17 @@ plot_level(pat, 2, paste(formula, "M+2"))
 
 ## Step 3 --- would your instrument resolve the candidates?
 
-For every pair of isotopologues at a nominal level, the resolving power needed to
-put a valley between them is `(m1+m2) / 2 / |m1-m2|` at that m/z; translated to the
-usual Orbitrap convention (quoted at a reference m/z, typically 200), it scales as
-`1/sqrt(m/z)`:
+For every pair of isotopologues at a nominal level the table below reports the
+resolving power (Orbitrap convention, quoted at m/z 200) at which the two Gaussian
+peaks would show a ~50% valley between them --- enough for a centroid algorithm to
+find two separate peaks. Two Gaussian peaks of equal height separated by 1.5 × FWHM
+produce a valley at about 50% of peak height; translating that to the R@200 Orbitrap
+convention scales as `1/sqrt(m/z)`:
 
 ```{r resolving-power}
-R_at_mz  <- function(mz, R_ref, mz_ref = 200) R_ref * sqrt(mz_ref / mz)
-fwhm_at  <- function(mz, R_ref, mz_ref = 200) mz / R_at_mz(mz, R_ref, mz_ref)
+R_at_mz <- function(mz, R_ref, mz_ref = 200) R_ref * sqrt(mz_ref / mz)
 
-## every pairwise gap within one nominal level, and the resolving power (at the
-## reference m/z used above) that would put a valley between the peaks. Faint
-## candidates (< min_abundance percent) are dropped so the table stays a short,
-## readable list of comparisons an analyst could actually be faced with.
-separations <- function(pattern, level, R_ref = 120000, mz_ref = 200, min_abundance = 0.01) {
+separations <- function(pattern, level, mz_ref = 200, min_abundance = 0.01) {
   base <- pattern %>% filter(label == "") %>% pull(mz)
   d <- pattern %>% mutate(nominal = round(mz - base)) %>%
     filter(nominal == level, abundance >= min_abundance) %>%
@@ -130,26 +128,27 @@ separations <- function(pattern, level, R_ref = 120000, mz_ref = 200, min_abunda
   ix <- combn(seq_len(nrow(d)), 2)
   map_dfr(seq_len(ncol(ix)), function(i) {
     ra <- d[ix[1, i], ]; rb <- d[ix[2, i], ]
-    sep_da <- abs(ra$mz - rb$mz)
-    Rreq <- (ra$mz + rb$mz) / 2 / sep_da
-    Rref_req <- Rreq / sqrt(mz_ref / mean(c(ra$mz, rb$mz)))
+    sep_da  <- abs(ra$mz - rb$mz)
+    m_avg   <- (ra$mz + rb$mz) / 2
+    Rreq    <- 1.5 * m_avg / sep_da              # R at this m/z for ~50% valley
+    Rref_req <- Rreq / sqrt(mz_ref / m_avg)      # translate to @mz_ref convention
     tibble(a = ra$label, b = rb$label, abundance_a_pct = round(ra$abundance, 3),
            abundance_b_pct = round(rb$abundance, 3), separation_Da = round(sep_da, 5),
-           R_needed_here = round(Rreq), R_needed_at200 = round(Rref_req))
-  }) %>% arrange(R_needed_at200)
+           R_at_mz = round(Rreq), R_at200 = round(Rref_req))
+  }) %>% arrange(R_at200)
 }
 
 sep2 <- separations(pat, 2)
 sep2 %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R needed here", "R needed @200"),
-               caption = "Every pair of M+2 candidates above 0.01% abundance, and the resolving power (quoted at m/z 200, Orbitrap convention) that would separate them.")
+                              "separation (Da)", "R at this m/z", "R @200"),
+               caption = "Every pair of M+2 candidates above 0.01% abundance. R@200 is the Orbitrap resolving power (quoted at m/z 200) at which the two peaks show a ~50% valley --- enough for centroiding to find two peaks.")
 ```
 
 ```{r sep-text, results = "asis"}
-top <- sep2 %>% filter(a == "37Cl" | b == "37Cl") %>% slice_min(R_needed_at200, n = 1)
-cat(sprintf("`37Cl` needs only R ~ %s at m/z 200 to separate from its closest competitor (`%s`) -- trivially available on any current Orbitrap.",
-            format(top$R_needed_at200, big.mark = ","), ifelse(top$a == "37Cl", top$b, top$a)))
+top <- sep2 %>% filter(a == "37Cl" | b == "37Cl") %>% slice_min(R_at200, n = 1)
+cat(sprintf("`37Cl` needs only R ~ %s @200 to show a distinct peak from its closest competitor (`%s`) --- comfortably within reach on any current Orbitrap.",
+            format(top$R_at200, big.mark = ","), ifelse(top$a == "37Cl", top$b, top$a)))
 ```
 
 ## Step 4 --- simulate the profile at your own resolving power
@@ -160,25 +159,41 @@ candidate --- pass it the *actual* resolving power at this m/z, converting from 
 Orbitrap's `R_ref @ 200` setting with `R_at_mz()` first:
 
 ```{r sim-profile}
-#| fig-cap: "M+2 region simulated at three Orbitrap resolving powers (quoted @ m/z 200). Vertical ticks mark where each candidate actually sits."
 Rs <- c(30000, 60000, 120000)
 R_label <- function(r) sprintf("R = %s @200", format(r, big.mark = ",", trim = TRUE))
 pat2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2)
 
 prof <- map_dfr(Rs, function(r)
   isotope_profile(pat2, resolution = R_at_mz(mean(pat2$mz), r)) %>%
-    mutate(R = R_label(r)))
+    mutate(R = R_label(r), R_order = r))
 ticks <- pat2 %>% filter(abundance > 0.5)
 
-ggplot(prof, aes(mz, intensity)) +
-  geom_area(fill = BLUE, alpha = .25) +
-  geom_line(colour = BLUE, linewidth = .8) +
-  geom_rug(data = ticks, aes(x = mz), inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
-  facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
-  scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
-  labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.minor = element_blank(), strip.text = element_text(hjust = 0))
+R_levels <- map_chr(Rs, R_label)
+panels <- map(seq_along(Rs), function(i) {
+  d <- prof %>% filter(R == R_levels[i])
+  plot_ly(d, x = ~mz, y = ~intensity, type = "scatter", mode = "lines",
+          fill = "tozeroy", fillcolor = paste0(BLUE, "40"),
+          line = list(color = BLUE, width = 1.2),
+          showlegend = FALSE,
+          hovertemplate = "%{x:.4f} Da<br>%{y:.3f}%<extra></extra>") %>%
+    add_trace(data = ticks, x = ~mz, y = 0, type = "scatter", mode = "markers",
+              marker = list(symbol = "line-ns-open", size = 10, color = "grey30"),
+              showlegend = FALSE, hoverinfo = "none") %>%
+    layout(annotations = list(
+      list(x = 0.01, y = 0.97, text = R_levels[i], xref = "paper", yref = "paper",
+           xanchor = "left", yanchor = "top", showarrow = FALSE,
+           font = list(size = 12))
+    ))
+})
+
+subplot(panels, nrows = length(Rs), shareX = TRUE, titleY = FALSE) %>%
+  layout(
+    xaxis  = list(title = "m/z (Da)", tickformat = ".4f"),
+    yaxis  = list(title = "simulated intensity (% of M)"),
+    yaxis2 = list(title = ""),
+    yaxis3 = list(title = ""),
+    margin = list(l = 60)
+  )
 ```
 
 Even at the lowest of these three resolving powers the two chlorines are already
