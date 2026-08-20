@@ -46,6 +46,9 @@ jobs:
           extra-packages: any::rcmdcheck, any::quarto
           needs: check
 
+      - name: Install package so Quarto subprocesses can find it
+        run: Rscript -e "pak::local_install('.')"
+
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true

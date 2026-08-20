@@ -1,0 +1,347 @@
+---
+title: "Isotope fine structure"
+subtitle: "Why M+2 is not one peak, and how to simulate what your instrument shows"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: true
+    fig-width: 8
+    fig-height: 4.5
+    theme: cosmo
+    fig-format: svg
+execute:
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    dev: svglite
+vignette: >
+  %\VignetteIndexEntry{Isotope fine structure}
+  %\VignetteEngine{quarto::format}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup}
+#| include: false
+library(commonMZ)
+library(dplyr)
+library(purrr)
+library(ggplot2)
+library(plotly)
+
+BLUE <- "#2a78d6"
+COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
+         S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
+```
+
+Isotope fine structure is what happens when a nominal M+2 peak contains several
+isotopologues sitting at slightly different exact masses: ³⁴S at one position,
+¹³C¹³C at another, a few millidaltons apart. Every isotope-pattern calculator
+reports the coarse M+1/M+2 heights, but those numbers hide the individual
+isotopologues. This article explains why their positions differ, walks through
+reading them for a concrete example, and builds the tools to simulate what any
+instrument would actually resolve.
+
+## Chlorine's M+2: an abundance effect
+
+Chlorine has two stable isotopes: ³⁵Cl (75.8% natural abundance, monoisotopic) and
+³⁷Cl (24.2%). A molecule with two chlorines -- like **diclofenac** (C₁₄H₁₁Cl₂NO₂)
+-- has roughly a 37% chance of carrying exactly one ³⁷Cl, placing that molecule at
+M+2. The monoisotopic M peak is simultaneously thinned out as ions scatter across
+M+1, M+2, M+3 and M+4 -- so M+2 ends up at ~65% of M, an excess so large that no
+fine-structure argument is required to recognise it.
+
+```{r diclofenac-coarse}
+#| fig-cap: "Diclofenac's isotope pattern at unit resolution. Two chlorines are unmissable without any fine-structure argument."
+pat_dic  <- isotope_fine_pattern("C14H11Cl2NO2")
+base_dic <- pat_dic %>% filter(label == "") %>% pull(mz)
+
+coarse_dic <- pat_dic %>%
+  mutate(nominal = round(mz - base_dic)) %>%
+  group_by(nominal) %>%
+  summarise(mz = base_dic + first(nominal), abundance = sum(abundance), .groups = "drop")
+
+ggplot(coarse_dic, aes(mz, abundance)) +
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse_dic, abundance > 1),
+            aes(label = paste0("M+", nominal)),
+            vjust = -0.6, size = 3.4, colour = "grey25") +
+  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
+  labs(x = "m/z (Da)", y = "relative abundance (%)") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank())
+```
+
+That coarse view is `isotope_fine_pattern()`'s output summed by nominal mass, the
+same number every isotope-pattern calculator reports. M+2 at ~65% follows directly
+from ³⁷Cl's 24.2% natural abundance.
+
+## Why different elements land at different exact masses
+
+A "nominal +2" peak contains any isotopologue whose mass rounds to 2 Da above the
+monoisotopic peak. But exact masses differ: nuclear binding energy varies between
+nuclei, so the heavy isotope of each element sits at its own characteristic offset
+from the nearest integer.
+
+| Isotopologue | Shift from monoisotopic (Da) | Offset from nominal +2 (mDa) |
+|---|---:|---:|
+| ¹³C + ¹³C | +2.0067 | +6.7 |
+| ¹⁸O | +2.0042 | +4.2 |
+| ³⁷Cl | +1.9971 | −2.9 |
+| ³⁴S | +1.9958 | −4.2 |
+
+The 10.9 mDa gap between ¹³C¹³C and ³⁴S is larger than the mass accuracy of any
+modern high-resolution instrument: they are at genuinely different masses. Whether
+your spectrum resolves them as two peaks rather than one depends on resolving power;
+the sections below work through that for a concrete example.
+
+## When the coarse pattern hides the answer
+
+**Methionine**, C₅H₁₁NO₂S, is one of the twenty proteinogenic amino acids, present
+in every untargeted metabolomics run. It carries one sulfur, and ³⁴S sits at 4.25%
+natural abundance, two orders of magnitude more abundant than the +1 isotopes of the
+CHNO elements. Nothing about a coarse M+1/M+2 barcode makes that obvious.
+
+Change `formula` here to run the same workflow for your own candidate:
+
+```{r formula}
+formula <- "C5H11NO2S"   # methionine -- swap to your own candidate
+
+pat     <- isotope_fine_pattern(formula)
+base_mz <- pat %>% filter(label == "") %>% pull(mz)
+coarse  <- pat %>%
+  mutate(nominal = round(mz - base_mz)) %>%
+  group_by(nominal) %>%
+  summarise(mz = base_mz + first(nominal), abundance = sum(abundance), .groups = "drop")
+```
+
+```{r methionine-coarse}
+#| fig-cap: "Methionine's coarse isotope pattern. M+2 far exceeds what five carbons alone would produce, but the bars don't say why."
+ggplot(coarse, aes(mz, abundance)) +
+  geom_segment(aes(xend = mz, y = 0, yend = abundance),
+               colour = BLUE, linewidth = 2.2, lineend = "round") +
+  geom_text(data = filter(coarse, abundance > 1),
+            aes(label = paste0("M+", nominal)),
+            vjust = -0.6, size = 3.4, colour = "grey25") +
+  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .15))) +
+  labs(x = "m/z (Da)", y = "relative abundance (%)") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Five carbons predict M+2 from double-¹³C at
+`choose(5,2) * 0.0107^2 * 100 ≈ 0.11%`, **roughly 40 times smaller** than the
+`r round(coarse %>% filter(nominal==2) %>% pull(abundance), 1)`% actually observed.
+That gap between the naive ¹³C-only prediction and the observed M+2 height is itself
+a diagnostic: whenever M+2 badly overshoots what carbon alone predicts, suspect S,
+Cl, Br, Si, or a metal before anything else. The fine structure below names the
+specific isotopologue.
+
+## Step 1: build the fine-structure table
+
+`isotope_fine_pattern()` reports each isotopologue separately, at its own exact
+mass, labelled by which isotopes produced it:
+
+```{r fine-table}
+pat %>% arrange(mz) %>%
+  mutate(mz = round(mz, 5), abundance = round(abundance, 4),
+         label = ifelse(label == "", "M (monoisotopic)", label)) %>%
+  knitr::kable(caption = paste("Every isotopologue of", formula, "above the default 0.01% threshold."))
+```
+
+## Step 2: zoom into one nominal level
+
+On the m/z axis, the M+1 and M+2 regions each split into several distinct peaks:
+
+```{r met-m1}
+#| fig-cap: "M+1: five candidate isotope substitutions, spread across 0.009 Da. Carbon dominates, as it does for almost every organic ion."
+plot_level <- function(pattern, level, title) {
+  base <- pattern %>% filter(label == "") %>% pull(mz)
+  d <- pattern %>%
+    mutate(nominal = round(mz - base)) %>%
+    filter(nominal == level) %>%
+    mutate(element = sub(",.*", "", label),
+           element = sub("^[0-9]+", "", element),
+           col = ifelse(label == "" | grepl(",", label), "combo", element),
+           col = ifelse(col %in% names(COL), col, "combo"))
+  ggplot(d, aes(mz, abundance, colour = col)) +
+    geom_segment(aes(xend = mz, y = 0, yend = abundance),
+                 linewidth = 2.2, lineend = "round") +
+    geom_text(data = slice_max(d, abundance, n = min(6, nrow(d))),
+              aes(label = label),
+              angle = 90, hjust = -0.15, size = 3.1, colour = "grey20") +
+    scale_colour_manual(values = COL, guide = "none") +
+    scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
+    scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .35))) +
+    labs(x = "m/z (Da)", y = "% of M (monoisotopic)", title = title) +
+    theme_minimal(base_size = 12) +
+    theme(panel.grid.minor = element_blank())
+}
+plot_level(pat, 1, paste(formula, "M+1"))
+```
+
+```{r met-m2}
+#| fig-cap: "M+2: 34S alone outweighs every carbon-only combination roughly 40-fold and sits at a measurably different mass."
+plot_level(pat, 2, paste(formula, "M+2"))
+```
+
+Two things the coarse bar chart could not show are visible here. First, **sulfur's
++2 isotope physically sits apart from every carbon-based explanation**: `13C, 13C`
+sits
+`r { d2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2); round(abs((d2 %>% filter(label=="13C, 13C") %>% pull(mz)) - (d2 %>% filter(label=="34S") %>% pull(mz))), 5) }`
+Da away from `34S`, a large enough gap that they are two genuinely different masses,
+not two names for the same peak. Second, the height difference *is* the sulfur
+signal: `34S` towers over every combination of carbons, nitrogens and oxygens that
+could also reach +2, which is the fine-structure version of the 40-fold excess
+already spotted in the coarse pattern, now with a specific competing hypothesis
+(¹³C¹³C) at a specific, different mass.
+
+## Step 3: would your instrument resolve the candidates?
+
+For every pair of isotopologues at a nominal level, the table below reports the
+Orbitrap resolving power (quoted at m/z 200) at which the two Gaussian peaks would
+show a ~50% valley between them, enough for a centroid algorithm to find two
+separate peaks. Two peaks of equal height separated by 1.5 × FWHM produce that
+valley; translating to the R@200 Orbitrap convention scales as `1/sqrt(m/z)`:
+
+```{r resolving-power}
+R_at_mz <- function(mz, R_ref, mz_ref = 200) R_ref * sqrt(mz_ref / mz)
+
+separations <- function(pattern, level, mz_ref = 200, min_abundance = 0.01) {
+  base <- pattern %>% filter(label == "") %>% pull(mz)
+  d <- pattern %>%
+    mutate(nominal = round(mz - base)) %>%
+    filter(nominal == level, abundance >= min_abundance) %>%
+    mutate(label = ifelse(label == "", "M", label))
+  if (nrow(d) < 2) return(tibble())
+  ix <- combn(seq_len(nrow(d)), 2)
+  map_dfr(seq_len(ncol(ix)), function(i) {
+    ra <- d[ix[1, i], ]; rb <- d[ix[2, i], ]
+    sep_da   <- abs(ra$mz - rb$mz)
+    m_avg    <- (ra$mz + rb$mz) / 2
+    Rreq     <- 1.5 * m_avg / sep_da
+    Rref_req <- Rreq / sqrt(mz_ref / m_avg)
+    tibble(a = ra$label, b = rb$label,
+           abundance_a_pct = round(ra$abundance, 3),
+           abundance_b_pct = round(rb$abundance, 3),
+           separation_Da = round(sep_da, 5),
+           R_at_mz = round(Rreq), R_at200 = round(Rref_req))
+  }) %>% arrange(R_at200)
+}
+
+sep2 <- separations(pat, 2)
+sep2 %>%
+  knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
+                              "separation (Da)", "R at this m/z", "R @200"),
+               caption = "Every pair of M+2 candidates above 0.01% abundance. R@200 is the Orbitrap resolving power at which the two peaks show a ~50% valley.")
+```
+
+```{r sep-text, results = "asis"}
+best <- sep2 %>% slice_min(separation_Da, n = 1) %>% slice(1)
+cat(sprintf("The closest pair (`%s` vs `%s`, %.4f Da apart) needs R ~ %s @200 to resolve as two peaks.",
+            best$a, best$b, best$separation_Da, format(best$R_at200, big.mark = ",")))
+```
+
+## Step 4: simulate the profile
+
+`isotope_profile()` turns the fine-structure table into simulated peak shapes at any
+resolving power. Pass it the *actual* resolving power at this m/z, converting from
+the instrument's `R @ 200` specification with `R_at_mz()`:
+
+```{r sim-profile}
+Rs <- c(15000, 60000, 120000)
+R_label <- function(r) sprintf("R = %s @200", format(r, big.mark = ",", trim = TRUE))
+pat2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2)
+
+prof <- map_dfr(Rs, function(r)
+  isotope_profile(pat2, resolution = R_at_mz(mean(pat2$mz), r)) %>%
+    mutate(R = R_label(r)))
+
+p <- ggplot(prof, aes(mz, intensity)) +
+  geom_area(fill = BLUE, alpha = .25) +
+  geom_line(colour = BLUE, linewidth = .8) +
+  geom_rug(data = pat2, aes(x = mz),
+           inherit.aes = FALSE, sides = "b", colour = "grey30", linewidth = .6) +
+  facet_wrap(~ factor(R, levels = map_chr(Rs, R_label)), ncol = 1, scales = "free_y") +
+  scale_x_continuous(labels = scales::label_number(accuracy = 0.0001)) +
+  labs(x = "m/z (Da)", y = "simulated intensity (% of M)") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(), strip.text = element_text(hjust = 0))
+ggplotly(p, tooltip = c("x", "y"))
+```
+
+At 15,000 the ³⁴S peak is a single, slightly lopsided blob; the ¹³C¹³C shoulder is
+in there but invisible. By 60,000 it is an unmistakable second peak. Fine structure
+is not a yes/no property of a molecule; it is a question you can only answer once
+you know both *what* could be there and *whether your instrument could show it to you*.
+
+## Reference: isotope abundances by element
+
+The tables below give a per-element quick reference for M+1 and M+2, replacing
+hand-annotated spreadsheets. Each row shows the total M+1 and M+2 abundance for
+a single atom of that element and the exact mass shift of the dominant isotopologue;
+those numbers scale linearly with atom count for M+1, non-linearly for M+2.
+
+```{r iso-ref-table}
+ref_elements <- c("C", "H", "N", "O", "S", "Cl", "Br", "Si", "P", "Fe")
+
+iso_ref <- purrr::map_dfr(ref_elements, function(el) {
+  p    <- isotope_fine_pattern(el)
+  base <- p %>% filter(label == "") %>% pull(mz)
+  m1   <- p %>% mutate(nom = round(mz - base)) %>% filter(nom == 1)
+  m2   <- p %>% mutate(nom = round(mz - base)) %>% filter(nom == 2)
+  tibble::tibble(
+    element          = el,
+    M1_pct           = round(sum(m1$abundance), 3),
+    M1_shift_Da      = if (nrow(m1) > 0) round(m1$mz[which.max(m1$abundance)] - base, 5) else NA_real_,
+    M2_pct           = round(sum(m2$abundance), 3),
+    M2_shift_Da      = if (nrow(m2) > 0) round(m2$mz[which.max(m2$abundance)] - base, 5) else NA_real_
+  )
+})
+
+DT::datatable(
+  iso_ref,
+  rownames = FALSE,
+  colnames = c("Element", "M+1 (%)", "M+1 shift (Da)", "M+2 (%)", "M+2 shift (Da)"),
+  caption  = "Per-element M+1 and M+2 data for a single atom. Values scale linearly with atom count for M+1.",
+  extensions = "Buttons",
+  options = list(
+    pageLength = 15,
+    dom        = "Bfrtip",
+    buttons    = list("csv", "excel")
+  )
+)
+```
+
+For a compound with a known formula, `isotope_fine_pattern()` computes the exact
+fine structure table directly. The per-element table above is useful for rapid
+manual reasoning: "five carbons contribute ~5.4% M+1; one sulfur adds 0.75% to
+M+1 but 4.25% to M+2."
+
+## Checklist
+
+1. **Build the pattern** with `isotope_fine_pattern(formula)` and check the coarse
+   sum against what carbon count alone predicts (`nC * 1.07%` for M+1;
+   `choose(nC,2) * 0.0107^2 * 100%` for M+2). A large excess flags S, Cl, Br, Si,
+   or a metal.
+2. **Zoom into the nominal level** that shows the excess to see which isotopologues
+   are present and how far apart they sit in exact mass (in Da, directly on your
+   spectrum's axis).
+3. **Check the gap against your resolving power** with `separations()` before
+   concluding a peak is clean: an unresolved shoulder is not evidence the candidate
+   is absent, only that the instrument couldn't show it.
+4. **Simulate the profile** with `isotope_profile()` at your instrument's actual
+   resolving power (converted from its `R @ reference m/z` spec with `R_at_mz()`)
+   to see, rather than infer, whether the candidates merge.
+
+`plot_level()` and `separations()` are not exported by commonMZ; only
+`isotope_fine_pattern()` and `isotope_profile()` are. Both helpers are short enough
+to copy into your own analysis.
+
+For looking up a delta between two arbitrary peaks against every known adduct,
+fragment and repeating-unit difference in commonMZ, see
+[*Looking up an unexplained mass difference*](mass-difference-lookup.html).

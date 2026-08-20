@@ -7,19 +7,16 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: Reading isotopic fine structure
-        href: articles/isotope-fine-structure-explained.html
-      - text: Simulating isotope fine structure
-        href: articles/isotope-fine-structure-tool.html
+      - text: Isotope fine structure
+        href: articles/isotope-fine-structure.html
       - text: Looking up a mass difference
         href: articles/mass-difference-lookup.html
 
 articles:
   - title: "Isotope patterns"
-    desc: "Understanding and simulating isotope fine structure"
+    desc: "Reading and simulating isotope fine structure"
     contents:
-      - isotope-fine-structure-explained
-      - isotope-fine-structure-tool
+      - isotope-fine-structure
   - title: "Mass differences"
     desc: "Looking up observed mass differences"
     contents:
