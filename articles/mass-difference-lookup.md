@@ -1,16 +1,16 @@
 # Looking up an unexplained mass difference
 
-[*Reading isotopic fine
-structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-explained.md)
-and its companion tool both start from a candidate formula. Most of the
-time you don’t have one yet: you have two peaks in a spectrum and a
-delta between them, and the question is “what family of thing produces a
-gap this size?” An in-source fragment loses a neutral (water, CO₂, a
-whole side chain). A homologous series steps by a repeating unit (CH₂,
-C₂H₄O, a whole PEG monomer). An adduct swaps one attached ion for
-another (Na⁺ for K⁺, formate for acetate). All three are catalogued in
-commonMZ already: `adducts_fragments` and
-`repeating_units_pos`/`repeating_units_neg`, merged by
+[*Isotope fine
+structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure.md)
+starts from a candidate formula. Most of the time you don’t have one
+yet: you have two peaks in a spectrum and a delta between them, and the
+question is “what family of thing produces a gap this size?” An
+in-source fragment loses a neutral (water, CO₂, a whole side chain). A
+homologous series steps by a repeating unit (CH₂, C₂H₄O, a whole PEG
+monomer). An adduct swaps one attached ion for another (Na⁺ for K⁺,
+formate for acetate). All three are catalogued in commonMZ already:
+`adducts_fragments` and `repeating_units_pos`/`repeating_units_neg`,
+merged by
 [`mz_diff_table()`](https://stanstrup.github.io/commonMZ/reference/mz_diff_table.md)
 into one searchable reference:
 
@@ -23,35 +23,10 @@ nrow(diffs)
     [1] 128
 
 Isotope spacings are deliberately not in this table; they depend on
-which formula produced the peaks and belong to [the fine-structure
-tool](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md)
+which formula produced the peaks and belong to [the isotope
+fine-structure
+tool](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure.md)
 instead.
-
-## The map: where do the known differences sit?
-
-Before searching for one specific value, it helps to see the whole
-landscape at once: whether your observed delta lands inside a crowded
-region (several candidate explanations) or an empty one (nothing
-catalogued matches, which is itself useful information). Hover any point
-for its origin:
-
-``` r
-
-p <- ggplot(diffs, aes(mz_diff, category, colour = category,
-                       text = sprintf("%.4f Da | %s\n%s", mz_diff, mode, origin))) +
-  geom_point(size = 2, alpha = .7, position = position_jitter(height = 0.15, seed = 1)) +
-  scale_colour_manual(values = c(`adduct/fragment` = COL[["C"]], `repeating unit` = COL[["S"]]),
-                      guide = "none") +
-  labs(x = "m/z difference (Da)", y = NULL) +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.minor = element_blank(), panel.grid.major.y = element_blank())
-
-plotly::ggplotly(p, tooltip = "text")
-```
-
-Every commonMZ adduct/fragment and repeating-unit mass difference,
-positioned on the same Da axis your spectrum uses. Hover a point for its
-origin.
 
 ## The calculator: search by a difference and a ppm tolerance
 
@@ -67,14 +42,11 @@ an absolute `unit = "Da"` window instead.
 
 ``` r
 
-knitr::kable(mz_diff_lookup(18.0106, tol = 100))   # water, 100 ppm of the delta
+mz_diff_lookup(18.0106, tol = 100) %>%   # water, 100 ppm of the delta
+  mutate(error_ppm = round(error_ppm, 1)) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(pageLength = 10, dom = "t"))
 ```
-
-| mz_diff | category | mode | origin | reference | error_Da | error_ppm |
-|---:|:---|:---|:---|:---|---:|---:|
-| 18.01057 | adduct/fragment | both | ± H2O, water addition/loss | F | -3e-05 | -1.665686 |
-| 18.01057 | repeating unit | pos | H2O, water clusters | F | -3e-05 | -1.665686 |
-| 18.01057 | repeating unit | neg | H2O, water clusters | F | -3e-05 | -1.665686 |
 
 And a delta genuinely ambiguous without more context: several catalogued
 differences sit within a few ppm of each other, so the delta alone does
@@ -83,27 +55,19 @@ an alkane chain, an acrylamide adduct, or neither:
 
 ``` r
 
-knitr::kable(mz_diff_lookup(14.0157, tol = 50))
+mz_diff_lookup(14.0157, tol = 50) %>%
+  mutate(error_ppm = round(error_ppm, 1)) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(pageLength = 10, dom = "t"))
 ```
-
-| mz_diff | category | mode | origin | reference | error_Da | error_ppm |
-|---:|:---|:---|:---|:---|---:|---:|
-| 14.01565 | adduct/fragment | both | ± CH2, alkane chains, waxes, fatty acids, methylation | F | -5e-05 | -3.567428 |
-| 14.01565 | adduct/fragment | both | -\[C3H6ON\] \<-\> -\[C2H4ON\], acrylamide versus iodoacetamide in cysteine alkylation (gels) | T | -5e-05 | -3.567428 |
-| 14.01565 | repeating unit | pos | -\[CH2\]-, alkane chains, waxes, fatty acids, methylation | F | -5e-05 | -3.567428 |
-| 14.01565 | repeating unit | neg | -\[CH2\]-, alkane chains, waxes, fatty acids, methylation | F | -5e-05 | -3.567428 |
 
 ## Working interactively
 
 For browsing without writing R code, type a difference and a ppm
-tolerance and click *Search*; this is the electronic version of the
-`first_iso_diff`-style spreadsheets this tool is descended from. The
-table’s own *Search:* box (top right) still works as usual for browsing
-by category, mode or origin text.
+tolerance and click *Search*. The table’s own *Search:* box (top right)
+still works as usual for browsing by category, mode or origin text.
 
 ``` r
-
-library(DT)
 
 ## the exact DataTables core version DT bundles, for the CDN fallback below --
 ## read from the widget's own dependency metadata rather than hard-coded, so
@@ -209,8 +173,8 @@ full table.
     tighter window than ppm of a large one; if nothing matches, try a
     wider tolerance or an absolute Da window before concluding the delta
     is uncatalogued.
-4.  **If you do have (or can guess) a formula**, switch to [*Simulating
-    isotope fine structure for a
-    formula*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure-tool.md):
+4.  **If you do have (or can guess) a formula**, switch to [*Isotope
+    fine
+    structure*](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure.md):
     an isotope satellite is a different kind of delta than this table
     covers.
