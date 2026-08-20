@@ -279,48 +279,96 @@ in there but invisible. By 60,000 it is an unmistakable second peak. Fine struct
 is not a yes/no property of a molecule; it is a question you can only answer once
 you know both *what* could be there and *whether your instrument could show it to you*.
 
-## Reference: isotope abundances by element
+## Reference: first and second isotope fine structure
 
-The tables below give a per-element quick reference for M+1 and M+2, replacing
-hand-annotated spreadsheets. Each row shows the total M+1 and M+2 abundance for
-a single atom of that element and the exact mass shift of the dominant isotopologue;
-those numbers scale linearly with atom count for M+1, non-linearly for M+2.
+The charts below position every M+1 (first isotope) and M+2 (second isotope)
+isotopologue by its mass offset from the **carbon reference peak** — ¹³C for M+1,
+¹³C,¹³C for M+2 — normalized so the tallest bar reaches 1. This shows at a glance
+which non-carbon elements contribute and how far they sit from the carbon signal on
+the m/z axis.
 
-```{r iso-ref-table}
-ref_elements <- c("C", "H", "N", "O", "S", "Cl", "Br", "Si", "P", "Fe")
+```{r iso-ref-helper}
+#| include: false
+iso_ref_data <- function(pattern, level, ref_label) {
+  base <- pattern %>% filter(label == "") %>% pull(mz)
+  d <- pattern %>%
+    mutate(nominal = round(mz - base)) %>%
+    filter(nominal == level)
+  ref_mz <- d %>% filter(label == ref_label) %>% pull(mz)
+  if (length(ref_mz) == 0) ref_mz <- d %>% slice_max(abundance, n = 1) %>% pull(mz)
+  d %>%
+    mutate(offset    = round(mz - ref_mz, 5),
+           rel_abund = abundance / max(abundance)) %>%
+    arrange(offset)
+}
 
-iso_ref <- purrr::map_dfr(ref_elements, function(el) {
-  p    <- isotope_fine_pattern(el)
-  base <- p %>% filter(label == "") %>% pull(mz)
-  m1   <- p %>% mutate(nom = round(mz - base)) %>% filter(nom == 1)
-  m2   <- p %>% mutate(nom = round(mz - base)) %>% filter(nom == 2)
-  tibble::tibble(
-    element          = el,
-    M1_pct           = round(sum(m1$abundance), 3),
-    M1_shift_Da      = if (nrow(m1) > 0) round(m1$mz[which.max(m1$abundance)] - base, 5) else NA_real_,
-    M2_pct           = round(sum(m2$abundance), 3),
-    M2_shift_Da      = if (nrow(m2) > 0) round(m2$mz[which.max(m2$abundance)] - base, 5) else NA_real_
-  )
-})
-
-DT::datatable(
-  iso_ref,
-  rownames = FALSE,
-  colnames = c("Element", "M+1 (%)", "M+1 shift (Da)", "M+2 (%)", "M+2 shift (Da)"),
-  caption  = "Per-element M+1 and M+2 data for a single atom. Values scale linearly with atom count for M+1.",
-  extensions = "Buttons",
-  options = list(
-    pageLength = 15,
-    dom        = "Bfrtip",
-    buttons    = list("csv", "excel")
-  )
-)
+plot_iso_ref <- function(d, ref_label, level_label) {
+  p <- ggplot(d, aes(offset, rel_abund,
+                     text = paste0(label, "\noffset: ", offset, " Da\n",
+                                   round(abundance, 4), "% of M"))) +
+    geom_segment(aes(xend = offset, y = 0, yend = rel_abund),
+                 linewidth = 1.5, lineend = "round") +
+    geom_text(data = filter(d, rel_abund > 0.005),
+              aes(label = label),
+              angle = 90, hjust = -0.1, size = 3, colour = "grey20") +
+    scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .4))) +
+    labs(x = paste0("mass offset from ", ref_label, " (Da)"),
+         y = paste0("relative abundance within M+", level_label)) +
+    theme_minimal(base_size = 12) +
+    theme(panel.grid.minor = element_blank())
+  ggplotly(p, tooltip = "text")
+}
 ```
 
-For a compound with a known formula, `isotope_fine_pattern()` computes the exact
-fine structure table directly. The per-element table above is useful for rapid
-manual reasoning: "five carbons contribute ~5.4% M+1; one sulfur adds 0.75% to
-M+1 but 4.25% to M+2."
+### First isotope (M+1)
+
+```{r first-iso-chart}
+#| fig-cap: "M+1 fine structure: each bar is one isotopologue; x-axis is mass offset from ¹³C. The carbon peak sits at zero by definition. Hover for exact values."
+m1 <- iso_ref_data(pat, 1, "13C")
+plot_iso_ref(m1, "¹³C", 1)
+```
+
+```{r first-iso-table}
+m1 %>%
+  select(label, offset, abundance) %>%
+  rename(isotopologue              = label,
+         `offset from 13C (Da)`   = offset,
+         `abundance (% of M)`     = abundance) %>%
+  knitr::kable(digits = 5,
+               caption = paste("M+1 isotopologues of", formula, "by mass offset from ¹³C."))
+```
+
+```{r first-iso-diff}
+separations(pat, 1) %>%
+  knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
+                              "separation (Da)", "R at this m/z", "R @200"),
+               caption = "Pairwise separations between M+1 candidates above 0.01% abundance.")
+```
+
+### Second isotope (M+2)
+
+```{r second-iso-chart}
+#| fig-cap: "M+2 fine structure: x-axis is mass offset from ¹³C,¹³C. Elements with lower exact mass than two carbons (S, Cl, Br...) appear at negative offsets. Hover for exact values."
+m2 <- iso_ref_data(pat, 2, "13C, 13C")
+plot_iso_ref(m2, "¹³C,¹³C", 2)
+```
+
+```{r second-iso-table}
+m2 %>%
+  select(label, offset, abundance) %>%
+  rename(isotopologue                   = label,
+         `offset from 13C,13C (Da)`    = offset,
+         `abundance (% of M)`          = abundance) %>%
+  knitr::kable(digits = 5,
+               caption = paste("M+2 isotopologues of", formula, "by mass offset from ¹³C,¹³C."))
+```
+
+```{r second-iso-diff}
+separations(pat, 2) %>%
+  knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
+                              "separation (Da)", "R at this m/z", "R @200"),
+               caption = "Pairwise separations between M+2 candidates above 0.01% abundance.")
+```
 
 ## Checklist
 
