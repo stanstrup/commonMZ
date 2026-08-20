@@ -48,10 +48,10 @@ instrument would actually resolve.
 ## Chlorine's M+2: an abundance effect
 
 Chlorine has two stable isotopes: ³⁵Cl (75.8% natural abundance, monoisotopic) and
-³⁷Cl (24.2%). A molecule with two chlorines -- like **diclofenac** (C₁₄H₁₁Cl₂NO₂)
--- has roughly a 37% chance of carrying exactly one ³⁷Cl, placing that molecule at
+³⁷Cl (24.2%). A molecule with two chlorines, like **diclofenac** (C₁₄H₁₁Cl₂NO₂),
+has roughly a 37% chance of carrying exactly one ³⁷Cl, placing that molecule at
 M+2. The monoisotopic M peak is simultaneously thinned out as ions scatter across
-M+1, M+2, M+3 and M+4 -- so M+2 ends up at ~65% of M, an excess so large that no
+M+1, M+2, M+3 and M+4; M+2 ends up at ~65% of M, an excess so large that no
 fine-structure argument is required to recognise it.
 
 ```{r diclofenac-coarse}
@@ -282,8 +282,8 @@ you know both *what* could be there and *whether your instrument could show it t
 ## Reference: first and second isotope fine structure
 
 The charts below position every M+1 (first isotope) and M+2 (second isotope)
-isotopologue by its mass offset from the **carbon reference peak** — ¹³C for M+1,
-¹³C,¹³C for M+2 — normalized so the tallest bar reaches 1. This shows at a glance
+isotopologue by its mass offset from the **carbon reference peak** (¹³C for M+1;
+¹³C,¹³C for M+2), normalized so the tallest bar reaches 1. This shows at a glance
 which non-carbon elements contribute and how far they sit from the carbon signal on
 the m/z axis.
 

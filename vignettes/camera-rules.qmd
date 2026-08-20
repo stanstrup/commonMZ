@@ -1,0 +1,138 @@
+---
+title: "Using commonMZ rules with CAMERA"
+subtitle: "Annotating adducts and fragments in an XCMS peak table"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: true
+    fig-width: 8
+    fig-height: 5
+    theme: cosmo
+execute:
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    dev: svglite
+vignette: >
+  %\VignetteIndexEntry{Using commonMZ rules with CAMERA}
+  %\VignetteEngine{quarto::format}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup}
+#| include: false
+library(commonMZ)
+library(dplyr)
+library(DT)
+```
+
+CAMERA's `findAdducts()` function needs a table of adduct and fragment rules: one
+row per rule, with columns `name`, `nmol`, `charge`, `massdiff`, `oidscore`,
+`quasi`, and `ips`. `MZ_CAMERA()` builds exactly that table from commonMZ's curated
+`adducts_fragments` dataset. This vignette shows what the table looks like, how to
+customise it, and where it plugs into a CAMERA workflow.
+
+## Building the rules table
+
+`MZ_CAMERA()` accepts `"pos"`, `"neg"`, or `"both"` (which returns positive and
+negative rules combined). A `warn_clash` argument flags pairs of rules whose mass
+differences are indistinguishable within a given ppm tolerance:
+
+```{r rules-pos}
+rules_pos <- MZ_CAMERA(mode = "pos", warn_clash = TRUE, clash_ppm = 5)
+nrow(rules_pos)
+```
+
+Browse the full table: sort any column or use the search box to filter by name or
+mass difference.
+
+```{r rules-pos-table}
+#| echo: false
+rules_pos %>%
+  mutate(massdiff = round(massdiff, 4)) %>%
+  datatable(rownames = FALSE,
+            options = list(pageLength = 15, order = list(list(3, "asc"))))
+```
+
+## The NH₄⁺ clash
+
+A common clash in positive mode: `[M+NH4]+` and neutral loss of NH₃ produce the
+same 17.027 Da difference and cannot be distinguished on mass alone. The warning
+from `warn_clash = TRUE` flags this. If NH₄⁺ adducts are rare in your matrix
+(common for many LC-MS setups), remove them before passing the rules to CAMERA:
+
+```{r remove-nh4}
+rules_pos_clean <- rules_pos %>% filter(name != "[M+NH4]+")
+nrow(rules_pos_clean)
+```
+
+## Negative mode
+
+```{r rules-neg}
+rules_neg <- MZ_CAMERA(mode = "neg", warn_clash = TRUE, clash_ppm = 5)
+```
+
+```{r rules-neg-table}
+#| echo: false
+rules_neg %>%
+  mutate(massdiff = round(massdiff, 4)) %>%
+  datatable(rownames = FALSE,
+            options = list(pageLength = 15, order = list(list(3, "asc"))))
+```
+
+## Plugging into CAMERA
+
+Pass the rules table as the `rules` argument to `findAdducts()`. CAMERA requires a
+plain `data.frame`, not a tibble, so convert with `as.data.frame()`:
+
+```{r camera-sketch}
+#| eval: false
+library(CAMERA)
+
+# after xsAnnotate() and groupFWHM() / groupCorr() / findIsotopes():
+cam_pos <- findAdducts(cam_pos_iso,
+                       ppm       = 10,
+                       mzabs     = 0.01,
+                       multiplier = 4,
+                       polarity  = "positive",
+                       rules     = as.data.frame(rules_pos_clean))
+
+cam_neg <- findAdducts(cam_neg_iso,
+                       ppm       = 10,
+                       mzabs     = 0.01,
+                       multiplier = 4,
+                       polarity  = "negative",
+                       rules     = as.data.frame(rules_neg))
+```
+
+`multiplier` controls the maximum number of molecules per ion cluster CAMERA will
+consider; 3 or 4 covers most practical cases. `ppm` and `mzabs` set the matching
+tolerance: CAMERA applies whichever window is wider, so for high-resolution data
+set `mzabs` to something small (0.005 or 0.01) and rely on `ppm`.
+
+## Checking annotation frequency
+
+After running `findAdducts()`, it is useful to see which rules actually fired.
+Rules that appear zero times are either absent from your sample or the tolerance
+was too tight:
+
+```{r freq-sketch}
+#| eval: false
+rules_count <- cam_pos@annoID[, "ruleID"] %>%
+  factor(levels = seq_len(nrow(rules_pos_clean))) %>%
+  table() %>%
+  as.data.frame() %>%
+  setNames(c("ruleID", "n")) %>%
+  mutate(name = rules_pos_clean$name[as.integer(ruleID)]) %>%
+  arrange(desc(n))
+
+head(rules_count, 15)
+```
+
+If you want to browse the mass differences in this table against a broader reference
+(including repeating units), see
+[*Looking up an unexplained mass difference*](mass-difference-lookup.html).

@@ -165,7 +165,7 @@ htmltools::tagList(
 ```
 
 The search only re-filters when you click *Search* (not on every keystroke), so
-typing a value never triggers a redraw mid-edit -- click once you've entered both
+typing a value never triggers a redraw mid-edit; click once you've entered both
 numbers, or press *Clear* to go back to the full table.
 
 ## Checklist

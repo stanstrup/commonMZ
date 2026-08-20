@@ -1,0 +1,189 @@
+---
+title: "Looking up an isotopologue offset"
+subtitle: "I see a satellite peak at a known distance from M+1 or M+2. Which element caused it?"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: true
+    fig-width: 8
+    fig-height: 4.5
+    theme: cosmo
+execute:
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    dev: svglite
+vignette: >
+  %\VignetteIndexEntry{Looking up an isotopologue offset}
+  %\VignetteEngine{quarto::format}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup}
+#| include: false
+library(commonMZ)
+library(dplyr)
+library(purrr)
+library(DT)
+library(htmltools)
+
+## Elements to include in the reference table
+REF_ELEMENTS <- c("C", "H", "N", "O", "S", "P", "F", "Cl", "Br", "I",
+                   "Si", "B", "Se", "Fe", "Ca", "K", "Na", "Mg", "Zn", "Cu")
+```
+
+When you measure a high-resolution spectrum and see a small satellite peak a few
+millidaltons away from the main M+1 or M+2 peak, the question is: what isotope
+substitution sits there? This page provides a precomputed reference of every
+isotopologue offset for common elements and a search that works exactly like the
+[mass-difference lookup](mass-difference-lookup.html): enter an observed offset and
+a tolerance, click **Search**.
+
+Offsets are reported in two ways:
+
+* **offset from M** (Da): the exact mass shift from the monoisotopic peak, i.e.
+  the number that `isotope_fine_pattern()` gives you in its `mz` column minus the
+  monoisotopic `mz`.
+* **offset from ¹³C** (for M+1) or **offset from ¹³C,¹³C** (for M+2): how far
+  the isotopologue sits from the dominant carbon reference within that nominal level.
+  This is what you read off the m/z axis when you zoom into the M+1 or M+2 region
+  of a carbon-containing compound.
+
+```{r build-ref}
+## Build one row per element × isotopologue combination for M+1 and M+2
+ref_raw <- map_dfr(REF_ELEMENTS, function(el) {
+  p <- tryCatch(isotope_fine_pattern(el), error = function(e) NULL)
+  if (is.null(p) || nrow(p) == 0) return(NULL)
+  base <- p %>% filter(label == "") %>% pull(mz)
+  if (length(base) == 0) return(NULL)
+  p %>%
+    filter(label != "") %>%
+    mutate(
+      element  = el,
+      nominal  = round(mz - base),
+      offset_M = round(mz - base, 6)
+    ) %>%
+    filter(nominal %in% 1:2) %>%
+    select(element, level = nominal, isotopologue = label, offset_M, abundance)
+})
+
+## Reference masses: 13C for M+1, "13C, 13C" for M+2
+c13_m1 <- ref_raw %>%
+  filter(element == "C", level == 1, isotopologue == "13C") %>%
+  pull(offset_M)
+c13c13_m2 <- ref_raw %>%
+  filter(element == "C", level == 2, isotopologue == "13C, 13C") %>%
+  pull(offset_M)
+
+offsets <- ref_raw %>%
+  mutate(
+    offset_from_ref = case_when(
+      level == 1 & length(c13_m1)    > 0 ~ round(offset_M - c13_m1[1],    6),
+      level == 2 & length(c13c13_m2) > 0 ~ round(offset_M - c13c13_m2[1], 6),
+      TRUE ~ NA_real_
+    ),
+    reference = if_else(level == 1, "13C", "13C,13C"),
+    level     = paste0("M+", level),
+    abundance = round(abundance, 4)
+  ) %>%
+  arrange(level, offset_from_ref) %>%
+  select(level, element, isotopologue, `offset from M (Da)` = offset_M,
+         reference, `offset from ref (Da)` = offset_from_ref,
+         `abundance (% of M)` = abundance)
+```
+
+## Search by observed offset
+
+Type the offset you measured in the spectrum and a tolerance in ppm (of the offset
+value, the same convention as `mz_diff_lookup()`). Click **Search**, then **Clear**
+to reset.
+
+```{r offset-interactive}
+## DataTables core version bundled with DT, for the CDN fallback below
+probe_widget      <- datatable(data.frame(x = 1))
+DT_CORE_VERSION   <- Filter(function(d) d$name == "dt-core",
+                             probe_widget$dependencies)[[1]]$version
+
+tagList(
+  tags$div(
+    style = "display:flex; gap:1em; align-items:end; margin-bottom:0.75em; flex-wrap:wrap;",
+    tags$div(
+      tags$label("offset (Da)", `for` = "iso_off"),
+      tags$br(),
+      tags$input(id = "iso_off", type = "number", step = "any",
+                 class = "form-control", style = "width:12em;")
+    ),
+    tags$div(
+      tags$label("tolerance (ppm)", `for` = "iso_ppm"),
+      tags$br(),
+      tags$input(id = "iso_ppm", type = "number", step = "any", value = "50",
+                 class = "form-control", style = "width:10em;")
+    ),
+    tags$div(
+      tags$label("column to search", `for` = "iso_col"),
+      tags$br(),
+      tags$select(id = "iso_col", class = "form-control", style = "width:16em;",
+        tags$option(value = "3", "offset from M (Da)",     selected = NA),
+        tags$option(value = "5", "offset from ref (Da)")
+      )
+    ),
+    tags$button("Search", id = "iso_go",    type = "button", class = "btn btn-primary"),
+    tags$button("Clear",  id = "iso_clear", type = "button", class = "btn btn-outline-secondary")
+  ),
+  datatable(offsets, rownames = FALSE, elementId = "iso_table",
+            options = list(pageLength = 15, order = list(list(5, "asc")))),
+  tags$script(HTML(sprintf("
+    if (typeof $ === 'undefined' || typeof $.fn.dataTable === 'undefined') {
+      document.write('<script src=\"https://cdn.datatables.net/%s/js/jquery.dataTables.min.js\"><\\/script>');
+    }
+    $(document).ready(function() {
+      var $tbl = $('#iso_table').find('table').first();
+      if (!$tbl.length) return;
+      var dt = $tbl.DataTable();
+      var target = null, tolDa = null, colIdx = 3;
+
+      $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+        if (settings.nTable !== $tbl.get(0)) return true;
+        if (target === null) return true;
+        var val = parseFloat(data[colIdx]);
+        return !isNaN(val) && Math.abs(val - target) <= tolDa;
+      });
+
+      $('#iso_go').on('click', function() {
+        colIdx = parseInt($('#iso_col').val()) - 1;
+        var off = parseFloat(document.getElementById('iso_off').value);
+        var ppm = parseFloat(document.getElementById('iso_ppm').value);
+        if (isNaN(off) || isNaN(ppm)) { target = null; }
+        else { target = off; tolDa = Math.abs(off) * ppm / 1e6; }
+        dt.draw();
+      });
+      $('#iso_clear').on('click', function() {
+        document.getElementById('iso_off').value = '';
+        target = null;
+        dt.draw();
+      });
+    });
+  ", DT_CORE_VERSION)))
+)
+```
+
+The search re-filters only when you click **Search**. Choose whether to search by
+**offset from M** (what `isotope_fine_pattern()` gives directly) or **offset from
+ref** (what you read off the m/z axis when zoomed into the M+1 or M+2 region).
+
+## How to use these offsets
+
+1. Zoom into the M+1 or M+2 region of your spectrum and measure the distance
+   between the main carbon peak (¹³C at M+1; ¹³C,¹³C at M+2) and the satellite.
+2. Enter that distance in the **offset from ref** search above with a tolerance
+   matching your instrument's mass accuracy.
+3. Check abundance: if the satellite is smaller than the predicted abundance, the
+   element may be present but not resolved; if it is absent entirely, the element
+   is not present (or the resolving power was insufficient).
+
+For a formula-specific analysis — how large the satellite should be, what resolving
+power you need to see it — see [*Isotope fine structure*](isotope-fine-structure.html).
