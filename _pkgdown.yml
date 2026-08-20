@@ -2,6 +2,18 @@ url: https://stanstrup.github.io/commonMZ/
 template:
   bootstrap: 5
 
+navbar:
+  components:
+    articles:
+      text: Articles
+      menu:
+      - text: Reading isotopic fine structure
+        href: articles/isotope-fine-structure-explained.html
+      - text: Simulating isotope fine structure
+        href: articles/isotope-fine-structure-tool.html
+      - text: Looking up a mass difference
+        href: articles/mass-difference-lookup.html
+
 articles:
   - title: "Isotope patterns"
     desc: "Understanding and simulating isotope fine structure"
