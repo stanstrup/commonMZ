@@ -25,6 +25,7 @@ vignette: >
 ---
 
 ```{r setup}
+#| include: false
 library(commonMZ)
 library(dplyr)
 library(purrr)

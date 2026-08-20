@@ -25,6 +25,7 @@ vignette: >
 ---
 
 ```{r setup}
+#| include: false
 library(commonMZ)
 library(dplyr)
 library(purrr)
@@ -166,7 +167,7 @@ pat2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2)
 prof <- map_dfr(Rs, function(r)
   isotope_profile(pat2, resolution = R_at_mz(mean(pat2$mz), r)) %>%
     mutate(R = R_label(r)))
-ticks <- pat2 %>% filter(abundance > 0.5)
+ticks <- pat2
 
 p <- ggplot(prof, aes(mz, intensity)) +
   geom_area(fill = BLUE, alpha = .25) +
