@@ -76,26 +76,26 @@ In the tables each entry references refers to the following table:
 | B | Applied Biosystems | Appendix D: Commonly Observed Background Ions — Mariner Biospectrometry Workstation Users Guide |
 | C | New Objective | [Common Background Ions for Electrospray](http://www.newobjective.com/downloads/technotes/PV-3.pdf) (Technical Note) |
 | D | Sigma-Aldrich | Chemical formulas for Tween, Triton, and reduced Triton from the [Sigma-Aldrich catalogue](http://www.sigmaaldrich.com) |
-| E | Thermo Corporation, Mahn, B. | [List of LC/MS contaminants](http://www.abrf.org/index.cfm/list.msg/66994) |
-| F | Tong, H.; Bell, D.; Tabei, K.; Siegel, M.M. | J. Am. Soc. Mass Spectrom., 10 (1999) 1174 |
-| G | Andersen, J.S.; Kuester, B.; Podtelejnikov, A.; Mortz, E.; Mann, M. | Proc. 47th ASMS Conf. Mass Spectrom. Allied Topics, 1999, Dallas, TX |
-| H | Keller, B.O.; Li, L. | J. Am. Soc. Mass Spectrom., 11 (2000) 88 |
-| I | Keller, B.O.; Li, L.; Keller, H. | [MaClust: matrix cluster mass prediction](http://www.chem.ualberta.ca/~liweb/links/MaClust.htm) |
-| J | Harris, W.A.; Janecki, D.J.; Reilly, J.P. | Rapid Commun. Mass Spectrom., 16 (2002) 1714 |
-| K | Keller, B.O.; Sui, J.; Young, A.B.; Whittal, R.M. | Unpublished results; [ESI background ions — Tween, Triton, PEGs, PPGs](http://www.chem.ualberta.ca/~massspec/es_ions.pdf) |
+| E | Thermo Corporation; Mahn, B. | [List of LC/MS contaminants](http://www.abrf.org/index.cfm/list.msg/66994) |
+| F | Tong, H.; Bell, D.; Tabei, K.; Siegel, M. M. | J. Am. Soc. Mass Spectrom., 10 (1999) 1174 |
+| G | Andersen, J. S.; Kuester, B.; Podtelejnikov, A.; Mortz, E.; Mann, M. | Proc. 47th ASMS Conf. Mass Spectrom. Allied Topics, 1999, Dallas, TX |
+| H | Keller, B. O.; Li, L. | J. Am. Soc. Mass Spectrom., 11 (2000) 88 |
+| I | Keller, B. O.; Li, L.; Keller, H. | [MaClust: matrix cluster mass prediction](http://www.chem.ualberta.ca/~liweb/links/MaClust.htm) |
+| J | Harris, W. A.; Janecki, D. J.; Reilly, J. P. | Rapid Commun. Mass Spectrom., 16 (2002) 1714 |
+| K | Keller, B. O.; Sui, J.; Young, A. B.; Whittal, R. M. | Unpublished results; [ESI background ions — Tween, Triton, PEGs, PPGs](http://www.chem.ualberta.ca/~massspec/es_ions.pdf) |
 | L | Schlosser, A.; Volkmer-Engert, R. | J. Mass Spectrom., 38 (2003) 523 |
-| M | Tran, J.C.; Doucette, A.A. | J. Am. Soc. Mass Spectrom., 17 (2006) 652 |
-| N | Verge, K.M.; Agnes, G.R. | J. Am. Soc. Mass Spectrom., 13 (2002) 901 |
+| M | Tran, J. C.; Doucette, A. A. | J. Am. Soc. Mass Spectrom., 17 (2006) 652 |
+| N | Verge, K. M.; Agnes, G. R. | J. Am. Soc. Mass Spectrom., 13 (2002) 901 |
 | O | Paez, A.; Howe, A. | Canadian Chemical News, 56 (2004) 14 |
-| P | Purves, R.W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
-| Q | Gibson, C.R.; Brown, C.M. | J. Am. Soc. Mass Spectrom., 14 (2003) 14 |
-| R | Beavis, R.C.; Chait, B.T. | Anal. Chem., 62 (1990) 1836 |
+| P | Purves, R. W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
+| Q | Gibson, C. R.; Brown, C. M. | J. Am. Soc. Mass Spectrom., 14 (2003) 14 |
+| R | Beavis, R. C.; Chait, B. T. | Anal. Chem., 62 (1990) 1836 |
 | S | Guzzetta, A. | [ionsource.com](http://www.ionsource.com) — Carbohydrate marker ions |
-| T | Clauser, K.R.; Hall, S.C.; Smith, D.M.; Webb, J.W.; Andrews, L.E.; Tran, H.M.; Epstein, L.B.; Burlingame, A.L. | Proc. Natl. Acad. Sci. USA, 92 (1995) 5072; [prospector.ucsf.edu](http://prospector.ucsf.edu) |
-| U | Macha, S.F.; Limbach, P.A.; Hanton, S.D.; Owens, K.G. | J. Am. Soc. Mass Spectrom., 12 (2001) 732 |
-| V | Pleasance, S.; Thibault, P.; Sim, P.G.; Boyd, R.K. | Rapid Commun. Mass Spectrom., 5 (1991) 307 |
-| W | Xia, Y.-Q.; Patel, S.; Bakhtiar, R.; Franklin, R.B.; Doss, G.A. | J. Am. Soc. Mass Spectrom., 16 (2005) 417 |
-| X | Guo, X.; Bruins, A.P.; Covey, T.R. | Rapid Commun. Mass Spectrom., 20 (2006) 3145 |
-| Y | Ijames, C.F.; Dutky, R.C.; Fales, H.M. | J. Am. Soc. Mass Spectrom., 6 (1995) 1226 |
+| T | Clauser, K. R.; Hall, S. C.; Smith, D. M.; Webb, J. W.; Andrews, L. E.; Tran, H. M.; Epstein, L. B.; Burlingame, A. L. | Proc. Natl. Acad. Sci. USA, 92 (1995) 5072; [prospector.ucsf.edu](http://prospector.ucsf.edu) |
+| U | Macha, S. F.; Limbach, P. A.; Hanton, S. D.; Owens, K. G. | J. Am. Soc. Mass Spectrom., 12 (2001) 732 |
+| V | Pleasance, S.; Thibault, P.; Sim, P. G.; Boyd, R. K. | Rapid Commun. Mass Spectrom., 5 (1991) 307 |
+| W | Xia, Y.; Patel, S.; Bakhtiar, R.; Franklin, R. B.; Doss, G. A. | J. Am. Soc. Mass Spectrom., 16 (2005) 417 |
+| X | Guo, X.; Bruins, A. P.; Covey, T. R. | Rapid Commun. Mass Spectrom., 20 (2006) 3145 |
+| Y | Ijames, C. F.; Dutky, R. C.; Fales, H. M. | J. Am. Soc. Mass Spectrom., 6 (1995) 1226 |
 | Z | Hesse, M.; Meier, H.; Zeeh, B. | Spektroskopische Methoden in der organischen Chemie, Georg Thieme Verlag, Stuttgart, 3rd ed. 1987, ISBN: 3-13-576103-7 |
-| AA | Jan Stanstrup | — |
+| AA | Stanstrup, J. | — |
