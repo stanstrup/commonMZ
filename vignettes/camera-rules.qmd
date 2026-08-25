@@ -333,6 +333,7 @@ node_y <- unname(unlist(lapply(col_nodes, calc_y, flows = node_flow)))
 
 plotly::plot_ly(
   type = "sankey", arrangement = "fixed",
+  height = 800,
   node = list(
     label     = all_nodes,
     x         = node_x,
@@ -342,6 +343,6 @@ plotly::plot_ly(
   ),
   link = list(source = links$source, target = links$target, value = links$value)
 ) %>%
-  plotly::layout(height = 800, margin = list(r = 160)) %>%
+  plotly::layout(margin = list(r = 160)) %>%
   htmlwidgets::onRender(paste(readLines("sankey-label-fix.js"), collapse = "\n"))
 ```
