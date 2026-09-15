@@ -7,8 +7,10 @@ Author: Jan Stanstrup
 Maintainer: Jan Stanstrup <stanstrup@gmail.com>
 Description: A collection of tables with common adducts, fragments and contaminations.
 Depends: R (>= 3.0)
-Imports: readr, readxl, magrittr, dplyr, tidyr, tibble, enviPat
-Suggests: knitr, quarto, ggplot2, DT, htmltools, plotly, scales, svglite, purrr, RefManageR
+Imports: readr, readxl, magrittr, dplyr, tidyr, tibble, enviPat,
+    CAMERA, ggplot2, plotly, RColorBrewer
+Suggests: knitr, quarto, ggrepel, DT, htmltools, scales, svglite, purrr,
+    RefManageR, ggsankey
 Config/Needs/website: RefManageR
 License: MIT + file LICENSE
 URL: https://stanstrup.github.io/commonMZ/, https://github.com/stanstrup/commonMZ
@@ -17,5 +19,6 @@ biocViews: MassSpectrometry, Metabolomics
 VignetteBuilder: knitr, quarto
 SystemRequirements: Quarto (>= 1.3); Quarto CLI (https://quarto.org)
 Additional_repositories: https://bioconductor.org/packages/release/bioc
+Remotes: davidsjoberg/ggsankey
 Encoding: UTF-8
 Config/roxygen2/version: 8.0.0

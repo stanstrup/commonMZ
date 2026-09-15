@@ -27,8 +27,6 @@ vignette: >
 #| include: false
 library(commonMZ)
 library(dplyr)
-library(DT)
-library(ggplot2)
 ```
 
 ```{r fix-dt-core}
@@ -45,14 +43,14 @@ CAMERA's `findAdducts()` function needs a table of adduct and fragment rules: on
 The seven columns are defined as follows. `name`, `nmol`, `charge`, and `massdiff` are described in Kuhl et al. (2012); `oidscore`, `quasi`, and `ips` are documented only in the CAMERA source code.
 
 | Column | Type | Meaning |
-|---|---|---|
+|------------------------|------------------------|------------------------|
 | `name` | character | Ion label (e.g. `[M+H]+`). Display only — never read by the algorithm. |
 | `nmol` | integer | Molecules per ion (1 = monomer, 2 = dimer). Divides m/z into neutral mass: `(|charge| × m/z − massdiff) / nmol`. |
 | `charge` | integer | Signed ion charge. Multiplied by m/z in the mass formula. |
 | `massdiff` | numeric (Da) | Mass added by the adduct or lost as a neutral fragment. |
 | `oidscore` | integer | Groups rules that share the same adduct formula but differ in `nmol` (e.g. `[M+H]+` and `[2M+H]+`). CAMERA uses it to automatically extend a monomer match to the corresponding dimer/trimer hypotheses. |
 | `quasi` | 0 / 1 | **Mandatory ion flag.** If no rule with `quasi = 1` appears in a candidate group, CAMERA discards the whole group. Typically only the primary protonated ion carries `quasi = 1`. |
-| `ips` | numeric | **Ion/adduct peak score** (~0.25–1). Confidence weight per rule. When a peak fits multiple competing mass hypotheses, CAMERA sums `ips` within each group and discards the lower-scoring one. Typical values: 1.0 for `[M+H]+`, 0.5 for multiply-charged ions, 0.25 for neutral losses. |
+| `ips` | numeric | **Ion/adduct peak score** (\~0.25–1). Confidence weight per rule. When a peak fits multiple competing mass hypotheses, CAMERA sums `ips` within each group and discards the lower-scoring one. Typical values: 1.0 for `[M+H]+`, 0.5 for multiply-charged ions, 0.25 for neutral losses. |
 
 ## Building the rules table
 
@@ -202,156 +200,17 @@ DT::datatable(
 
 After annotation, count how often each rule was assigned. Rules that fired zero times are either absent from this matrix or could not be resolved within the tolerance.
 
+We could do a pie chart:
+
 ```{r rules-freq}
 #| code-fold: true
-rules_count <- cam_result@annoID[, "ruleID"] %>%
-  factor(levels = seq_len(nrow(rules_pos_clean))) %>%
-  table() %>%
-  as.data.frame() %>%
-  setNames(c("ruleID", "n")) %>%
-  mutate(name = rules_pos_clean$name[as.integer(ruleID)]) %>%
-  arrange(desc(n))
-
-total <- sum(rules_count$n[rules_count$n > 0])
-pie_data <- rules_count %>%
-  filter(n > 0) %>%
-  mutate(name = factor(name, levels = name)) %>%
-  mutate(
-    cumend   = cumsum(n),
-    cumstart = cumend - n,
-    mid      = (cumstart + cumend) / 2,
-    on_right = mid / total < 0.5
-  )
-
-set1_no_yellow <- RColorBrewer::brewer.pal(9, "Set1")
-set1_no_yellow <- set1_no_yellow[set1_no_yellow != "#FFFF33"]
-pie_colors <- rep(set1_no_yellow, length.out = nrow(pie_data))
-
-ggplot(pie_data) +
-  geom_col(aes(x = 0.5, y = n, fill = name),
-           width = 1, color = "white", linewidth = 0.3, show.legend = FALSE,
-           position = position_stack(reverse = TRUE)) +
-  geom_segment(aes(x = 1.0, xend = 1.2, y = mid, yend = mid),
-               linewidth = 0.3, color = "grey50") +
-  geom_text(aes(x = 1.25, y = mid, label = name,
-                hjust = ifelse(on_right, 0, 1)),
-            size = 3) +
-  scale_fill_manual(values = setNames(pie_colors, levels(pie_data$name))) +
-  coord_radial(theta = "y", start = 0, expand = FALSE) +
-  theme_void()
+camera_pie(cam_result)
 ```
+
+Or a fancy Sankey chart:
 
 ```{r rules-sankey}
 #| code-fold: true
-iso_of <- function(x) sub("^.*?\\[M([^\\]]*)\\].*$", "[M\\1]", x, perl = TRUE)
-
-sk_adducts <- peaklist %>%
-  filter(trimws(adduct) != "") %>%
-  mutate(rule_name = trimws(sub("\\s+[0-9.]+$", "", adduct))) %>%
-  left_join(rules_pos_clean %>% select(name, nmol), by = c("rule_name" = "name")) %>%
-  filter(!is.na(nmol)) %>%
-  mutate(
-    mult     = paste0("[", nmol, "M]"),
-    iso_type = ifelse(trimws(isotopes) == "", "no isotope annotation", iso_of(isotopes))
-  )
-
-# Isotope-only peaks (no adduct): [M+1],[M+2]… satellite peaks → terminal at col 2.
-# Exclude [M] iso-only peaks: they have no adduct so cannot flow to nM/adducts,
-# and merging them into the [M] node would break flow conservation.
-sk_iso_only <- peaklist %>%
-  filter(trimws(isotopes) != "", trimws(adduct) == "") %>%
-  mutate(iso_type = iso_of(isotopes)) %>%
-  filter(iso_type != "[M]")
-
-# Flow: All annotations → iso_type → nM multiplicity → adduct rule
-#
-# [M+1],[M+2]… are terminal: isotope satellites stop at col 2.
-# [M] and "no isotope annotation" (adduct peaks only) flow on to nM → adducts.
-#
-#   col 1 (x=0.01): All annotations
-#   col 2 (x=0.33): no isotope annotation | [M] | [M+1] | [M+2] | …
-#   col 3 (x=0.66): [1M] | [2M] | …   (only from [M] and "no isotope annotation")
-#   col 4 (x=0.99): adduct rules by frequency
-
-sk_through <- sk_adducts %>% filter(iso_type %in% c("[M]", "no isotope annotation"))
-
-# All Sankey edges in one flat table
-iso_all <- bind_rows(sk_adducts["iso_type"], sk_iso_only["iso_type"])
-
-edges <- bind_rows(
-  transmute(iso_all,    from = "All annotations", to = iso_type),
-  select(sk_through,    from = iso_type,          to = mult),
-  select(sk_through,    from = mult,              to = rule_name)
-) %>%
-  count(from, to, name = "n")
-
-# Node ordering per column
-iso_lvl   <- c("no isotope annotation", "[M]", "[M+1]", "[M+2]", "[M+3]", "[M+4]")
-iso_nodes <- edges %>%
-  filter(from == "All annotations") %>%
-  pull(to)
-
-iso_ord   <- c(intersect(iso_lvl, iso_nodes), setdiff(iso_nodes, iso_lvl))
-
-mult_ord <- edges %>%
-  filter(from %in% c("[M]", "no isotope annotation")) %>%
-  group_by(to) %>%
-  summarise(n = sum(n), .groups = "drop") %>%
-  arrange(desc(n)) %>%
-  pull(to)
-
-rule_ord <- edges %>%
-  filter(from %in% mult_ord) %>%
-  group_by(to) %>%
-  summarise(n = sum(n), .groups = "drop") %>%
-  arrange(desc(n)) %>%
-  pull(to)
-
-col_nodes <- list("All annotations", iso_ord, mult_ord, rule_ord)
-col_x_val <- c(0.01, 0.33, 0.66, 0.99)
-all_nodes <- unlist(col_nodes)
-
-links <- edges %>%
-  transmute(source = match(from, all_nodes) - 1L,
-            target = match(to,   all_nodes) - 1L,
-            value  = n)
-
-# Node flow derived from edges: max(in, out) — equal for pass-through nodes,
-# whichever is nonzero for source/terminal nodes
-node_flow_df <- bind_rows(
-    edges %>% group_by(node = from) %>% summarise(n = sum(n)),
-    edges %>% group_by(node = to)   %>% summarise(n = sum(n))
-  ) %>%
-  group_by(node) %>%
-  summarise(n = max(n), .groups = "drop")
-node_flow <- setNames(node_flow_df$n, node_flow_df$node)
-
-# Compute proportional y-centres for nodes in a column (top=0, bottom=1)
-calc_y <- function(nodes, flows, gap = 0.01) {
-  f <- pmax(flows[nodes], 1)
-  total <- sum(f)
-  n <- length(f)
-  usable <- 1 - gap * (n - 1)
-  h <- f / total * usable
-  starts <- cumsum(c(0, h[-n] + gap))
-  setNames(pmin(pmax(starts + h / 2, 0.001), 0.999), nodes)
-}
-
-node_x <- rep(col_x_val, lengths(col_nodes))
-node_y <- unname(unlist(lapply(col_nodes, calc_y, flows = node_flow)))
-
-plotly::plot_ly(
-  type = "sankey", arrangement = "fixed",
-  height = 800,
-  node = list(
-    label     = all_nodes,
-    x         = node_x,
-    y         = node_y,
-    pad       = 15,
-    thickness = 20
-  ),
-  link = list(source = links$source, target = links$target, value = links$value)
-) %>%
-  plotly::layout(margin = list(r = 160)) %>%
+camera_sankey(cam_result) %>%
   htmlwidgets::onRender(paste(readLines("sankey-label-fix.js"), collapse = "\n"))
 ```
