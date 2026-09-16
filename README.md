@@ -1,76 +1,54 @@
 
-
 # commonMZ
 
-This is a collection of common *m/z* values found in mass spectrometry.
-The tables are available through an R package. You can find the table
-files in the “inst” subfolder.
+A curated collection of common *m/z* values, mass differences, and annotation
+rules for mass spectrometry, distributed as an R package.
+
+**Documentation:** [stanstrup.github.io/commonMZ](https://stanstrup.github.io/commonMZ/)
 
 Contributions are welcomed.
 
-It contains these tab delimited files:
+## Articles
 
-- **`contaminants_+.tsv`**: A table of common contaminant masses in
-  positive ionization mode.
-- **`contaminants_-.tsv`**: A table of common contaminant masses in
-  negative ionization mode.
-- **`adducts_fragments.tsv`**: A table of common fragment and adducts.
-  The listed mass refers to mass differences.
-- **`repeating_units_+.tsv`**: A table of common series of repeated
-  units (mass differences) in positive ionization mode.
-- **`repeating_units_-.tsv`**: A table of common series of repeated
-  units (mass differences) in negative ionization mode.
+| Article | What it covers |
+|---|---|
+| [Looking up a mass difference](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.html) | Search a measured peak-to-peak delta against every catalogued adduct, fragment, and repeating-unit difference |
+| [Using commonMZ rules with CAMERA](https://stanstrup.github.io/commonMZ/articles/camera-rules.html) | Build CAMERA annotation rule tables and annotate an LC-MS dataset end-to-end |
+| [Isotope fine structure](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure.html) | Simulate and resolve the individual isotopologues hidden inside an M+1 or M+2 peak |
+| [Looking up an isotopologue offset](https://stanstrup.github.io/commonMZ/articles/isotope-offset-lookup.html) | Identify which element a satellite peak a few mDa from M+1/M+2 comes from |
 
-And these excel files:
+## Installation
 
-- **`CAMERA_rules_pos.xlsx`**: A table of common fragment and adducts
-  for use with CAMERA in positive mode. The listed mass refers to mass
-  differences to the uncharged species.
-- **`CAMERA_rules_neg.xlsx`**: A table of common fragment and adducts
-  for use with CAMERA in negative mode. The listed mass refers to mass
-  differences to the uncharged species.
-- **`CAMERA_rules_EI.xlsx`**: A table of common fragment and adducts for
-  use with CAMERA in EI mode. The listed mass refers to mass differences
-  to the uncharged species.
+```r
+# Bioconductor dependency
+if (!require("BiocManager")) install.packages("BiocManager")
+BiocManager::install("CAMERA")
 
-*Excel files are used to make it easier to work with since
-adducts/fragment types have been color coded*.
+# commonMZ from GitHub
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("stanstrup/commonMZ")
+```
 
-## Glossary
+## Raw data files
 
-| Type of ions: | Explanation |
-|----|----|
-| f+ | fragment ion |
-| \[f+H\]+ | protonated fragment ion, e.g. in-source fragmentation of peptide ions |
-| \[M+H\]+ | protonated molecular ion (pseudomolecular ion) |
-| \[M+Na\]+ | sodiated molecular ion |
-| \[M+K\]+ | potassiated molecular ion |
-| \[M2+H\]+, \[M3+H\]+ etc… | protonated dimeric, trimeric, etc… molecular ion |
-| \[AnBm+H\]+ | protonated molecular ion consisting of n A and m B subunits |
+The underlying tables are plain-text TSV files in `inst/` and colour-coded Excel
+files, usable independently of R:
 
-| Abbreviations | Explanation |
-|----|----|
-| 4-HCCA | α-cyano-4-hydroxycinnamic acid, common matrix substance for MALDI MS analysis |
-| 2,5-DHB | 2,5-Dihydroxy benzoic acid, common matrix substance for MALDI MS analysis |
-| MeCN, ACN | acetonitrile, solvent |
-| MeOH | methanol, solvent |
-| MeNO2 | nitromethane, solvent |
-| HABA | 2-(4-hydroxyphenyl-azo)-benzoic acid, matrix substance for MALDI MS analysis |
-| SA | sinapic or sinapinic acid, common matrix substance for MALDI MS analysis |
-| PEG | Polyethylene glycol, Repeat unit: -\[O-CH2-CH2-\]-; 44 Da |
-| PPG | Polypropylene glycol, Repeat unit: -\[O-C(CH3)H-CH2-\]-; 58 Da |
-| XaaCcamXaa | carbamidomethylated cysteine residue (+ICH2CONH2 - HI), +57Da |
-| XaaMoxXaa | singly oxidized methionine residue (+O, 16 Da) |
+- **`adducts_fragments.tsv`**: adduct and neutral-loss mass differences
+- **`repeating_units_+.tsv`** / **`repeating_units_-.tsv`**: homologous-series
+  steps in positive and negative mode
+- **`contaminants_+.tsv`** / **`contaminants_-.tsv`**: common background ions
+- **`CAMERA_rules_pos.xlsx`**, **`CAMERA_rules_neg.xlsx`**,
+  **`CAMERA_rules_EI.xlsx`**: CAMERA annotation rule tables
 
 ## References
 
 The data in these tables are primarily from:
 
-- the Supplementary Data from: Keller BO, Sui J, Young AB, Whittal RM.
-  Interferences and contaminants encountered in modern mass
-  spectrometry. Anal Chim Acta. 2008;627(1):71-81.
+- Keller BO, Sui J, Young AB, Whittal RM. Interferences and contaminants
+  encountered in modern mass spectrometry. *Anal Chim Acta.* 2008;627(1):71–81.
 
-In the tables each entry references refers to the following table:
+Per-entry references in the tables map to the following sources:
 
 | Ref | Author(s) | Citation or Website |
 |----|----|----|
@@ -89,7 +67,7 @@ In the tables each entry references refers to the following table:
 | M | Tran, J. C.; Doucette, A. A. | J. Am. Soc. Mass Spectrom., 17 (2006) 652 |
 | N | Verge, K. M.; Agnes, G. R. | J. Am. Soc. Mass Spectrom., 13 (2002) 901 |
 | O | Paez, A.; Howe, A. | Canadian Chemical News, 56 (2004) 14 |
-| P | Purves, R. W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
+| P | Purves, R. W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
 | Q | Gibson, C. R.; Brown, C. M. | J. Am. Soc. Mass Spectrom., 14 (2003) 1247 |
 | R | Beavis, R. C.; Chait, B. T. | Anal. Chem., 62 (1990) 1836 |
 | S | Guzzetta, A. | [ionsource.com](http://www.ionsource.com) — Carbohydrate marker ions |
@@ -99,5 +77,5 @@ In the tables each entry references refers to the following table:
 | W | Xia, Y.; Patel, S.; Bakhtiar, R.; Franklin, R. B.; Doss, G. A. | J. Am. Soc. Mass Spectrom., 16 (2005) 417 |
 | X | Guo, X.; Bruins, A. P.; Covey, T. R. | Rapid Commun. Mass Spectrom., 20 (2006) 3145 |
 | Y | Ijames, C. F.; Dutky, R. C.; Fales, H. M. | J. Am. Soc. Mass Spectrom., 6 (1995) 1226 |
-| Z | Hesse, M.; Meier, H.; Zeeh, B. | Spektroskopische Methoden in der organischen Chemie, Georg Thieme Verlag, Stuttgart, 3rd ed. 1987, ISBN: 3-13-576103-7 |
+| Z | Hesse, M.; Meier, H.; Zeeh, B. | Spektroskopische Methoden in der organischen Chemie, Georg Thieme Verlag, Stuttgart, 3rd ed. 1987, ISBN: 3-13-576103-7 |
 | AA | Stanstrup, J. | — |
