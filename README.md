@@ -1,17 +1,19 @@
 
+
 # commonMZ
 
-A curated collection of common *m/z* values, mass differences, and annotation
-rules for mass spectrometry, distributed as an R package.
+A curated collection of common *m/z* values, mass differences, and
+annotation rules for mass spectrometry, distributed as an R package.
 
-**Documentation:** [stanstrup.github.io/commonMZ](https://stanstrup.github.io/commonMZ/)
+**Documentation:**
+[stanstrup.github.io/commonMZ](https://stanstrup.github.io/commonMZ/)
 
 Contributions are welcomed.
 
 ## Articles
 
 | Article | What it covers |
-|---|---|
+|----|----|
 | [Looking up a mass difference](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.html) | Search a measured peak-to-peak delta against every catalogued adduct, fragment, and repeating-unit difference |
 | [Using commonMZ rules with CAMERA](https://stanstrup.github.io/commonMZ/articles/camera-rules.html) | Build CAMERA annotation rule tables and annotate an LC-MS dataset end-to-end |
 | [Isotope fine structure](https://stanstrup.github.io/commonMZ/articles/isotope-fine-structure.html) | Simulate and resolve the individual isotopologues hidden inside an M+1 or M+2 peak |
@@ -19,7 +21,7 @@ Contributions are welcomed.
 
 ## Installation
 
-```r
+``` r
 # Bioconductor dependency
 if (!require("BiocManager")) install.packages("BiocManager")
 BiocManager::install("CAMERA")
@@ -31,13 +33,14 @@ remotes::install_github("stanstrup/commonMZ")
 
 ## Raw data files
 
-The underlying tables are plain-text TSV files in `inst/` and colour-coded Excel
-files, usable independently of R:
+The underlying tables are plain-text TSV files in `inst/` and
+colour-coded Excel files, usable independently of R:
 
 - **`adducts_fragments.tsv`**: adduct and neutral-loss mass differences
-- **`repeating_units_+.tsv`** / **`repeating_units_-.tsv`**: homologous-series
-  steps in positive and negative mode
-- **`contaminants_+.tsv`** / **`contaminants_-.tsv`**: common background ions
+- **`repeating_units_+.tsv`** / **`repeating_units_-.tsv`**:
+  homologous-series steps in positive and negative mode
+- **`contaminants_+.tsv`** / **`contaminants_-.tsv`**: common background
+  ions
 - **`CAMERA_rules_pos.xlsx`**, **`CAMERA_rules_neg.xlsx`**,
   **`CAMERA_rules_EI.xlsx`**: CAMERA annotation rule tables
 
@@ -46,7 +49,8 @@ files, usable independently of R:
 The data in these tables are primarily from:
 
 - Keller BO, Sui J, Young AB, Whittal RM. Interferences and contaminants
-  encountered in modern mass spectrometry. *Anal Chim Acta.* 2008;627(1):71–81.
+  encountered in modern mass spectrometry. *Anal Chim Acta.*
+  2008;627(1):71–81.
 
 Per-entry references in the tables map to the following sources:
 
@@ -67,7 +71,7 @@ Per-entry references in the tables map to the following sources:
 | M | Tran, J. C.; Doucette, A. A. | J. Am. Soc. Mass Spectrom., 17 (2006) 652 |
 | N | Verge, K. M.; Agnes, G. R. | J. Am. Soc. Mass Spectrom., 13 (2002) 901 |
 | O | Paez, A.; Howe, A. | Canadian Chemical News, 56 (2004) 14 |
-| P | Purves, R. W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
+| P | Purves, R. W.; Gabryelski, W.; Li, L. | Rev. Sci. Instrum., 68 (1997) 3252 |
 | Q | Gibson, C. R.; Brown, C. M. | J. Am. Soc. Mass Spectrom., 14 (2003) 1247 |
 | R | Beavis, R. C.; Chait, B. T. | Anal. Chem., 62 (1990) 1836 |
 | S | Guzzetta, A. | [ionsource.com](http://www.ionsource.com) — Carbohydrate marker ions |
@@ -77,5 +81,5 @@ Per-entry references in the tables map to the following sources:
 | W | Xia, Y.; Patel, S.; Bakhtiar, R.; Franklin, R. B.; Doss, G. A. | J. Am. Soc. Mass Spectrom., 16 (2005) 417 |
 | X | Guo, X.; Bruins, A. P.; Covey, T. R. | Rapid Commun. Mass Spectrom., 20 (2006) 3145 |
 | Y | Ijames, C. F.; Dutky, R. C.; Fales, H. M. | J. Am. Soc. Mass Spectrom., 6 (1995) 1226 |
-| Z | Hesse, M.; Meier, H.; Zeeh, B. | Spektroskopische Methoden in der organischen Chemie, Georg Thieme Verlag, Stuttgart, 3rd ed. 1987, ISBN: 3-13-576103-7 |
+| Z | Hesse, M.; Meier, H.; Zeeh, B. | Spektroskopische Methoden in der organischen Chemie, Georg Thieme Verlag, Stuttgart, 3rd ed. 1987, ISBN: 3-13-576103-7 |
 | AA | Stanstrup, J. | — |
