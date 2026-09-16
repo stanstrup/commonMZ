@@ -36,15 +36,14 @@ COL <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
         S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
 ```
 
-[*Isotope fine structure*](isotope-fine-structure.html) starts from a candidate
-formula. Most of the time you don't have one yet: you have two peaks in a spectrum
-and a delta between them, and the question is "what family of thing produces a gap
-this size?" An in-source fragment loses a neutral (water, CO₂, a whole side chain).
-A homologous series steps by a repeating unit (CH₂, C₂H₄O, a whole PEG monomer).
-An adduct swaps one attached ion for another (Na⁺ for K⁺, formate for acetate). All
-three are catalogued in commonMZ already: `adducts_fragments` and
-`repeating_units_pos`/`repeating_units_neg`, merged by `mz_diff_table()` into one
-searchable reference:
+You have two peaks in a spectrum and a delta between them, and the question is "what
+family of thing produces a gap this size?" An in-source fragment loses a neutral
+(water, CO₂, a whole side chain). A homologous series steps by a repeating unit
+(CH₂, C₂H₄O, a whole PEG monomer). An adduct swaps one attached ion for another
+(Na⁺ for K⁺, formate for acetate). All three are catalogued in commonMZ already:
+`adducts_fragments` and `repeating_units_pos`/`repeating_units_neg`, merged by
+`mz_diff_table()` into one searchable reference. Once you have a candidate formula,
+[*Isotope fine structure*](isotope-fine-structure.html) takes over.
 
 ```{r diff-table-build}
 diffs <- mz_diff_table("both")
