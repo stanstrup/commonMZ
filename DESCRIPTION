@@ -8,7 +8,7 @@ Maintainer: Jan Stanstrup <stanstrup@gmail.com>
 Description: A collection of tables with common adducts, fragments and contaminations.
 Depends: R (>= 3.0)
 Imports: readr, readxl, magrittr, dplyr, tidyr, tibble, enviPat,
-    CAMERA, ggplot2, plotly, RColorBrewer
+    CAMERA, ggplot2, plotly, RColorBrewer, htmlwidgets
 Suggests: knitr, quarto, ggrepel, DT, htmltools, scales, svglite, purrr,
     RefManageR, ggsankey
 Config/Needs/website: RefManageR

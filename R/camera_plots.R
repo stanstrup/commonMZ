@@ -3,6 +3,7 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom CAMERA getPeaklist
 #' @importFrom plotly plot_ly layout
+#' @importFrom htmlwidgets onRender
 #' @importFrom ggplot2 ggplot geom_col aes geom_segment geom_text scale_fill_manual coord_radial theme_void position_stack
 #' @importFrom RColorBrewer brewer.pal
 NULL
@@ -145,7 +146,9 @@ camera_sankey_data <- function(cam_result) {
 #' @author Jan Stanstrup, \email{stanstrup@gmail.com}
 #' @export
 camera_sankey <- function(cam_result, height = 800, margin_right = 160) {
-  sk <- camera_sankey_data(cam_result)
+  sk  <- camera_sankey_data(cam_result)
+  fix <- paste(readLines(system.file("js/sankey-label-fix.js", package = "commonMZ")),
+               collapse = "\n")
 
   plot_ly(
     type        = "sankey",
@@ -164,7 +167,8 @@ camera_sankey <- function(cam_result, height = 800, margin_right = 160) {
       value  = sk$links$value
     )
   ) %>%
-    layout(margin = list(r = margin_right))
+    layout(margin = list(r = margin_right)) %>%
+    onRender(fix)
 }
 
 

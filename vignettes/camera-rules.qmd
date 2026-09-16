@@ -44,10 +44,10 @@ The seven columns are defined as follows. `name`, `nmol`, `charge`, and `massdif
 
 | Column | Type | Meaning |
 |------------------------|------------------------|------------------------|
-| `name` | character | Ion label (e.g. `[M+H]+`). Display only — never read by the algorithm. |
-| `nmol` | integer | Molecules per ion (1 = monomer, 2 = dimer). Divides m/z into neutral mass: `(|charge| × m/z − massdiff) / nmol`. |
-| `charge` | integer | Signed ion charge. Multiplied by m/z in the mass formula. |
-| `massdiff` | numeric (Da) | Mass added by the adduct or lost as a neutral fragment. |
+| `name` | character | Ion label (e.g. `[M+H]+`). |
+| `nmol` | integer | Molecules per ion (1 = monomer, 2 = dimer). |
+| `charge` | integer | Signed ion charge. |
+| `massdiff` | numeric (Da) | Mass added by the adduct (compared to neutral mass) or lost as a neutral fragment. |
 | `oidscore` | integer | Groups rules that share the same adduct formula but differ in `nmol` (e.g. `[M+H]+` and `[2M+H]+`). CAMERA uses it to automatically extend a monomer match to the corresponding dimer/trimer hypotheses. |
 | `quasi` | 0 / 1 | **Mandatory ion flag.** If no rule with `quasi = 1` appears in a candidate group, CAMERA discards the whole group. Typically only the primary protonated ion carries `quasi = 1`. |
 | `ips` | numeric | **Ion/adduct peak score** (\~0.25–1). Confidence weight per rule. When a peak fits multiple competing mass hypotheses, CAMERA sums `ips` within each group and discards the lower-scoring one. Typical values: 1.0 for `[M+H]+`, 0.5 for multiply-charged ions, 0.25 for neutral losses. |
@@ -66,11 +66,11 @@ nrow(rules_pos)
 Browse the full table — sort any column or use the search box to filter by name or mass difference:
 
 ```{r rules-pos-table}
-DT::datatable(
-  rules_pos %>% mutate(massdiff = round(massdiff, 4)),
-  rownames = FALSE,
-  options = list(pageLength = 15, order = list(list(3, "asc")))
-)
+rules_pos %>% mutate(massdiff = round(massdiff, 4)) %>% 
+    DT::datatable(
+                  rownames = FALSE,
+                  options = list(pageLength = 15, order = list(list(3, "asc")))
+                 )
 ```
 
 ### Negative mode
@@ -82,11 +82,11 @@ nrow(rules_neg)
 
 ```{r rules-neg-table}
 #| code-fold: true
-DT::datatable(
-  rules_neg %>% mutate(massdiff = round(massdiff, 4)),
-  rownames = FALSE,
-  options = list(pageLength = 15, order = list(list(3, "asc")))
-)
+rules_neg %>% mutate(massdiff = round(massdiff, 4)) %>% 
+    DT::datatable(
+                  rownames = FALSE,
+                  options = list(pageLength = 15, order = list(list(3, "asc")))
+                 )
 ```
 
 ### Electron ionisation (EI)
@@ -180,20 +180,25 @@ cam_result <- findAdducts(xsaI,
 
 ## Annotated peak table
 
-`getPeaklist()` returns one row per feature with annotation columns appended. The `adduct` column shows the best-matching rule for each feature; features with no match are left blank.
+`getPeaklist()` returns one row per feature with annotation columns appended. The `adduct` column shows the best-matching rule for each feature; features with no match are left blank. Features with the same pcgroup number are assumed to originate from the same parent moelcule.
 
 ```{r peaklist-table}
 #| code-fold: true
 peaklist <- getPeaklist(cam_result)
 
-DT::datatable(
   peaklist %>%
-    select(mz, rt, any_of(c("isotopes", "adduct", "pcgroup")),
-           starts_with("sample")) %>%
-    mutate(mz = round(mz, 4), rt = round(rt, 1)),
-  rownames = FALSE,
-  options  = list(pageLength = 15, scrollX = TRUE)
-)
+    select(mz, 
+           rt, 
+           any_of(c("isotopes", "adduct", "pcgroup")),
+           starts_with("sample")
+           ) %>%
+     mutate(pcgroup = as.integer(pcgroup)) %>% 
+    arrange(pcgroup, mz) %>% 
+    mutate(mz = round(mz, 4), rt = round(rt, 1)) %>% 
+DT::datatable(
+              rownames = FALSE,
+              options  = list(pageLength = 15, scrollX = TRUE)
+             )
 ```
 
 ## Which rules fired?
@@ -211,6 +216,5 @@ Or a fancy Sankey chart:
 
 ```{r rules-sankey}
 #| code-fold: true
-camera_sankey(cam_result) %>%
-  htmlwidgets::onRender(paste(readLines("sankey-label-fix.js"), collapse = "\n"))
+camera_sankey(cam_result)
 ```
