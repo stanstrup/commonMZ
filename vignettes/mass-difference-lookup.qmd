@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Looking up an unexplained mass difference"
 subtitle: "Problem: I have a delta between two peaks and no formula yet. What could it be?"
 format:
@@ -44,23 +44,29 @@ htmltools::includeScript(
 )
 ```
 
-You have two peaks in a spectrum and a delta between them, and the question is "what
-family of thing produces a gap this size?" An in-source fragment loses a neutral
-(water, CO₂, a whole side chain). A homologous series steps by a repeating unit
-(CH₂, C₂H₄O, a whole PEG monomer). An adduct swaps one attached ion for another
-(Na⁺ for K⁺, formate for acetate). All three are catalogued in commonMZ already:
-`adducts_fragments` and `repeating_units_pos`/`repeating_units_neg`, merged by
-`mz_diff_table()` into one searchable reference. Once you have a candidate formula,
-[*Isotope fine structure*](isotope-fine-structure.html) takes over.
+You have two peaks in a spectrum and a delta between them, and the question is "what does this gap correspond to?".
+It could be a fragment, usually a neutral loss, (water, CO₂, a whole side chain).
+
+It could also be an adduct (Na⁺ for K⁺, formate for acetate).
+
+Fragments sometimes appear in series of repeating units; e.g. sequential loss of CH₂ in an alkane chain.
+
+All three are catalogued in commonMZ and accessible as individual datasets:
+
+- [`adducts_fragments`](https://github.com/stanstrup/commonMZ/blob/master/inst/extdata/adducts_fragments.tsv) — adduct and neutral-loss mass differences, mode-agnostic
+- [`repeating_units_pos`](https://github.com/stanstrup/commonMZ/blob/master/inst/extdata/repeating_units_%2B.tsv) — homologous-series steps in positive mode
+- [`repeating_units_neg`](https://github.com/stanstrup/commonMZ/blob/master/inst/extdata/repeating_units_-.tsv) — homologous-series steps in negative mode
+
+`mz_diff_table()` merges them into one searchable reference, optionally filtered by mode:
 
 ```{r diff-table-build}
-diffs <- mz_diff_table("both")
+commonMZ::adducts_fragments     # adducts and neutral losses only
+commonMZ::repeating_units_pos   # repeating units, positive mode only
+
+diffs <- mz_diff_table("both")  # all three merged; use "pos" or "neg" to filter
 nrow(diffs)
 ```
 
-Isotope spacings are deliberately not in this table; they depend on which formula
-produced the peaks and belong to
-[the isotope fine-structure tool](isotope-fine-structure.html) instead.
 
 ## The calculator: search by a difference and a ppm tolerance
 
