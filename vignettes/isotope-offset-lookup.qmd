@@ -103,6 +103,7 @@ value, the same convention as `mz_diff_lookup()`). Click **Search**, then **Clea
 to reset.
 
 ```{r offset-interactive}
+#| echo: false
 ## DataTables core version bundled with DT, for the CDN fallback below
 probe_widget      <- datatable(data.frame(x = 1))
 DT_CORE_VERSION   <- Filter(function(d) d$name == "dt-core",
