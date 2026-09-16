@@ -30,6 +30,14 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
 
       - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Configure Bioconductor PPM mirror
+        run: |
+          CODENAME=$(lsb_release -cs)
+          echo "options(BioC_mirror = 'https://packagemanager.posit.co/bioconductor/__linux__/${CODENAME}/latest')" >> ~/.Rprofile
+        shell: bash
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:

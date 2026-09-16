@@ -30,7 +30,7 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -40,6 +40,14 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+
+      - name: Configure Bioconductor PPM mirror
+        if: runner.os == 'Linux'
+        run: |
+          CODENAME=$(lsb_release -cs)
+          echo "options(BioC_mirror = 'https://packagemanager.posit.co/bioconductor/__linux__/${CODENAME}/latest')" >> ~/.Rprofile
+        shell: bash
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
