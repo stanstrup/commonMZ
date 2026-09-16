@@ -16,6 +16,7 @@ format:
 execute:
   warning: false
   message: false
+  echo: true
 knitr:
   opts_chunk:
     dev: svglite
@@ -45,11 +46,10 @@ htmltools::includeScript(
 ```
 
 You have two peaks in a spectrum and a delta between them, and the question is "what does this gap correspond to?".
-It could be a fragment, usually a neutral loss, (water, CO₂, a whole side chain).
 
-It could also be an adduct (Na⁺ for K⁺, formate for acetate).
-
-Fragments sometimes appear in series of repeating units; e.g. sequential loss of CH₂ in an alkane chain.
+* It could be a fragment, usually a neutral loss, (water, CO₂, a whole side chain).
+* It could also be an adduct (Na⁺ for K⁺, formate for acetate).
+* Fragments sometimes appear in series of repeating units; e.g. sequential loss of CH₂ in an alkane chain.
 
 All three are catalogued in commonMZ and accessible as individual datasets:
 
@@ -60,46 +60,64 @@ All three are catalogued in commonMZ and accessible as individual datasets:
 `mz_diff_table()` merges them into one searchable reference, optionally filtered by mode:
 
 ```{r diff-table-build}
+#| echo: true
+#| code-fold: false
+
 commonMZ::adducts_fragments     # adducts and neutral losses only
 commonMZ::repeating_units_pos   # repeating units, positive mode only
 
 diffs <- mz_diff_table("both")  # all three merged; use "pos" or "neg" to filter
-nrow(diffs)
 ```
 
 
 ## The calculator: search by a difference and a ppm tolerance
 
 This is `mz_diff_lookup()`'s job for a single value called from R. Tolerance is in
-ppm of the difference by default (the usual way instrument accuracy is quoted),
+ppm of the difference by default,
 though note that is *not* the same as ppm of either peak's own m/z; see the
 function's documentation (`?mz_diff_lookup`) for why that distinction matters and
 when to widen the tolerance or pass an absolute `unit = "Da"` window instead.
 
 ```{r lookup-example}
+#| echo: true
+#| code-fold: false
+#| eval: false
 mz_diff_lookup(18.0106, tol = 100) %>%   # water, 100 ppm of the delta
-  mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1)) %>%
-  DT::datatable(rownames = FALSE,
-                options = list(pageLength = 10, dom = "t"))
+  mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1))
 ```
 
-And a delta genuinely ambiguous without more context: several catalogued
-differences sit within a few ppm of each other, so the delta alone does not
-decide; you still need to ask whether the sample plausibly contains an alkane
-chain, an acrylamide adduct, or neither:
+```{r lookup-example-dt}
+#| echo: false
+mz_diff_lookup(18.0106, tol = 100) %>%
+  mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1)) %>%
+  DT::datatable(rownames = FALSE, options = list(pageLength = 10, dom = "t"))
+```
+
+And a genuinely ambiguous case: a 44 Da delta returns three completely different
+explanations — CO₂ neutral loss (decarboxylation, tells you about the analyte), a
+double-sodium salt adduct (tells you about sample salinity), and a PEG repeat-unit
+step (polymer contamination from the LC system). A flat Da window is used here
+because 50 ppm of 44 Da is only 2.2 mDa, which would split these three entries
+artificially; the key point is that mass alone cannot decide between them:
 
 ```{r lookup-example-2}
-mz_diff_lookup(14.0157, tol = 50) %>%
+#| echo: true
+#| code-fold: false
+#| eval: false
+mz_diff_lookup(44, tol = 0.05, unit = "Da") %>%
+  mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1))
+```
+
+```{r lookup-example-2-dt}
+#| echo: false
+mz_diff_lookup(44, tol = 0.05, unit = "Da") %>%
   mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1)) %>%
-  DT::datatable(rownames = FALSE,
-                options = list(pageLength = 10, dom = "t"))
+  DT::datatable(rownames = FALSE, options = list(pageLength = 10, dom = "t"))
 ```
 
 ## Working interactively
 
-For browsing without writing R code, type a difference and a ppm tolerance and
-click *Search*. The table's own *Search:* box (top right) still works as usual
-for browsing by category, mode or origin text.
+Here is a little interactive table to search for these differences:
 
 ```{r diff-interactive}
 #| echo: false
@@ -121,8 +139,9 @@ htmltools::tagList(
     htmltools::tags$button("Search", id = "mdl_go", type = "button", class = "btn btn-primary"),
     htmltools::tags$button("Clear", id = "mdl_clear", type = "button", class = "btn btn-outline-secondary")
   ),
-  datatable(diffs, rownames = FALSE, elementId = "mdl_table",
-            colnames = c("mz_diff (Da)", "category", "mode", "origin", "reference"),
+  datatable(diffs %>% mutate(ppm_error = NA_real_),
+            rownames = FALSE, elementId = "mdl_table",
+            colnames = c("mz_diff (Da)", "category", "mode", "origin", "reference", "ppm error"),
             options = list(pageLength = 8, order = list(list(0, "asc")))),
   htmltools::includeScript("mass-diff-search.js")
 )
@@ -132,22 +151,6 @@ The search only re-filters when you click *Search* (not on every keystroke), so
 typing a value never triggers a redraw mid-edit; click once you've entered both
 numbers, or press *Clear* to go back to the full table.
 
-## Checklist
-
-1. **Search first, don't guess one hypothesis at a time.** `mz_diff_lookup()` (or
-   the interactive table above) checks your delta against every known
-   adduct/fragment/repeating-unit difference in commonMZ at once.
-2. **A delta rarely has only one explanation.** When several catalogued
-   differences land within tolerance of each other, use what you know about the
-   sample (the matrix, the method, what's chemically plausible) to break the
-   tie, the same way the mobile-phase composition was what actually resolved the
-   ambiguous formulas in `contaminants_+.tsv`'s metal-complex entries.
-3. **Mind the tolerance convention.** ppm of a small delta is a much tighter
-   window than ppm of a large one; if nothing matches, try a wider tolerance or an
-   absolute Da window before concluding the delta is uncatalogued.
-4. **If you do have (or can guess) a formula**, switch to
-   [*Isotope fine structure*](isotope-fine-structure.html):
-   an isotope satellite is a different kind of delta than this table covers.
 
 ## Glossary
 
@@ -206,10 +209,22 @@ fmt_author <- function(e) {
 
 get_label <- function(e) sub(".*Data file label: (\\w+).*", "\\1", e$note %||% "")
 
+get_url <- function(e) {
+  u <- e$url
+  if (!is.null(u) && length(u) > 0 && nchar(trimws(u)) > 0) return(trimws(u))
+  d <- e$doi
+  if (!is.null(d) && length(d) > 0 && nchar(trimws(d)) > 0)
+    return(paste0("https://doi.org/", trimws(d)))
+  NULL
+}
+
 label_order <- c(LETTERS, "AA")
 rows <- lapply(seq_along(bib), function(i) {
-  e <- bib[i]
-  list(label = get_label(e), author = fmt_author(e), citation = e$citation_md %||% "")
+  e   <- bib[i]
+  cit <- e$citation_md %||% ""
+  url <- get_url(e)
+  if (!is.null(url)) cit <- sprintf("[%s](%s)", cit, url)
+  list(label = get_label(e), author = fmt_author(e), citation = cit)
 })
 rows <- rows[order(match(vapply(rows, `[[`, character(1), "label"), label_order))]
 

@@ -60,17 +60,20 @@ The seven columns are defined as follows. `name`, `nmol`, `charge`, and `massdif
 
 ```{r rules-pos}
 rules_pos <- MZ_CAMERA(mode = "pos", warn_clash = TRUE, clash_ppm = 5)
-nrow(rules_pos)
 ```
 
 Browse the full table — sort any column or use the search box to filter by name or mass difference:
 
 ```{r rules-pos-table}
-rules_pos %>% mutate(massdiff = round(massdiff, 4)) %>% 
-    DT::datatable(
-                  rownames = FALSE,
-                  options = list(pageLength = 15, order = list(list(3, "asc")))
-                 )
+#| eval: false
+rules_pos %>% mutate(massdiff = round(massdiff, 4))
+```
+
+```{r rules-pos-table-dt}
+#| echo: false
+rules_pos %>% mutate(massdiff = round(massdiff, 4)) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(pageLength = 15, order = list(list(3, "asc"))))
 ```
 
 ### Negative mode
@@ -82,11 +85,15 @@ nrow(rules_neg)
 
 ```{r rules-neg-table}
 #| code-fold: true
-rules_neg %>% mutate(massdiff = round(massdiff, 4)) %>% 
-    DT::datatable(
-                  rownames = FALSE,
-                  options = list(pageLength = 15, order = list(list(3, "asc")))
-                 )
+#| eval: false
+rules_neg %>% mutate(massdiff = round(massdiff, 4))
+```
+
+```{r rules-neg-table-dt}
+#| echo: false
+rules_neg %>% mutate(massdiff = round(massdiff, 4)) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(pageLength = 15, order = list(list(3, "asc"))))
 ```
 
 ### Electron ionisation (EI)
@@ -94,7 +101,6 @@ rules_neg %>% mutate(massdiff = round(massdiff, 4)) %>%
 ```{r rules-ei}
 #| code-fold: true
 rules_ei <- MZ_CAMERA(mode = "ei", warn_clash = FALSE)
-nrow(rules_ei)
 ```
 
 ## The NH₄⁺ clash
@@ -103,7 +109,6 @@ A common clash in positive mode: `[M+NH4]+` and neutral loss of NH₃ produce th
 
 ```{r remove-nh4}
 rules_pos_clean <- rules_pos %>% filter(name != "[M+NH4]+")
-nrow(rules_pos_clean)
 ```
 
 ## Complete example: CAMERA's built-in data
@@ -184,21 +189,24 @@ cam_result <- findAdducts(xsaI,
 
 ```{r peaklist-table}
 #| code-fold: true
+#| eval: false
 peaklist <- getPeaklist(cam_result)
+peaklist %>%
+  select(mz, rt, any_of(c("isotopes", "adduct", "pcgroup")), starts_with("sample")) %>%
+  mutate(pcgroup = as.integer(pcgroup)) %>%
+  arrange(pcgroup, mz) %>%
+  mutate(mz = round(mz, 4), rt = round(rt, 1))
+```
 
-  peaklist %>%
-    select(mz, 
-           rt, 
-           any_of(c("isotopes", "adduct", "pcgroup")),
-           starts_with("sample")
-           ) %>%
-     mutate(pcgroup = as.integer(pcgroup)) %>% 
-    arrange(pcgroup, mz) %>% 
-    mutate(mz = round(mz, 4), rt = round(rt, 1)) %>% 
-DT::datatable(
-              rownames = FALSE,
-              options  = list(pageLength = 15, scrollX = TRUE)
-             )
+```{r peaklist-table-dt}
+#| echo: false
+peaklist <- getPeaklist(cam_result)
+peaklist %>%
+  select(mz, rt, any_of(c("isotopes", "adduct", "pcgroup")), starts_with("sample")) %>%
+  mutate(pcgroup = as.integer(pcgroup)) %>%
+  arrange(pcgroup, mz) %>%
+  mutate(mz = round(mz, 4), rt = round(rt, 1)) %>%
+  DT::datatable(rownames = FALSE, options = list(pageLength = 15, scrollX = TRUE))
 ```
 
 ## Which rules fired?
