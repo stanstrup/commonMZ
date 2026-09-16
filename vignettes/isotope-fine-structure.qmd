@@ -39,19 +39,22 @@ COL  <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
 
 Isotope fine structure is what happens when a nominal M+1 or M+2 level contains
 several isotopologues at slightly different exact masses. At **M+1**, every peak
-comes from substituting exactly one atom with its heavy isotope — ¹³C, ²H, ¹⁵N,
-¹⁷O, ³³S each at their own characteristic mass. At **M+2**, single substitutions
-of two-neutron isotopes (³⁴S, ³⁷Cl, ³⁸Ar…) appear alongside combinations of two
-M+1 isotopes. Whether your instrument resolves any of these as separate peaks
+comes from substituting exactly one atom with its heavy isotope — ¹³C, ²H, and ¹⁵N
+are the most prominent contributors (oxygen and sulfur are better known for M+2:
+¹⁸O and ³⁴S are five times more abundant than ¹⁷O and ³³S). At **M+2**, single
+substitutions of two-neutron isotopes (³⁴S, ³⁷Cl, ¹⁸O…) appear alongside
+combinations of two M+1 isotopes. Whether your instrument resolves any of these as separate peaks
 depends on resolving power. This article explains the positions, walks through a
 concrete example, and builds the tools to simulate what a real spectrum would show.
 
-## M+1: one substitution, several exact masses
+## M+1: one atom is a heavier isotope, but you get several exact masses
 
-Nuclear binding energy varies between nuclei, so the heavy isotope of each element
-sits at its own characteristic mass shift from the monoisotopic peak. All of the
-following contribute to the M+1 level, but they sit at genuinely different m/z
-values:
+If you add a neutron to a nucleus, the mass increase is not exactly the free neutron
+mass (1.008665 Da). When the neutron binds, the nucleus releases some energy — and
+by E = mc², that released energy corresponds to a small mass deficit. The binding
+energy gain differs for every element, so each isotope has its own exact mass shift.
+All of the following contribute to the M+1 level, but they sit at genuinely different
+m/z values:
 
 | Isotopologue | Shift from monoisotopic (Da) | Offset from ¹³C (mDa) |
 |---|---:|---:|
@@ -65,6 +68,14 @@ The 9.2 mDa spread between ¹⁵N and ²H is larger than the mass accuracy of an
 modern high-resolution instrument. Whether your spectrum resolves them as separate
 peaks depends on resolving power and the compound's elemental composition; the
 worked example below shows how to calculate that.
+
+**Why ¹³C tends to dominate M+1.** The relative height of each peak is proportional
+to the isotope's natural abundance multiplied by the number of atoms of that element
+in the molecule. ¹³C has 1.11% abundance per carbon, and organic molecules often
+contain many carbons — so the total ¹³C contribution (roughly *n* × 1.11%) quickly
+outweighs ²H (0.015% per H), ¹⁵N (0.37% per N), and the trace M+1 isotopes of
+O and S. A molecule with five carbons already has a ~5.5% chance of carrying one
+¹³C, far above any single ¹⁵N or ²H contribution.
 
 ## M+2: combinations and heavier isotopes
 
@@ -203,7 +214,7 @@ At M+2, the same two things the coarse bar chart could not show are now visible.
 First, **³⁴S physically sits apart from every carbon-based explanation**: `13C, 13C`
 sits
 `r { d2 <- pat %>% mutate(nominal = round(mz - base_mz)) %>% filter(nominal == 2); round(abs((d2 %>% filter(label=="13C, 13C") %>% pull(mz)) - (d2 %>% filter(label=="34S") %>% pull(mz))), 5) }`
-Da away from `34S`, two genuinely different masses, not two names for the same peak.
+Da away from `34S`.
 Second, the height difference *is* the sulfur signal: `34S` towers over every
 carbon/nitrogen/oxygen combination that could also reach +2 — the fine-structure
 version of the 40-fold excess already spotted in the coarse pattern, now with a
@@ -242,10 +253,12 @@ separations <- function(pattern, level, mz_ref = 200, min_abundance = 0.01) {
   }) %>% arrange(R_at200)
 }
 
+ion_mz <- base_mz + 1.007276   # [M+H]+ in positive mode
+
 sep2 <- separations(pat, 2)
 sep2 %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R at this m/z", "R @200"),
+                              "separation (Da)", paste0("R at m/z ", round(ion_mz)), "R @200"),
                caption = "Every pair of M+2 candidates above 0.01% abundance. R@200 is the Orbitrap resolving power at which the two peaks show a ~50% valley.")
 ```
 
@@ -258,8 +271,8 @@ cat(sprintf("The closest pair (`%s` vs `%s`, %.4f Da apart) needs R ~ %s @200 to
 ## Step 4: simulate the profile
 
 `isotope_profile()` turns the fine-structure table into simulated peak shapes at any
-resolving power. Pass it the *actual* resolving power at this m/z, converting from
-the instrument's `R @ 200` specification with `R_at_mz()`:
+resolving power. Pass it the *actual* resolving power at the ion's m/z (here [M+H]⁺ at m/z `r round(ion_mz)`),
+converting from the instrument's `R @ 200` specification with `R_at_mz()`:
 
 ```{r sim-profile}
 Rs <- c(15000, 60000, 120000)
@@ -350,7 +363,7 @@ m1 %>%
 ```{r first-iso-diff}
 separations(pat, 1) %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R at this m/z", "R @200"),
+                              "separation (Da)", paste0("R at m/z ", round(ion_mz)), "R @200"),
                caption = "Pairwise separations between M+1 candidates above 0.01% abundance.")
 ```
 
@@ -375,7 +388,7 @@ m2 %>%
 ```{r second-iso-diff}
 separations(pat, 2) %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R at this m/z", "R @200"),
+                              "separation (Da)", paste0("R at m/z ", round(ion_mz)), "R @200"),
                caption = "Pairwise separations between M+2 candidates above 0.01% abundance.")
 ```
 
@@ -399,6 +412,6 @@ separations(pat, 2) %>%
 `isotope_fine_pattern()` and `isotope_profile()` are. Both helpers are short enough
 to copy into your own analysis.
 
-For looking up a delta between two arbitrary peaks against every known adduct,
-fragment and repeating-unit difference in commonMZ, see
-[*Looking up an unexplained mass difference*](mass-difference-lookup.html).
+If you measured a gap between two resolved fine-structure peaks and want to identify
+which pair of isotopologues produced it, see
+[*Looking up an isotopologue offset*](isotope-offset-lookup.html).

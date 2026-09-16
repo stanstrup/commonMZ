@@ -105,8 +105,8 @@ halogen exchange two hundredths of a Da away — at −67 ppm, clearly distingui
 from water's −0.1 ppm.
 
 And a genuinely ambiguous case: a 44 Da delta returns three completely different
-explanations — CO₂ neutral loss (decarboxylation, tells you about the analyte), a
-double-sodium salt adduct (tells you about sample salinity), and a PEG repeat-unit
+explanations — CO₂ neutral loss (decarboxylation), a
+double-sodium salt adduct, and a PEG repeat-unit
 step (polymer contamination from the LC system). A flat Da window is used here
 because the three entries span 62 mDa, more than even a 50 ppm window at m/z 300
 (15 mDa) would cover; `ref_mz = 300` is still passed so the reported `error_ppm`

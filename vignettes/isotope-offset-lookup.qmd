@@ -73,21 +73,24 @@ pairs <- map_dfr(split(ref_raw, ref_raw$level), function(d) {
       level          = level_label,
       `isotopologue A` = paste0(ra$element, ": ", ra$isotopologue),
       `isotopologue B` = paste0(rb$element, ": ", rb$isotopologue),
-      `difference (Da)` = round(abs(ra$offset_M - rb$offset_M), 6),
+      `difference (Da)` = round(ra$offset_M - rb$offset_M, 6),
       `abundance A (% of M)` = round(ra$abundance, 4),
       `abundance B (% of M)` = round(rb$abundance, 4)
     )
   })
-}) %>% arrange(level, `difference (Da)`)
+}) %>%
+  arrange(level, abs(`difference (Da)`)) %>%
+  mutate(`ppm error` = "")
 ```
 
 ## Search by observed separation
 
-Enter the gap you measured between two fine-structure peaks and a tolerance. The
-ppm is relative to the **reference m/z** (the parent ion's m/z, 300 Da by default),
-not to the tiny millidalton gap itself — ppm of the gap would give an absurdly tight
-window, whereas ppm of the parent ion is what your instrument's mass accuracy
-actually refers to.
+Enter the gap you measured between two fine-structure peaks and a tolerance in
+millidaltons (mDa). A Da window makes more physical sense here than ppm — these
+separations are just a few tenths of a millidalton, so a 1 mDa window already
+covers the instrument's measurement uncertainty regardless of the parent ion's m/z.
+The **reference m/z** is used only to compute the **ppm error** display column,
+so you can judge the match in the units your instrument reports.
 
 ```{r offset-interactive}
 #| echo: false
@@ -106,10 +109,10 @@ tagList(
                  class = "form-control", style = "width:12em;")
     ),
     tags$div(
-      tags$label("tolerance (ppm)", `for` = "iso_ppm"),
+      tags$label("tolerance (mDa)", `for` = "iso_tolmda"),
       tags$br(),
-      tags$input(id = "iso_ppm", type = "number", step = "any", value = "50",
-                 class = "form-control", style = "width:10em;")
+      tags$input(id = "iso_tolmda", type = "number", step = "any", value = "0.05",
+                 class = "form-control", style = "width:9em;")
     ),
     tags$div(
       tags$label("reference m/z (Da)", `for` = "iso_refmz"),
@@ -117,11 +120,24 @@ tagList(
       tags$input(id = "iso_refmz", type = "number", step = "any", value = "300",
                  class = "form-control", style = "width:10em;")
     ),
+    tags$div(
+      tags$label("level", `for` = "iso_level"),
+      tags$br(),
+      tags$select(id = "iso_level", class = "form-control", style = "width:8em;",
+        tags$option("All"),
+        tags$option("M+1"),
+        tags$option("M+2")
+      )
+    ),
     tags$button("Search", id = "iso_go",    type = "button", class = "btn btn-primary"),
     tags$button("Clear",  id = "iso_clear", type = "button", class = "btn btn-outline-secondary")
   ),
   datatable(pairs, rownames = FALSE, elementId = "iso_table",
-            options = list(pageLength = 15, order = list(list(3, "asc")))),
+            options = list(
+              pageLength = 15,
+              order = list(list(3, "asc")),
+              columnDefs = list(list(targets = 6, searchable = FALSE))
+            )),
   tags$script(HTML(sprintf("
     if (typeof $ === 'undefined' || typeof $.fn.dataTable === 'undefined') {
       document.write('<script src=\"https://cdn.datatables.net/%s/js/jquery.dataTables.min.js\"><\\/script>');
@@ -130,31 +146,58 @@ tagList(
       var $tbl = $('#iso_table').find('table').first();
       if (!$tbl.length) return;
       var dt = $tbl.DataTable();
-      var target = null, tolDa = null;
+      var target = null, tolDa = null, levelFilter = 'All';
 
       $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
         if (settings.nTable !== $tbl.get(0)) return true;
         if (target === null) return true;
         var val = parseFloat(data[3]);
-        return !isNaN(val) && Math.abs(val - target) <= tolDa;
+        return !isNaN(val) && Math.abs(Math.abs(val) - Math.abs(target)) <= tolDa;
       });
 
+      $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+        if (settings.nTable !== $tbl.get(0)) return true;
+        if (levelFilter === 'All') return true;
+        return data[0] === levelFilter;
+      });
+
+      function updatePpm() {
+        dt.rows().every(function(rowIdx) {
+          dt.cell(rowIdx, 6).data('');
+        });
+        if (target === null) return;
+        var ref = parseFloat(document.getElementById('iso_refmz').value);
+        if (isNaN(ref) || ref <= 0) ref = 300;
+        dt.rows({filter: 'applied'}).every(function(rowIdx) {
+          var diff = parseFloat(this.data()[3]);
+          var ppm  = ((Math.abs(diff) - Math.abs(target)) / ref * 1e6).toFixed(1);
+          dt.cell(rowIdx, 6).data(ppm);
+        });
+      }
+
       $('#iso_go').on('click', function() {
-        var off = parseFloat(document.getElementById('iso_off').value);
-        var ppm = parseFloat(document.getElementById('iso_ppm').value);
-        var refEl = document.getElementById('iso_refmz');
-        var ref   = refEl ? parseFloat(refEl.value) : NaN;
-        if (isNaN(off) || isNaN(ppm)) { target = null; }
-        else {
+        var off    = parseFloat(document.getElementById('iso_off').value);
+        var tolMda = parseFloat(document.getElementById('iso_tolmda').value);
+        levelFilter = document.getElementById('iso_level').value;
+        if (isNaN(off) || isNaN(tolMda)) {
+          target = null;
+        } else {
           target = off;
-          tolDa  = (!isNaN(ref) && ref > 0 ? ref : Math.abs(off)) * ppm / 1e6;
+          tolDa  = tolMda / 1000;
         }
         dt.draw();
+        updatePpm();
+        dt.draw(false);
       });
+
       $('#iso_clear').on('click', function() {
-        document.getElementById('iso_off').value = '';
+        document.getElementById('iso_off').value   = '';
+        document.getElementById('iso_level').value = 'All';
         target = null;
+        levelFilter = 'All';
         dt.draw();
+        updatePpm();
+        dt.draw(false);
       });
     });
   ", DT_CORE_VERSION)))
@@ -169,11 +212,14 @@ structure.
 
 1. Zoom into the M+1 or M+2 region of your spectrum and measure the separation
    between any two peaks you can resolve.
-2. Enter that gap in the **observed gap** field with a tolerance matching your
-   instrument's mass accuracy, and click **Search**.
+2. Enter that gap in the **observed gap** field and a **tolerance in mDa** matching
+   your instrument's mass accuracy. Use the **level** dropdown to restrict results
+   to M+1 or M+2 if you already know which region you are working in. Click **Search**.
 3. Each returned row names the pair of isotopologues whose exact-mass positions are
-   that far apart. Check the abundance columns: if one member of the pair is far too
-   small to see at your current resolution, rule it out.
+   that far apart. The **ppm error** column shows how far off the theoretical value
+   is relative to the reference m/z — a useful cross-check against your instrument's
+   quoted mass accuracy. Check the abundance columns: if one member of the pair is
+   far too small to see at your current resolution, rule it out.
 
 For a formula-specific analysis — how large each peak should be, and what resolving
 power you need to separate them — see [*Isotope fine structure*](isotope-fine-structure.html).
