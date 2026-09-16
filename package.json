@@ -1,0 +1,27 @@
+{
+  "name": "commonmz",
+  "version": "0.0.3",
+  "description": "Common m/z values and annotation rules for mass spectrometry",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stanstrup/commonMZ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/stanstrup/commonMZ/issues"
+  },
+  "homepage": "https://github.com/stanstrup/commonMZ#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "semantic-release": "^25.0.1"
+  }
+}

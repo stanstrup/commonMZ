@@ -4,6 +4,9 @@ README_cache
 README.Rmd
 ^README\.qmd$
 ^_pkgdown\.yml$
+^\.releaserc\.json$
+^package\.json$
+^NEWS\.md$
 ^docs$
 ^pkgdown$
 ^\.github$
