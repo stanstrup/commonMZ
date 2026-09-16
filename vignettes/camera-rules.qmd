@@ -111,70 +111,46 @@ A common clash in positive mode: `[M+NH4]+` and neutral loss of NH₃ produce th
 rules_pos_clean <- rules_pos %>% filter(name != "[M+NH4]+")
 ```
 
-## Complete example: CAMERA's built-in data
+## Annotating peaks: mm14 example
 
-The steps below annotate `mm14`, CAMERA's built-in example xcmsSet (134 peaks, single-sample, positive mode), using commonMZ rules. The workflow has five stages:
+The example below uses `mm14`, the xcmsSet bundled with the CAMERA package (134 peaks, single sample, positive mode). For your own data, replace `mm14` with your xcmsSet from `xcms` peak detection.
 
-**Step 1 — create an `xsAnnotate` object** from an xcms result:
+**Step 1 — create an `xsAnnotate` object:**
 
 ```{r step1}
-#| eval: false
+#| output: false
 library(CAMERA)
-library(xcms)
 
-# xs is an xcmsSet produced by xcms peak detection
-cam_pos <- xsAnnotate(xs, polarity = "positive")
+data("mm14")
+xsa <- xsAnnotate(mm14, polarity = "positive")
 ```
 
 **Step 2 — group co-eluting peaks** by retention time window (FWHM-based):
 
 ```{r step2}
-#| eval: false
-cam_pos <- groupFWHM(cam_pos, perfwhm = 0.6, intval = "into")
+#| output: false
+xsaF <- groupFWHM(xsa, perfwhm = 0.6, intval = "into")
 ```
 
-**Step 3 (optional) — refine groups by cross-sample correlation:**
+For multi-sample data a cross-sample correlation step refines groups further:
 
 ```{r step3}
 #| eval: false
-cam_pos <- groupCorr(cam_pos, cor_eic_th = 0.7, pval = 1e-6,
-                     calcIso = FALSE, calcCiS = FALSE, calcCaS = TRUE)
+xsaF <- groupCorr(xsaF, cor_eic_th = 0.7, pval = 1e-6,
+                  calcIso = FALSE, calcCiS = FALSE, calcCaS = TRUE)
 ```
 
-**Step 4 — annotate isotope peaks:**
+**Step 3 — annotate isotope peaks:**
 
 ```{r step4}
-#| eval: false
-cam_pos <- findIsotopes(cam_pos, ppm = 10, mzabs = 0.01)
+#| output: false
+xsaI <- findIsotopes(xsaF, ppm = 10, mzabs = 0.01, intval = "into")
 ```
 
-**Step 5 — annotate adducts and fragments with commonMZ rules.** CAMERA requires a plain `data.frame`, not a tibble, so wrap with `as.data.frame()`:
+**Step 4 — annotate adducts and fragments** with commonMZ rules. CAMERA requires a plain `data.frame`, not a tibble, so wrap with `as.data.frame()`:
 
 ```{r step5}
-#| eval: false
-cam_pos <- findAdducts(cam_pos,
-                       ppm        = 10,
-                       mzabs      = 0.01,
-                       multiplier = 3,
-                       polarity   = "positive",
-                       rules      = as.data.frame(rules_pos_clean))
-```
-
-`multiplier` controls the highest oligomer CAMERA will consider (e.g. `[2M+H]+`, `[3M+H]+`). `ppm` and `mzabs` set the matching tolerance; CAMERA applies whichever window is wider, so for high-resolution data keep `mzabs` small (0.005–0.01) and rely on `ppm`.
-
-------------------------------------------------------------------------
-
-The code below runs this pipeline on `mm14`, the xcmsSet bundled with CAMERA (134 peaks, single-sample, positive mode), to produce the outputs shown here.
-
-```{r run-example}
-#| code-fold: true
-library(CAMERA)
-
-data("mm14")                                          # xcmsSet from CAMERA package
-
-xsa        <- xsAnnotate(mm14, polarity = "positive")
-xsaF       <- groupFWHM(xsa, perfwhm = 0.6, intval = "into")
-xsaI       <- findIsotopes(xsaF, ppm = 10, mzabs = 0.01, intval = "into")
+#| output: false
 cam_result <- findAdducts(xsaI,
                           ppm        = 10,
                           mzabs      = 0.01,
@@ -183,9 +159,11 @@ cam_result <- findAdducts(xsaI,
                           rules      = as.data.frame(rules_pos_clean))
 ```
 
+`multiplier` controls the highest oligomer CAMERA will consider (e.g. `[2M+H]+`, `[3M+H]+`). `ppm` and `mzabs` set the matching tolerance; CAMERA applies whichever window is wider, so for high-resolution data keep `mzabs` small (0.005–0.01) and rely on `ppm`.
+
 ## Annotated peak table
 
-`getPeaklist()` returns one row per feature with annotation columns appended. The `adduct` column shows the best-matching rule for each feature; features with no match are left blank. Features with the same pcgroup number are assumed to originate from the same parent moelcule.
+`getPeaklist()` returns one row per feature with annotation columns appended. The `adduct` column shows the best-matching rule for each feature; features with no match are left blank. Features with the same `pcgroup` number are assumed to originate from the same parent molecule.
 
 ```{r peaklist-table}
 #| code-fold: true
@@ -213,7 +191,7 @@ peaklist %>%
 
 After annotation, count how often each rule was assigned. Rules that fired zero times are either absent from this matrix or could not be resolved within the tolerance.
 
-We could do a pie chart:
+We can make a simple pie chart:
 
 ```{r rules-freq}
 #| code-fold: true
