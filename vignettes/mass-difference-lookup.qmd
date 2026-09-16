@@ -31,6 +31,7 @@ library(commonMZ)
 library(ggplot2)
 library(dplyr)
 library(DT)
+library(RefManageR)
 
 COL <- c(C = "#2a78d6", H = "#eb6834", N = "#1baf7a", O = "#eda100",
         S = "#e87ba4", Cl = "#008300", combo = "#4a3aa7")
@@ -171,3 +172,42 @@ numbers, or press *Clear* to go back to the full table.
 | PPG | polypropylene glycol; repeat unit –[O–C(CH₃)H–CH₂]–, 58 Da |
 | XaaCcamXaa | carbamidomethylated cysteine residue (+57 Da) |
 | XaaMoxXaa | singly oxidised methionine residue (+16 Da) |
+
+### References for the *reference* column
+
+```{r ref-table}
+#| echo: false
+#| message: false
+#| results: asis
+BibOptions(check.entries = FALSE)
+bib <- ReadBib("../references.bib", check = FALSE)
+
+`%||%` <- function(x, y) if (is.null(x) || length(x) == 0) y else x
+
+fmt_author <- function(e) {
+  a <- e$author
+  if (is.null(a) || length(a) == 0) return("")
+  parts <- character(length(a))
+  for (j in seq_along(a)) {
+    fam <- paste(a[[j]]$family, collapse = " ")
+    giv <- a[[j]]$given
+    giv <- giv[nchar(giv) > 0]
+    ini <- if (length(giv) > 0) paste0(substr(giv, 1, 1), ".") else character(0)
+    parts[j] <- if (length(ini) > 0) paste0(fam, ", ", paste(ini, collapse = " ")) else fam
+  }
+  paste(parts, collapse = "; ")
+}
+
+get_label <- function(e) sub(".*Data file label: (\\w+).*", "\\1", e$note %||% "")
+
+label_order <- c(LETTERS, "AA")
+rows <- lapply(seq_along(bib), function(i) {
+  e <- bib[i]
+  list(label = get_label(e), author = fmt_author(e), citation = e$citation_md %||% "")
+})
+rows <- rows[order(match(vapply(rows, `[[`, character(1), "label"), label_order))]
+
+cat("| Ref | Author(s) | Citation or website |\n")
+cat("|-----|-----------|---------------------|\n")
+for (r in rows) cat(sprintf("| %s | %s | %s |\n", r$label, r$author, r$citation))
+```

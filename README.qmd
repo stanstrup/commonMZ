@@ -1,6 +1,5 @@
 ---
 format: gfm
-bibliography: references.bib
 ---
 
 # commonMZ
@@ -47,55 +46,7 @@ files, usable independently of R:
 
 ## References
 
-The data in these tables are primarily from:
-
-- Keller BO, Sui J, Young AB, Whittal RM. Interferences and contaminants
-  encountered in modern mass spectrometry. *Anal Chim Acta.* 2008;627(1):71–81.
-
-Per-entry references in the tables map to the following sources:
-
-```{r}
-#| echo: false
-#| message: false
-#| results: asis
-
-library(RefManageR)
-BibOptions(check.entries = FALSE)
-bib <- ReadBib("references.bib", check = FALSE)
-
-`%||%` <- function(x, y) if (is.null(x) || length(x) == 0) y else x
-
-fmt_author <- function(e) {
-  a <- e$author
-  if (is.null(a) || length(a) == 0) return("")
-  parts <- character(length(a))
-  for (j in seq_along(a)) {
-    fam <- paste(a[[j]]$family, collapse = " ")
-    giv <- a[[j]]$given
-    giv <- giv[nchar(giv) > 0]
-    if (length(giv) > 0) {
-      ini <- paste0(substr(giv, 1, 1), ".")
-      parts[j] <- paste0(fam, ", ", paste(ini, collapse = " "))
-    } else {
-      parts[j] <- fam
-    }
-  }
-  paste(parts, collapse = "; ")
-}
-
-get_label <- function(e) {
-  sub(".*Data file label: (\\w+).*", "\\1", e$note %||% "")
-}
-
-label_order <- c(LETTERS, "AA")
-rows <- lapply(seq_along(bib), function(i) {
-  e <- bib[i]
-  list(label = get_label(e), author = fmt_author(e), citation = e$citation_md %||% "")
-})
-
-rows <- rows[order(match(vapply(rows, `[[`, character(1), "label"), label_order))]
-
-cat("| Ref | Author(s) | Citation or Website |\n")
-cat("|-----|-----------|---------------------|\n")
-for (r in rows) cat(sprintf("| %s | %s | %s |\n", r$label, r$author, r$citation))
-```
+The data in these tables are primarily from Keller BO, Sui J, Young AB, Whittal RM.
+Interferences and contaminants encountered in modern mass spectrometry.
+*Anal Chim Acta.* 2008;627(1):71–81. Per-entry source references are listed in the
+[mass difference lookup article](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.html#references-for-the-reference-column).
