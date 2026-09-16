@@ -2,6 +2,22 @@
 
 # commonMZ
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://img.shields.io/github/actions/workflow/status/stanstrup/commonMZ/R-CMD-check.yaml?label=R-CMD-check)](https://github.com/stanstrup/commonMZ/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://img.shields.io/github/actions/workflow/status/stanstrup/commonMZ/pkgdown.yaml?label=pkgdown)](https://github.com/stanstrup/commonMZ/actions/workflows/pkgdown.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![GitHub
+release](https://img.shields.io/github/release/stanstrup/commonMZ.svg)](https://github.com/stanstrup/commonMZ/releases)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Last
+commit](https://img.shields.io/github/last-commit/stanstrup/commonMZ.png)](https://github.com/stanstrup/commonMZ/commits/master)
+[![GitHub
+issues](https://img.shields.io/github/issues/stanstrup/commonMZ.png)](https://github.com/stanstrup/commonMZ/issues)
+<!-- badges: end -->
+
 A curated collection of common *m/z* values, mass differences, and
 annotation rules for mass spectrometry, distributed as an R package.
 
