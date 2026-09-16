@@ -38,7 +38,8 @@ REF_ELEMENTS <- c("C", "H", "N", "O", "S", "P", "F", "Cl", "Br", "I",
 
 When you measure a high-resolution spectrum and see a small satellite peak a few
 millidaltons away from the main M+1 or M+2 peak, the question is: what isotope
-substitution sits there? This page provides a precomputed reference of every
+substitution sits there?<br>
+This page provides a precomputed reference of every
 isotopologue offset for common elements and a search that works exactly like the
 [mass-difference lookup](mass-difference-lookup.html): enter an observed offset and
 a tolerance, click **Search**.
@@ -75,9 +76,9 @@ ref_raw <- map_dfr(REF_ELEMENTS, function(el) {
 c13_m1 <- ref_raw %>%
   filter(element == "C", level == 1, isotopologue == "13C") %>%
   pull(offset_M)
-c13c13_m2 <- ref_raw %>%
-  filter(element == "C", level == 2, isotopologue == "13C, 13C") %>%
-  pull(offset_M)
+# 13C,13C M+2 offset is 2 * c13_m1 -- isotope_fine_pattern("C") has no M+2 level
+# (single carbon can't carry two 13C), so filtering ref_raw would return nothing.
+c13c13_m2 <- if (length(c13_m1) > 0) 2 * c13_m1[1] else numeric(0)
 
 offsets <- ref_raw %>%
   mutate(
@@ -98,9 +99,13 @@ offsets <- ref_raw %>%
 
 ## Search by observed offset
 
-Type the offset you measured in the spectrum and a tolerance in ppm (of the offset
-value, the same convention as `mz_diff_lookup()`). Click **Search**, then **Clear**
-to reset.
+Type the offset you measured in the spectrum and a tolerance in ppm. The ppm is
+taken relative to the **reference m/z** — the m/z of the parent ion you are zoomed
+in on, 300 Da by default — not to the tiny offset itself, the same convention as
+`mz_diff_lookup()`'s `ref_mz` argument. That matters here: these offsets are only
+millidaltons wide, so a ppm of the offset would give an absurdly tight window,
+whereas ppm of the parent ion is what your instrument's mass accuracy actually
+refers to. Click **Search**, then **Clear** to reset.
 
 ```{r offset-interactive}
 #| echo: false
@@ -122,6 +127,12 @@ tagList(
       tags$label("tolerance (ppm)", `for` = "iso_ppm"),
       tags$br(),
       tags$input(id = "iso_ppm", type = "number", step = "any", value = "50",
+                 class = "form-control", style = "width:10em;")
+    ),
+    tags$div(
+      tags$label("reference m/z (Da)", `for` = "iso_refmz"),
+      tags$br(),
+      tags$input(id = "iso_refmz", type = "number", step = "any", value = "300",
                  class = "form-control", style = "width:10em;")
     ),
     tags$div(
@@ -158,8 +169,14 @@ tagList(
         colIdx = parseInt($('#iso_col').val()) - 1;
         var off = parseFloat(document.getElementById('iso_off').value);
         var ppm = parseFloat(document.getElementById('iso_ppm').value);
+        // ppm relative to the parent ion's m/z, not to the millidalton offset
+        var refEl = document.getElementById('iso_refmz');
+        var ref   = refEl ? parseFloat(refEl.value) : NaN;
         if (isNaN(off) || isNaN(ppm)) { target = null; }
-        else { target = off; tolDa = Math.abs(off) * ppm / 1e6; }
+        else {
+          target = off;
+          tolDa  = (!isNaN(ref) && ref > 0 ? ref : Math.abs(off)) * ppm / 1e6;
+        }
         dt.draw();
       });
       $('#iso_clear').on('click', function() {

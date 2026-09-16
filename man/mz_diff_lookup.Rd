@@ -8,6 +8,7 @@ mz_diff_lookup(
   delta,
   tol = 100,
   unit = c("ppm", "Da"),
+  ref_mz = NULL,
   mode = c("both", "pos", "neg"),
   table = mz_diff_table(match.arg(mode))
 )
@@ -15,17 +16,31 @@ mz_diff_lookup(
 \arguments{
 \item{delta}{the observed difference, in Da.}
 
-\item{tol}{the tolerance. In ppm of \code{delta} by default (the usual way
-an instrument's mass accuracy is quoted); switch to \code{unit = "Da"}
-for a flat window instead. Note this is ppm of the DIFFERENCE, not of
-either peak's own m/z -- for a small delta that can be an unrealistically
-tight window (10 ppm of a 1 Da delta is 0.00001 Da), since the true
-uncertainty of a difference comes from BOTH peaks' own mass accuracy, not
-from the size of the gap between them. Widen \code{tol} accordingly, or
-pass an absolute \code{unit = "Da"} tolerance if you already know the
-window you want.}
+\item{tol}{the tolerance. In ppm by default (the usual way an instrument's
+mass accuracy is quoted); switch to \code{unit = "Da"} for a flat window
+instead. When \code{ref_mz} is supplied the ppm tolerance is applied
+relative to \code{ref_mz} (i.e. the window is \code{ref_mz * tol / 1e6}),
+matching the scale of the returned \code{error_ppm} column. When
+\code{ref_mz} is \code{NULL} the tolerance is instead ppm of the
+DIFFERENCE, not of either peak's own m/z -- for a small delta that is an
+unrealistically tight window (10 ppm of a 1 Da delta is 0.00001 Da), since
+the true uncertainty of a difference comes from BOTH peaks' own mass
+accuracy, not from the size of the gap between them. Widen \code{tol}
+accordingly, supply \code{ref_mz}, or pass an absolute \code{unit = "Da"}
+tolerance if you already know the window you want.}
 
 \item{unit}{\code{"ppm"} (default) or \code{"Da"}.}
+
+\item{ref_mz}{reference m/z the ppm figures are relative to, typically the
+parent ion's own m/z. Instrument mass accuracy is quoted as ppm of a
+measured m/z, so a difference between two peaks should be judged against
+the m/z those peaks were measured at, not against the size of the gap: a
+0.002 Da error on a 1 Da difference is 2000 ppm of the difference but only
+6.7 ppm of a 300 Da parent ion, and the latter is the realistic number.
+Supplying \code{ref_mz} makes both the \code{unit = "ppm"} tolerance and
+the returned \code{error_ppm} column relative to it. The default
+\code{NULL} keeps the legacy behaviour of dividing by \code{abs(delta)},
+which is not recommended for small deltas.}
 
 \item{mode}{passed to \code{\link{mz_diff_table}} if \code{table} is not
 supplied.}
@@ -38,7 +53,8 @@ in a spectrum).}
 \value{
 \code{table}, filtered to rows within tolerance of \code{delta},
   with added \code{error_Da} and \code{error_ppm} columns,
-  sorted by \code{abs(error_Da)}.
+  sorted by \code{abs(error_Da)}. \code{error_ppm} is relative to
+  \code{ref_mz} when supplied, otherwise to \code{abs(delta)}.
 }
 \description{
 The interpretation workhorse behind "what could this delta be": given a
@@ -47,7 +63,8 @@ in-source fragment, a homologous-series step, a suspected adduct...),
 returns every entry of \code{\link{mz_diff_table}} within tolerance.
 }
 \examples{
-mz_diff_lookup(18.0106, tol = 100, unit = "ppm")   # water
+# 20 ppm of a 300 Da parent ion, reported as ppm of that parent ion
+mz_diff_lookup(18.0106, tol = 20, unit = "ppm", ref_mz = 300)  # water
 mz_diff_lookup(18.0106, tol = 0.002, unit = "Da")  # same, as a flat window
 
 }

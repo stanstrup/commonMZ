@@ -2,7 +2,17 @@ $(document).ready(function() {
   var $tbl = $('#mdl_table').find('table').first();
   if (!$tbl.length) return;
   var dt = $tbl.DataTable();
-  var target = null, tolDa = null;
+  var target = null, tolDa = null, denom = null;
+
+  // Instrument accuracy is ppm of a measured m/z, so ppm figures for a mass
+  // difference are taken relative to the parent ion's m/z when one is given.
+  // Falls back to the difference itself when the field is empty or not > 0.
+  function refMz() {
+    var el = document.getElementById('mdl_refmz');
+    if (!el) return null;
+    var v = parseFloat(el.value);
+    return (!isNaN(v) && v > 0) ? v : null;
+  }
 
   $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
     if (settings.nTable !== $tbl.get(0)) return true;
@@ -15,7 +25,7 @@ $(document).ready(function() {
     dt.rows({filter: 'applied'}).every(function() {
       var mz = parseFloat(this.data()[0]);
       var ppm = (target !== null && !isNaN(mz))
-        ? ((mz - target) / Math.abs(target) * 1e6).toFixed(1)
+        ? ((mz - target) / denom * 1e6).toFixed(1)
         : '';
       $(this.node()).find('td').eq(5).text(ppm);
     });
@@ -24,8 +34,13 @@ $(document).ready(function() {
   $('#mdl_go').on('click', function() {
     var mz  = parseFloat(document.getElementById('mdl_mz').value);
     var ppm = parseFloat(document.getElementById('mdl_ppm').value);
+    var ref = refMz();
     if (isNaN(mz) || isNaN(ppm)) { target = null; }
-    else { target = mz; tolDa = Math.abs(mz) * ppm / 1e6; }
+    else {
+      target = mz;
+      denom  = (ref !== null) ? ref : Math.abs(mz);
+      tolDa  = denom * ppm / 1e6;
+    }
     dt.draw();
     fillPpm();
   });

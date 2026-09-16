@@ -72,45 +72,58 @@ diffs <- mz_diff_table("both")  # all three merged; use "pos" or "neg" to filter
 
 ## The calculator: search by a difference and a ppm tolerance
 
-This is `mz_diff_lookup()`'s job for a single value called from R. Tolerance is in
-ppm of the difference by default,
-though note that is *not* the same as ppm of either peak's own m/z; see the
-function's documentation (`?mz_diff_lookup`) for why that distinction matters and
-when to widen the tolerance or pass an absolute `unit = "Da"` window instead.
+This is `mz_diff_lookup()`'s job for a single value called from R.
+
+An instrument's mass accuracy is quoted as ppm of a *measured m/z*, so the ppm
+error of a mass *difference* only means something when you say which m/z it is
+relative to. That is what `ref_mz` is for: pass the m/z of the parent ion the two
+peaks were measured at, and both the ppm tolerance and the returned `error_ppm`
+column are expressed relative to it. In the examples below `ref_mz = 300` stands
+in for a typical parent ion, so `error_ppm` reads as "how far off would this
+assignment be for a compound around m/z 300". Without `ref_mz` the ppm is taken of
+the difference itself, which inflates it badly for small deltas — a 0.002 Da error
+on a 1 Da difference is 2000 ppm of the delta but only 6.7 ppm at m/z 300. See
+`?mz_diff_lookup` for the full argument.
 
 ```{r lookup-example}
 #| echo: true
 #| code-fold: false
 #| eval: false
-mz_diff_lookup(18.0106, tol = 100) %>%   # water, 100 ppm of the delta
+mz_diff_lookup(18.0106, tol = 100, ref_mz = 300) %>%   # water, 100 ppm at m/z 300
   mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1))
 ```
 
 ```{r lookup-example-dt}
 #| echo: false
-mz_diff_lookup(18.0106, tol = 100) %>%
+mz_diff_lookup(18.0106, tol = 100, ref_mz = 300) %>%
   mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1)) %>%
   DT::datatable(rownames = FALSE, options = list(pageLength = 10, dom = "t"))
 ```
+
+The 100 ppm window is 0.03 Da at m/z 300, wide enough to also catch the F ↔ H
+halogen exchange two hundredths of a Da away — at −67 ppm, clearly distinguishable
+from water's −0.1 ppm.
 
 And a genuinely ambiguous case: a 44 Da delta returns three completely different
 explanations — CO₂ neutral loss (decarboxylation, tells you about the analyte), a
 double-sodium salt adduct (tells you about sample salinity), and a PEG repeat-unit
 step (polymer contamination from the LC system). A flat Da window is used here
-because 50 ppm of 44 Da is only 2.2 mDa, which would split these three entries
-artificially; the key point is that mass alone cannot decide between them:
+because the three entries span 62 mDa, more than even a 50 ppm window at m/z 300
+(15 mDa) would cover; `ref_mz = 300` is still passed so the reported `error_ppm`
+stays on the same realistic scale. The key point is that mass alone cannot decide
+between them:
 
 ```{r lookup-example-2}
 #| echo: true
 #| code-fold: false
 #| eval: false
-mz_diff_lookup(44, tol = 0.05, unit = "Da") %>%
+mz_diff_lookup(44, tol = 0.05, unit = "Da", ref_mz = 300) %>%
   mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1))
 ```
 
 ```{r lookup-example-2-dt}
 #| echo: false
-mz_diff_lookup(44, tol = 0.05, unit = "Da") %>%
+mz_diff_lookup(44, tol = 0.05, unit = "Da", ref_mz = 300) %>%
   mutate(error_Da = signif(error_Da, 2), error_ppm = round(error_ppm, 1)) %>%
   DT::datatable(rownames = FALSE, options = list(pageLength = 10, dom = "t"))
 ```
@@ -134,6 +147,12 @@ htmltools::tagList(
       htmltools::tags$label("tolerance (ppm)", `for` = "mdl_ppm"),
       htmltools::tags$br(),
       htmltools::tags$input(id = "mdl_ppm", type = "number", step = "any", value = "50",
+                            class = "form-control", style = "width:10em;")
+    ),
+    htmltools::tags$div(
+      htmltools::tags$label("reference m/z (Da)", `for` = "mdl_refmz"),
+      htmltools::tags$br(),
+      htmltools::tags$input(id = "mdl_refmz", type = "number", step = "any", value = "300",
                             class = "form-control", style = "width:10em;")
     ),
     htmltools::tags$button("Search", id = "mdl_go", type = "button", class = "btn btn-primary"),
