@@ -8,6 +8,15 @@
 #' @importFrom RColorBrewer brewer.pal
 NULL
 
+utils::globalVariables(c(
+  # camera_sankey_data
+  "adduct", "isotopes", "name", "nmol",
+  "iso_raw", "iso_type", "through", "rule_name",
+  ".id", "from", "to",
+  # camera_pie
+  "ruleID", "cumend", "cumstart", "mid", "on_right"
+))
+
 # Extract the isotope-group label from a CAMERA isotope string, e.g.
 # "[M+1]+[5]" -> "[M+1]"
 .iso_of <- function(x) sub("^.*?\\[M([^\\]]*)\\].*$", "[M\\1]", x, perl = TRUE)
