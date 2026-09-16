@@ -9,7 +9,7 @@ Description: A collection of tables with common adducts, fragments and contamina
 Depends: R (>= 3.0)
 Imports: readr, readxl, magrittr, dplyr, tidyr, tibble, enviPat,
     CAMERA, ggplot2, plotly, RColorBrewer, htmlwidgets
-Suggests: knitr, quarto, ggrepel, DT, htmltools, scales, svglite, purrr,
+Suggests: knitr, quarto, DT, htmltools, scales, svglite, purrr,
     RefManageR, ggsankey
 Config/Needs/website: RefManageR
 License: MIT + file LICENSE
