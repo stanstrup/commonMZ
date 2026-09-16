@@ -24,8 +24,10 @@ returns every entry of mz_diff_table within tolerance.'></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/isotope-fine-structure.html">Isotope fine structure</a></li>
-    <li><a class="dropdown-item" href="../articles/mass-difference-lookup.html">Looking up a mass difference</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/mass-difference-lookup.html">Looking up a mass difference</a></li>
+    <li><a class="dropdown-item" href="../articles/camera-rules.html">Using commonMZ rules with CAMERA</a></li>
+    <li><a class="dropdown-item" href="../articles/isotope-fine-structure.html">Isotope fine structure</a></li>
+    <li><a class="dropdown-item" href="../articles/isotope-offset-lookup.html">Looking up an isotopologue offset</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -56,6 +58,7 @@ returns every entry of <code><a href="mz_diff_table.html">mz_diff_table</a></cod
 <span>  <span class="va">delta</span>,</span>
 <span>  tol <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  unit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ppm"</span>, <span class="st">"Da"</span><span class="op">)</span>,</span>
+<span>  ref_mz <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"both"</span>, <span class="st">"pos"</span>, <span class="st">"neg"</span><span class="op">)</span>,</span>
 <span>  table <span class="op">=</span> <span class="fu"><a href="mz_diff_table.html">mz_diff_table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></span><span class="op">(</span><span class="va">mode</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -70,19 +73,35 @@ returns every entry of <code><a href="mz_diff_table.html">mz_diff_table</a></cod
 
 
 <dt id="arg-tol">tol<a class="anchor" aria-label="anchor" href="#arg-tol"></a></dt>
-<dd><p>the tolerance. In ppm of <code>delta</code> by default (the usual way
-an instrument's mass accuracy is quoted); switch to <code>unit = "Da"</code>
-for a flat window instead. Note this is ppm of the DIFFERENCE, not of
-either peak's own m/z – for a small delta that can be an unrealistically
-tight window (10 ppm of a 1 Da delta is 0.00001 Da), since the true
-uncertainty of a difference comes from BOTH peaks' own mass accuracy, not
-from the size of the gap between them. Widen <code>tol</code> accordingly, or
-pass an absolute <code>unit = "Da"</code> tolerance if you already know the
-window you want.</p></dd>
+<dd><p>the tolerance. In ppm by default (the usual way an instrument's
+mass accuracy is quoted); switch to <code>unit = "Da"</code> for a flat window
+instead. When <code>ref_mz</code> is supplied the ppm tolerance is applied
+relative to <code>ref_mz</code> (i.e. the window is <code>ref_mz * tol / 1e6</code>),
+matching the scale of the returned <code>error_ppm</code> column. When
+<code>ref_mz</code> is <code>NULL</code> the tolerance is instead ppm of the
+DIFFERENCE, not of either peak's own m/z – for a small delta that is an
+unrealistically tight window (10 ppm of a 1 Da delta is 0.00001 Da), since
+the true uncertainty of a difference comes from BOTH peaks' own mass
+accuracy, not from the size of the gap between them. Widen <code>tol</code>
+accordingly, supply <code>ref_mz</code>, or pass an absolute <code>unit = "Da"</code>
+tolerance if you already know the window you want.</p></dd>
 
 
 <dt id="arg-unit">unit<a class="anchor" aria-label="anchor" href="#arg-unit"></a></dt>
 <dd><p><code>"ppm"</code> (default) or <code>"Da"</code>.</p></dd>
+
+
+<dt id="arg-ref-mz">ref_mz<a class="anchor" aria-label="anchor" href="#arg-ref-mz"></a></dt>
+<dd><p>reference m/z the ppm figures are relative to, typically the
+parent ion's own m/z. Instrument mass accuracy is quoted as ppm of a
+measured m/z, so a difference between two peaks should be judged against
+the m/z those peaks were measured at, not against the size of the gap: a
+0.002 Da error on a 1 Da difference is 2000 ppm of the difference but only
+6.7 ppm of a 300 Da parent ion, and the latter is the realistic number.
+Supplying <code>ref_mz</code> makes both the <code>unit = "ppm"</code> tolerance and
+the returned <code>error_ppm</code> column relative to it. The default
+<code>NULL</code> keeps the legacy behaviour of dividing by <code>abs(delta)</code>,
+which is not recommended for small deltas.</p></dd>
 
 
 <dt id="arg-mode">mode<a class="anchor" aria-label="anchor" href="#arg-mode"></a></dt>
@@ -101,7 +120,8 @@ in a spectrum).</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>table</code>, filtered to rows within tolerance of <code>delta</code>,
   with added <code>error_Da</code> and <code>error_ppm</code> columns,
-  sorted by <code>abs(error_Da)</code>.</p>
+  sorted by <code>abs(error_Da)</code>. <code>error_ppm</code> is relative to
+  <code>ref_mz</code> when supplied, otherwise to <code>abs(delta)</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -110,13 +130,14 @@ in a spectrum).</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mz_diff_lookup</span><span class="op">(</span><span class="fl">18.0106</span>, tol <span class="op">=</span> <span class="fl">100</span>, unit <span class="op">=</span> <span class="st">"ppm"</span><span class="op">)</span>   <span class="co"># water</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># 20 ppm of a 300 Da parent ion, reported as ppm of that parent ion</span></span></span>
+<span class="r-in"><span><span class="fu">mz_diff_lookup</span><span class="op">(</span><span class="fl">18.0106</span>, tol <span class="op">=</span> <span class="fl">20</span>, unit <span class="op">=</span> <span class="st">"ppm"</span>, ref_mz <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>  <span class="co"># water</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mz_diff category        mode  origin              reference error_Da error_ppm</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    18.0 adduct/fragment both  ± H2O, water addit… F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    18.0 repeating unit  pos   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    18.0 repeating unit  neg   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>     -<span style="color: #BB0000;">1.67</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    18.0 adduct/fragment both  ± H2O, water addit… F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>   -<span style="color: #BB0000;">0.100</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    18.0 repeating unit  pos   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>   -<span style="color: #BB0000;">0.100</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    18.0 repeating unit  neg   H2O, water clusters F         -<span style="color: #BB0000;">3.00</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-5</span>   -<span style="color: #BB0000;">0.100</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
 <span class="r-in"><span><span class="fu">mz_diff_lookup</span><span class="op">(</span><span class="fl">18.0106</span>, tol <span class="op">=</span> <span class="fl">0.002</span>, unit <span class="op">=</span> <span class="st">"Da"</span><span class="op">)</span>  <span class="co"># same, as a flat window</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mz_diff category        mode  origin              reference error_Da error_ppm</span>

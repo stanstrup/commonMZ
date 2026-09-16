@@ -2,9 +2,11 @@ pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
+  camera-rules: camera-rules.html
   isotope-fine-structure: isotope-fine-structure.html
+  isotope-offset-lookup: isotope-offset-lookup.html
   mass-difference-lookup: mass-difference-lookup.html
-last_built: 2026-08-20T15:22Z
+last_built: 2026-09-16T12:32Z
 urls:
   reference: https://stanstrup.github.io/commonMZ/reference
   article: https://stanstrup.github.io/commonMZ/articles

@@ -1,23 +1,68 @@
 # Isotope fine structure
 
-Isotope fine structure is what happens when a nominal M+2 peak contains
-several isotopologues sitting at slightly different exact masses: ³⁴S at
-one position, ¹³C¹³C at another, a few millidaltons apart. Every
-isotope-pattern calculator reports the coarse M+1/M+2 heights, but those
-numbers hide the individual isotopologues. This article explains why
-their positions differ, walks through reading them for a concrete
-example, and builds the tools to simulate what any instrument would
-actually resolve.
+Isotope fine structure is what happens when a nominal M+1 or M+2 level
+contains several isotopologues at slightly different exact masses. At
+**M+1**, every peak comes from substituting exactly one atom with its
+heavy isotope — ¹³C, ²H, and ¹⁵N are the most prominent contributors
+(oxygen and sulfur are better known for M+2: ¹⁸O and ³⁴S are five times
+more abundant than ¹⁷O and ³³S). At **M+2**, single substitutions of
+two-neutron isotopes (³⁴S, ³⁷Cl, ¹⁸O…) appear alongside combinations of
+two M+1 isotopes. Whether your instrument resolves any of these as
+separate peaks depends on resolving power. This article explains the
+positions, walks through a concrete example, and builds the tools to
+simulate what a real spectrum would show.
 
-## Chlorine’s M+2: an abundance effect
+## M+1: one atom is a heavier isotope, but you get several exact masses
 
-Chlorine has two stable isotopes: ³⁵Cl (75.8% natural abundance,
-monoisotopic) and ³⁷Cl (24.2%). A molecule with two chlorines – like
-**diclofenac** (C₁₄H₁₁Cl₂NO₂) – has roughly a 37% chance of carrying
-exactly one ³⁷Cl, placing that molecule at M+2. The monoisotopic M peak
-is simultaneously thinned out as ions scatter across M+1, M+2, M+3 and
-M+4 – so M+2 ends up at ~65% of M, an excess so large that no
-fine-structure argument is required to recognise it.
+If you add a neutron to a nucleus, the mass increase is not exactly the
+free neutron mass (1.008665 Da). When the neutron binds, the nucleus
+releases some energy — and by E = mc², that released energy corresponds
+to a small mass deficit. The binding energy gain differs for every
+element, so each isotope has its own exact mass shift. All of the
+following contribute to the M+1 level, but they sit at genuinely
+different m/z values:
+
+| Isotopologue | Shift from monoisotopic (Da) | Offset from ¹³C (mDa) |
+|--------------|-----------------------------:|----------------------:|
+| ¹³C          |                    +1.003355 |                     0 |
+| ¹⁷O          |                    +1.004220 |                  +0.9 |
+| ²H           |                    +1.006277 |                  +2.9 |
+| ³³S          |                    +0.999388 |                  −3.9 |
+| ¹⁵N          |                    +0.997035 |                  −6.3 |
+
+The 9.2 mDa spread between ¹⁵N and ²H is larger than the mass accuracy
+of any modern high-resolution instrument. Whether your spectrum resolves
+them as separate peaks depends on resolving power and the compound’s
+elemental composition; the worked example below shows how to calculate
+that.
+
+**Why ¹³C tends to dominate M+1.** The relative height of each peak is
+proportional to the isotope’s natural abundance multiplied by the number
+of atoms of that element in the molecule. ¹³C has 1.11% abundance per
+carbon, and organic molecules often contain many carbons — so the total
+¹³C contribution (roughly *n* × 1.11%) quickly outweighs ²H (0.015% per
+H), ¹⁵N (0.37% per N), and the trace M+1 isotopes of O and S. A molecule
+with five carbons already has a ~5.5% chance of carrying one ¹³C, far
+above any single ¹⁵N or ²H contribution.
+
+## M+2: combinations and heavier isotopes
+
+At M+2, two types of peak appear: two-neutron heavy isotopes (³⁴S, ³⁷Cl,
+³⁸Ar…) and combinations of two M+1 isotopes. They sit at different exact
+masses:
+
+| Isotopologue | Shift from monoisotopic (Da) | Offset from ¹³C,¹³C (mDa) |
+|--------------|-----------------------------:|--------------------------:|
+| ¹³C + ¹³C    |                    +2.006710 |                         0 |
+| ¹⁸O          |                    +2.004220 |                      −2.5 |
+| ³⁷Cl         |                    +1.997051 |                      −9.7 |
+| ³⁴S          |                    +1.995796 |                     −10.9 |
+
+When a molecule carries several chlorines or one sulfur, these
+two-neutron isotopes can completely dominate the M+2 level.
+**Diclofenac** (C₁₄H₁₁Cl₂NO₂) is an extreme case: two chlorines at 24.2%
+each push M+2 to ~65% of M, an excess so large that no fine-structure
+measurement is needed to recognise it.
 
 Show code
 
@@ -45,42 +90,16 @@ ggplot(coarse_dic, aes(mz, abundance)) +
 
 ![](isotope-fine-structure_files/figure-html/diclofenac-coarse-1.svg)
 
-Diclofenac’s isotope pattern at unit resolution. Two chlorines are
+Diclofenac’s isotope pattern at unit resolution. Two chlorines make M+2
 unmissable without any fine-structure argument.
 
-That coarse view is
-[`isotope_fine_pattern()`](https://stanstrup.github.io/commonMZ/reference/isotope_fine_pattern.md)’s
-output summed by nominal mass, the same number every isotope-pattern
-calculator reports. M+2 at ~65% follows directly from ³⁷Cl’s 24.2%
-natural abundance.
+## Running example: methionine
 
-## Why different elements land at different exact masses
-
-A “nominal +2” peak contains any isotopologue whose mass rounds to 2 Da
-above the monoisotopic peak. But exact masses differ: nuclear binding
-energy varies between nuclei, so the heavy isotope of each element sits
-at its own characteristic offset from the nearest integer.
-
-| Isotopologue | Shift from monoisotopic (Da) | Offset from nominal +2 (mDa) |
-|--------------|-----------------------------:|-----------------------------:|
-| ¹³C + ¹³C    |                      +2.0067 |                         +6.7 |
-| ¹⁸O          |                      +2.0042 |                         +4.2 |
-| ³⁷Cl         |                      +1.9971 |                         −2.9 |
-| ³⁴S          |                      +1.9958 |                         −4.2 |
-
-The 10.9 mDa gap between ¹³C¹³C and ³⁴S is larger than the mass accuracy
-of any modern high-resolution instrument: they are at genuinely
-different masses. Whether your spectrum resolves them as two peaks
-rather than one depends on resolving power; the sections below work
-through that for a concrete example.
-
-## When the coarse pattern hides the answer
-
-**Methionine**, C₅H₁₁NO₂S, is one of the twenty proteinogenic amino
+**Methionine** (C₅H₁₁NO₂S) is one of the twenty proteinogenic amino
 acids, present in every untargeted metabolomics run. It carries one
-sulfur, and ³⁴S sits at 4.25% natural abundance, two orders of magnitude
-more abundant than the +1 isotopes of the CHNO elements. Nothing about a
-coarse M+1/M+2 barcode makes that obvious.
+sulfur, whose ³⁴S isotope sits at 4.25% natural abundance. Nothing about
+a coarse M+1/M+2 barcode makes that obvious: the bars look ordinary
+until you notice M+2 far exceeds what five carbons alone could explain.
 
 Change `formula` here to run the same workflow for your own candidate:
 
@@ -121,11 +140,9 @@ alone would produce, but the bars don’t say why.
 
 Five carbons predict M+2 from double-¹³C at
 `choose(5,2) * 0.0107^2 * 100 ≈ 0.11%`, **roughly 40 times smaller**
-than the 5.1% actually observed. That gap between the naive ¹³C-only
-prediction and the observed M+2 height is itself a diagnostic: whenever
-M+2 badly overshoots what carbon alone predicts, suspect S, Cl, Br, Si,
-or a metal before anything else. The fine structure below names the
-specific isotopologue.
+than the 5.1% actually observed. Whenever M+2 badly overshoots what
+carbon alone predicts, suspect S, Cl, Br, Si, or a metal — the fine
+structure below names the specific isotopologue.
 
 ## Step 1: build the fine-structure table
 
@@ -167,8 +184,7 @@ Every isotopologue of C5H11NO2S above the default 0.01% threshold.
 
 ## Step 2: zoom into one nominal level
 
-On the m/z axis, the M+1 and M+2 regions each split into several
-distinct peaks:
+On the m/z axis, M+1 and M+2 each split into several distinct peaks:
 
 Show code
 
@@ -204,6 +220,12 @@ plot_level(pat, 1, paste(formula, "M+1"))
 M+1: five candidate isotope substitutions, spread across 0.009 Da.
 Carbon dominates, as it does for almost every organic ion.
 
+At M+1, ¹³C dominates (five carbons × 1.07%) with ¹⁵N and ³³S present
+but roughly 20-fold smaller. Their mass offsets from ¹³C are −6.3 mDa
+and −3.9 mDa respectively — both resolvable in principle on a
+high-resolution instrument, though the abundance difference means ¹³C
+will always be the tallest peak.
+
 Show code
 
 ``` r
@@ -216,15 +238,14 @@ plot_level(pat, 2, paste(formula, "M+2"))
 M+2: 34S alone outweighs every carbon-only combination roughly 40-fold
 and sits at a measurably different mass.
 
-Two things the coarse bar chart could not show are visible here. First,
-**sulfur’s +2 isotope physically sits apart from every carbon-based
-explanation**: `13C, 13C` sits 0.01091 Da away from `34S`, a large
-enough gap that they are two genuinely different masses, not two names
-for the same peak. Second, the height difference *is* the sulfur signal:
-`34S` towers over every combination of carbons, nitrogens and oxygens
-that could also reach +2, which is the fine-structure version of the
-40-fold excess already spotted in the coarse pattern, now with a
-specific competing hypothesis (¹³C¹³C) at a specific, different mass.
+At M+2, the same two things the coarse bar chart could not show are now
+visible. First, **³⁴S physically sits apart from every carbon-based
+explanation**: `13C, 13C` sits 0.01091 Da away from `34S`. Second, the
+height difference *is* the sulfur signal: `34S` towers over every
+carbon/nitrogen/oxygen combination that could also reach +2 — the
+fine-structure version of the 40-fold excess already spotted in the
+coarse pattern, now with a specific competing hypothesis (¹³C¹³C) at a
+specific, different mass.
 
 ## Step 3: would your instrument resolve the candidates?
 
@@ -263,14 +284,16 @@ separations <- function(pattern, level, mz_ref = 200, min_abundance = 0.01) {
   }) %>% arrange(R_at200)
 }
 
+ion_mz <- base_mz + 1.007276   # [M+H]+ in positive mode
+
 sep2 <- separations(pat, 2)
 sep2 %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R at this m/z", "R @200"),
+                              "separation (Da)", paste0("R at m/z ", round(ion_mz)), "R @200"),
                caption = "Every pair of M+2 candidates above 0.01% abundance. R@200 is the Orbitrap resolving power at which the two peaks show a ~50% valley.")
 ```
 
-| a | b | abundance a % | abundance b % | separation (Da) | R at this m/z | R @200 |
+| a | b | abundance a % | abundance b % | separation (Da) | R at m/z 150 | R @200 |
 |:---|:---|---:|---:|---:|---:|---:|
 | 34S | 13C, 13C | 4.474 | 0.117 | 0.01091 | 20761 | 18043 |
 | 34S | 18O | 4.474 | 0.411 | 0.00845 | 26815 | 23304 |
@@ -303,9 +326,9 @@ The closest pair (`13C, 33S` vs `18O`, 0.0015 Da apart) needs R ~
 
 [`isotope_profile()`](https://stanstrup.github.io/commonMZ/reference/isotope_profile.md)
 turns the fine-structure table into simulated peak shapes at any
-resolving power. Pass it the *actual* resolving power at this m/z,
-converting from the instrument’s `R @ 200` specification with
-`R_at_mz()`:
+resolving power. Pass it the *actual* resolving power at the ion’s m/z
+(here \[M+H\]⁺ at m/z 150), converting from the instrument’s `R @ 200`
+specification with `R_at_mz()`:
 
 Show code
 
@@ -342,7 +365,7 @@ there and *whether your instrument could show it to you*.
 
 The charts below position every M+1 (first isotope) and M+2 (second
 isotope) isotopologue by its mass offset from the **carbon reference
-peak** — ¹³C for M+1, ¹³C,¹³C for M+2 — normalized so the tallest bar
+peak** (¹³C for M+1; ¹³C,¹³C for M+2), normalized so the tallest bar
 reaches 1. This shows at a glance which non-carbon elements contribute
 and how far they sit from the carbon signal on the m/z axis.
 
@@ -390,22 +413,22 @@ Show code
 
 separations(pat, 1) %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R at this m/z", "R @200"),
+                              "separation (Da)", paste0("R at m/z ", round(ion_mz)), "R @200"),
                caption = "Pairwise separations between M+1 candidates above 0.01% abundance.")
 ```
 
-| a   | b   | abundance a % | abundance b % | separation (Da) | R at this m/z | R @200 |
-|:----|:----|--------------:|--------------:|----------------:|--------------:|-------:|
-| 15N | 2H  |         0.365 |         0.127 |         0.00924 |         24354 |  21095 |
-| 15N | 17O |         0.365 |         0.076 |         0.00718 |         31339 |  27145 |
-| 33S | 2H  |         0.790 |         0.127 |         0.00689 |         32673 |  28301 |
-| 15N | 13C |         0.365 |         5.408 |         0.00632 |         35614 |  30848 |
-| 33S | 17O |         0.790 |         0.076 |         0.00483 |         46609 |  40372 |
-| 33S | 13C |         0.790 |         5.408 |         0.00397 |         56737 |  49145 |
-| 13C | 2H  |         5.408 |         0.127 |         0.00292 |         77033 |  66725 |
-| 15N | 33S |         0.365 |         0.790 |         0.00235 |         95660 |  82858 |
-| 17O | 2H  |         0.076 |         0.127 |         0.00206 |        109271 |  94650 |
-| 13C | 17O |         5.408 |         0.076 |         0.00086 |        261104 | 226164 |
+| a   | b   | abundance a % | abundance b % | separation (Da) | R at m/z 150 | R @200 |
+|:----|:----|--------------:|--------------:|----------------:|-------------:|-------:|
+| 15N | 2H  |         0.365 |         0.127 |         0.00924 |        24354 |  21095 |
+| 15N | 17O |         0.365 |         0.076 |         0.00718 |        31339 |  27145 |
+| 33S | 2H  |         0.790 |         0.127 |         0.00689 |        32673 |  28301 |
+| 15N | 13C |         0.365 |         5.408 |         0.00632 |        35614 |  30848 |
+| 33S | 17O |         0.790 |         0.076 |         0.00483 |        46609 |  40372 |
+| 33S | 13C |         0.790 |         5.408 |         0.00397 |        56737 |  49145 |
+| 13C | 2H  |         5.408 |         0.127 |         0.00292 |        77033 |  66725 |
+| 15N | 33S |         0.365 |         0.790 |         0.00235 |        95660 |  82858 |
+| 17O | 2H  |         0.076 |         0.127 |         0.00206 |       109271 |  94650 |
+| 13C | 17O |         5.408 |         0.076 |         0.00086 |       261104 | 226164 |
 
 Pairwise separations between M+1 candidates above 0.01% abundance.
 {.table .caption-top}
@@ -454,11 +477,11 @@ Show code
 
 separations(pat, 2) %>%
   knitr::kable(col.names = c("a", "b", "abundance a %", "abundance b %",
-                              "separation (Da)", "R at this m/z", "R @200"),
+                              "separation (Da)", paste0("R at m/z ", round(ion_mz)), "R @200"),
                caption = "Pairwise separations between M+2 candidates above 0.01% abundance.")
 ```
 
-| a | b | abundance a % | abundance b % | separation (Da) | R at this m/z | R @200 |
+| a | b | abundance a % | abundance b % | separation (Da) | R at m/z 150 | R @200 |
 |:---|:---|---:|---:|---:|---:|---:|
 | 34S | 13C, 13C | 4.474 | 0.117 | 0.01091 | 20761 | 18043 |
 | 34S | 18O | 4.474 | 0.411 | 0.00845 | 26815 | 23304 |
@@ -499,7 +522,7 @@ and
 [`isotope_profile()`](https://stanstrup.github.io/commonMZ/reference/isotope_profile.md)
 are. Both helpers are short enough to copy into your own analysis.
 
-For looking up a delta between two arbitrary peaks against every known
-adduct, fragment and repeating-unit difference in commonMZ, see
-[*Looking up an unexplained mass
-difference*](https://stanstrup.github.io/commonMZ/articles/mass-difference-lookup.md).
+If you measured a gap between two resolved fine-structure peaks and want
+to identify which pair of isotopologues produced it, see [*Looking up an
+isotopologue
+offset*](https://stanstrup.github.io/commonMZ/articles/isotope-offset-lookup.md).
