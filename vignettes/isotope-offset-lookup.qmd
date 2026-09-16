@@ -1,6 +1,6 @@
 ---
 title: "Looking up an isotopologue offset"
-subtitle: "I see a satellite peak at a known distance from M+1 or M+2. Which element caused it?"
+subtitle: "I measure a gap between two fine-structure peaks. Which pair of elements explains it?"
 format:
   html:
     toc: true
@@ -36,26 +36,16 @@ REF_ELEMENTS <- c("C", "H", "N", "O", "S", "P", "F", "Cl", "Br", "I",
                    "Si", "B", "Se", "Fe", "Ca", "K", "Na", "Mg", "Zn", "Cu")
 ```
 
-When you measure a high-resolution spectrum and see a small satellite peak a few
-millidaltons away from the main M+1 or M+2 peak, the question is: what isotope
-substitution sits there?<br>
-This page provides a precomputed reference of every
-isotopologue offset for common elements and a search that works exactly like the
-[mass-difference lookup](mass-difference-lookup.html): enter an observed offset and
-a tolerance, click **Search**.
+When you zoom into the M+1 or M+2 region of a high-resolution spectrum you see
+several peaks separated by a few millidaltons. The question is: which pair of
+isotope substitutions produces the gap you just measured?
 
-Offsets are reported in two ways:
-
-* **offset from M** (Da): the exact mass shift from the monoisotopic peak, i.e.
-  the number that `isotope_fine_pattern()` gives you in its `mz` column minus the
-  monoisotopic `mz`.
-* **offset from ¹³C** (for M+1) or **offset from ¹³C,¹³C** (for M+2): how far
-  the isotopologue sits from the dominant carbon reference within that nominal level.
-  This is what you read off the m/z axis when you zoom into the M+1 or M+2 region
-  of a carbon-containing compound.
+This page precomputes every pairwise separation between isotopologues of common
+elements within the same nominal level. Enter the observed gap and a tolerance,
+click **Search**, and the table returns every element pair that could explain it.
 
 ```{r build-ref}
-## Build one row per element × isotopologue combination for M+1 and M+2
+## Build one row per element × isotopologue for M+1 and M+2
 ref_raw <- map_dfr(REF_ELEMENTS, function(el) {
   p <- tryCatch(isotope_fine_pattern(el), error = function(e) NULL)
   if (is.null(p) || nrow(p) == 0) return(NULL)
@@ -72,53 +62,45 @@ ref_raw <- map_dfr(REF_ELEMENTS, function(el) {
     select(element, level = nominal, isotopologue = label, offset_M, abundance)
 })
 
-## Reference masses: 13C for M+1, "13C, 13C" for M+2
-c13_m1 <- ref_raw %>%
-  filter(element == "C", level == 1, isotopologue == "13C") %>%
-  pull(offset_M)
-# 13C,13C M+2 offset is 2 * c13_m1 -- isotope_fine_pattern("C") has no M+2 level
-# (single carbon can't carry two 13C), so filtering ref_raw would return nothing.
-c13c13_m2 <- if (length(c13_m1) > 0) 2 * c13_m1[1] else numeric(0)
-
-offsets <- ref_raw %>%
-  mutate(
-    offset_from_ref = case_when(
-      level == 1 & length(c13_m1)    > 0 ~ round(offset_M - c13_m1[1],    6),
-      level == 2 & length(c13c13_m2) > 0 ~ round(offset_M - c13c13_m2[1], 6),
-      TRUE ~ NA_real_
-    ),
-    reference = if_else(level == 1, "13C", "13C,13C"),
-    level     = paste0("M+", level),
-    abundance = round(abundance, 4)
-  ) %>%
-  arrange(level, offset_from_ref) %>%
-  select(level, element, isotopologue, `offset from M (Da)` = offset_M,
-         reference, `offset from ref (Da)` = offset_from_ref,
-         `abundance (% of M)` = abundance)
+## All pairwise separations within each nominal level
+pairs <- map_dfr(split(ref_raw, ref_raw$level), function(d) {
+  if (nrow(d) < 2) return(NULL)
+  level_label <- paste0("M+", d$level[1])
+  idx <- combn(nrow(d), 2)
+  map_dfr(seq_len(ncol(idx)), function(i) {
+    ra <- d[idx[1, i], ]; rb <- d[idx[2, i], ]
+    tibble(
+      level          = level_label,
+      `isotopologue A` = paste0(ra$element, ": ", ra$isotopologue),
+      `isotopologue B` = paste0(rb$element, ": ", rb$isotopologue),
+      `difference (Da)` = round(abs(ra$offset_M - rb$offset_M), 6),
+      `abundance A (% of M)` = round(ra$abundance, 4),
+      `abundance B (% of M)` = round(rb$abundance, 4)
+    )
+  })
+}) %>% arrange(level, `difference (Da)`)
 ```
 
-## Search by observed offset
+## Search by observed separation
 
-Type the offset you measured in the spectrum and a tolerance in ppm. The ppm is
-taken relative to the **reference m/z** — the m/z of the parent ion you are zoomed
-in on, 300 Da by default — not to the tiny offset itself, the same convention as
-`mz_diff_lookup()`'s `ref_mz` argument. That matters here: these offsets are only
-millidaltons wide, so a ppm of the offset would give an absurdly tight window,
-whereas ppm of the parent ion is what your instrument's mass accuracy actually
-refers to. Click **Search**, then **Clear** to reset.
+Enter the gap you measured between two fine-structure peaks and a tolerance. The
+ppm is relative to the **reference m/z** (the parent ion's m/z, 300 Da by default),
+not to the tiny millidalton gap itself — ppm of the gap would give an absurdly tight
+window, whereas ppm of the parent ion is what your instrument's mass accuracy
+actually refers to.
 
 ```{r offset-interactive}
 #| echo: false
 ## DataTables core version bundled with DT, for the CDN fallback below
-probe_widget      <- datatable(data.frame(x = 1))
-DT_CORE_VERSION   <- Filter(function(d) d$name == "dt-core",
-                             probe_widget$dependencies)[[1]]$version
+probe_widget    <- datatable(data.frame(x = 1))
+DT_CORE_VERSION <- Filter(function(d) d$name == "dt-core",
+                           probe_widget$dependencies)[[1]]$version
 
 tagList(
   tags$div(
     style = "display:flex; gap:1em; align-items:end; margin-bottom:0.75em; flex-wrap:wrap;",
     tags$div(
-      tags$label("offset (Da)", `for` = "iso_off"),
+      tags$label("observed gap (Da)", `for` = "iso_off"),
       tags$br(),
       tags$input(id = "iso_off", type = "number", step = "any",
                  class = "form-control", style = "width:12em;")
@@ -135,19 +117,11 @@ tagList(
       tags$input(id = "iso_refmz", type = "number", step = "any", value = "300",
                  class = "form-control", style = "width:10em;")
     ),
-    tags$div(
-      tags$label("column to search", `for` = "iso_col"),
-      tags$br(),
-      tags$select(id = "iso_col", class = "form-control", style = "width:16em;",
-        tags$option(value = "3", "offset from M (Da)",     selected = NA),
-        tags$option(value = "5", "offset from ref (Da)")
-      )
-    ),
     tags$button("Search", id = "iso_go",    type = "button", class = "btn btn-primary"),
     tags$button("Clear",  id = "iso_clear", type = "button", class = "btn btn-outline-secondary")
   ),
-  datatable(offsets, rownames = FALSE, elementId = "iso_table",
-            options = list(pageLength = 15, order = list(list(5, "asc")))),
+  datatable(pairs, rownames = FALSE, elementId = "iso_table",
+            options = list(pageLength = 15, order = list(list(3, "asc")))),
   tags$script(HTML(sprintf("
     if (typeof $ === 'undefined' || typeof $.fn.dataTable === 'undefined') {
       document.write('<script src=\"https://cdn.datatables.net/%s/js/jquery.dataTables.min.js\"><\\/script>');
@@ -156,20 +130,18 @@ tagList(
       var $tbl = $('#iso_table').find('table').first();
       if (!$tbl.length) return;
       var dt = $tbl.DataTable();
-      var target = null, tolDa = null, colIdx = 3;
+      var target = null, tolDa = null;
 
       $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
         if (settings.nTable !== $tbl.get(0)) return true;
         if (target === null) return true;
-        var val = parseFloat(data[colIdx]);
+        var val = parseFloat(data[3]);
         return !isNaN(val) && Math.abs(val - target) <= tolDa;
       });
 
       $('#iso_go').on('click', function() {
-        colIdx = parseInt($('#iso_col').val()) - 1;
         var off = parseFloat(document.getElementById('iso_off').value);
         var ppm = parseFloat(document.getElementById('iso_ppm').value);
-        // ppm relative to the parent ion's m/z, not to the millidalton offset
         var refEl = document.getElementById('iso_refmz');
         var ref   = refEl ? parseFloat(refEl.value) : NaN;
         if (isNaN(off) || isNaN(ppm)) { target = null; }
@@ -189,19 +161,19 @@ tagList(
 )
 ```
 
-The search re-filters only when you click **Search**. Choose whether to search by
-**offset from M** (what `isotope_fine_pattern()` gives directly) or **offset from
-ref** (what you read off the m/z axis when zoomed into the M+1 or M+2 region).
+The table shows every pair of isotopologues within the same nominal level (M+1 or
+M+2). Search by entering the gap you measured between two peaks in the fine
+structure.
 
-## How to use these offsets
+## How to use this table
 
-1. Zoom into the M+1 or M+2 region of your spectrum and measure the distance
-   between the main carbon peak (¹³C at M+1; ¹³C,¹³C at M+2) and the satellite.
-2. Enter that distance in the **offset from ref** search above with a tolerance
-   matching your instrument's mass accuracy.
-3. Check abundance: if the satellite is smaller than the predicted abundance, the
-   element may be present but not resolved; if it is absent entirely, the element
-   is not present (or the resolving power was insufficient).
+1. Zoom into the M+1 or M+2 region of your spectrum and measure the separation
+   between any two peaks you can resolve.
+2. Enter that gap in the **observed gap** field with a tolerance matching your
+   instrument's mass accuracy, and click **Search**.
+3. Each returned row names the pair of isotopologues whose exact-mass positions are
+   that far apart. Check the abundance columns: if one member of the pair is far too
+   small to see at your current resolution, rule it out.
 
-For a formula-specific analysis — how large the satellite should be, what resolving
-power you need to see it — see [*Isotope fine structure*](isotope-fine-structure.html).
+For a formula-specific analysis — how large each peak should be, and what resolving
+power you need to separate them — see [*Isotope fine structure*](isotope-fine-structure.html).
