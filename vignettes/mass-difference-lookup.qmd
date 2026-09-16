@@ -208,7 +208,7 @@ numbers, or press *Clear* to go back to the full table.
 #| message: false
 #| results: asis
 BibOptions(check.entries = FALSE)
-bib <- ReadBib("../references.bib", check = FALSE)
+bib <- ReadBib("references.bib", check = FALSE)
 
 `%||%` <- function(x, y) if (is.null(x) || length(x) == 0) y else x
 
